@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Option A+ Ink Background (0px radius) -->
+  <rect width="32" height="32" fill="#2B1D14" />
+  <!-- Monogram M in Fraunces style -->
+  <text x="14" y="23" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#F3E9DA" text-anchor="middle">M</text>
+  <!-- Burnt Sienna Stamp Dot -->
+  <rect x="23" y="19" width="4" height="4" fill="#A8672E" />
+</svg>

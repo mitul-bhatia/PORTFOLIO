@@ -1,0 +1,1343 @@
+{
+  "tool": "comp-spec",
+  "version": 1,
+  "createdAt": "2026-09-13T03:48:50.392Z",
+  "comp": ".impeccable/mocks/comp-b-path-field.png",
+  "warnings": [
+    "region ambient-left-paths: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)",
+    "region path-field-upper: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)",
+    "region path-field-middle: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)",
+    "region path-field-lower: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)",
+    "region bot-face: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)"
+  ],
+  "uncoveredInkCells": [],
+  "compSize": {
+    "width": 1586,
+    "height": 992
+  },
+  "aspect": 1.5988,
+  "orientation": "landscape",
+  "palette": [
+    {
+      "hex": "#e8e3cd",
+      "coverage": 0.9002
+    },
+    {
+      "hex": "#281709",
+      "coverage": 0.055
+    },
+    {
+      "hex": "#8c745c",
+      "coverage": 0.0179
+    },
+    {
+      "hex": "#bdaa97",
+      "coverage": 0.0154
+    },
+    {
+      "hex": "#a8692b",
+      "coverage": 0.0114
+    }
+  ],
+  "bands": [
+    {
+      "y": 0.1625,
+      "strength": 0.27
+    },
+    {
+      "y": 0.325,
+      "strength": 0.6489
+    },
+    {
+      "y": 0.5,
+      "strength": 0.4871
+    },
+    {
+      "y": 0.55,
+      "strength": 0.2695
+    },
+    {
+      "y": 0.575,
+      "strength": 0.2188
+    },
+    {
+      "y": 0.6125,
+      "strength": 0.2732
+    },
+    {
+      "y": 0.65,
+      "strength": 0.2026
+    },
+    {
+      "y": 0.725,
+      "strength": 0.2927
+    },
+    {
+      "y": 0.9625,
+      "strength": 0.3822
+    }
+  ],
+  "regions": [
+    {
+      "id": "paper-texture",
+      "kind": "texture",
+      "note": "clean cream paper grain sample without foreground ink",
+      "grid": "A1:B2",
+      "box": {
+        "x": 0,
+        "y": 0.1,
+        "w": 0.2,
+        "h": 0.2
+      },
+      "px": {
+        "x": 0,
+        "y": 99,
+        "w": 317,
+        "h": 198
+      },
+      "aspect": 1.601,
+      "palette": [
+        {
+          "hex": "#e9e6d2",
+          "coverage": 0.9192
+        },
+        {
+          "hex": "#291809",
+          "coverage": 0.0792
+        },
+        {
+          "hex": "#c8b8a8",
+          "coverage": 0.001
+        },
+        {
+          "hex": "#685848",
+          "coverage": 0.0006
+        }
+      ],
+      "detail": {
+        "energy": 8.1677
+      },
+      "medium": "raster",
+      "plate": "assets/plates/paper-texture.png",
+      "text": null
+    },
+    {
+      "id": "masthead",
+      "kind": "chrome",
+      "note": "thin top masthead with brand, role, navigation, and bottom rule",
+      "grid": "A0:J0",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 0.1
+      },
+      "px": {
+        "x": 0,
+        "y": 0,
+        "w": 1586,
+        "h": 99
+      },
+      "aspect": 16.0202,
+      "palette": [
+        {
+          "hex": "#e9e5cf",
+          "coverage": 0.9762
+        },
+        {
+          "hex": "#c7b5a3",
+          "coverage": 0.0181
+        },
+        {
+          "hex": "#7d6d5d",
+          "coverage": 0.0058
+        }
+      ],
+      "detail": {
+        "energy": 5.991
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "brand-label",
+      "kind": "text",
+      "note": "MITUL BHATIA and AI SYSTEMS ENGINEER masthead labels",
+      "grid": "A0:C0",
+      "coverBox": {
+        "x": 0,
+        "y": 0,
+        "w": 0.3,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.1438,
+        "y": 0.0181,
+        "w": 0.1286,
+        "h": 0.0302
+      },
+      "px": {
+        "x": 228,
+        "y": 18,
+        "w": 204,
+        "h": 30
+      },
+      "aspect": 6.8,
+      "palette": [
+        {
+          "hex": "#ebe7d4",
+          "coverage": 0.8897
+        },
+        {
+          "hex": "#b0a08f",
+          "coverage": 0.0574
+        },
+        {
+          "hex": "#7a6858",
+          "coverage": 0.0529
+        }
+      ],
+      "detail": {
+        "energy": 23.8325
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 17,
+          "capHeightPx": 10.3,
+          "inkIsDark": true,
+          "allCaps": true,
+          "advance": 0.6473,
+          "advTall": 0.6473,
+          "advX": null,
+          "gap": 0.4207,
+          "xRatio": null,
+          "stemW": 0.1922,
+          "contrast": 1.1177,
+          "serif": 1.7947,
+          "densTall": 0.5518,
+          "densX": null,
+          "weight": 0.5518
+        },
+        "widthClass": "normal",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "nav-labels",
+      "kind": "text",
+      "note": "WORK ABOUT NOTES CONTACT navigation labels",
+      "grid": "G0:I0",
+      "coverBox": {
+        "x": 0.6,
+        "y": 0,
+        "w": 0.3,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.8159,
+        "y": 0.0181,
+        "w": 0.053,
+        "h": 0.0302
+      },
+      "px": {
+        "x": 1294,
+        "y": 18,
+        "w": 84,
+        "h": 30
+      },
+      "aspect": 2.8,
+      "palette": [
+        {
+          "hex": "#e9e5d0",
+          "coverage": 0.8929
+        },
+        {
+          "hex": "#9d8f7e",
+          "coverage": 0.0571
+        },
+        {
+          "hex": "#6a5646",
+          "coverage": 0.0357
+        },
+        {
+          "hex": "#c0b4a0",
+          "coverage": 0.0143
+        }
+      ],
+      "detail": {
+        "energy": 12.1511
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 8,
+          "capHeightPx": 10.1,
+          "inkIsDark": true,
+          "allCaps": true,
+          "advance": 0.5942,
+          "advTall": 0.5942,
+          "advX": null,
+          "gap": 0.2311,
+          "xRatio": null,
+          "stemW": 0.1891,
+          "contrast": 0.9945,
+          "serif": 0.3009,
+          "densTall": 0.5212,
+          "densX": null,
+          "weight": 0.5212
+        },
+        "widthClass": "condensed",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "ambient-left-paths",
+      "kind": "chrome",
+      "note": "responsive interface path fragments and amber state nodes",
+      "grid": "A1:B4",
+      "codeDrawn": true,
+      "box": {
+        "x": 0,
+        "y": 0.1,
+        "w": 0.2,
+        "h": 0.4
+      },
+      "px": {
+        "x": 0,
+        "y": 99,
+        "w": 317,
+        "h": 397
+      },
+      "aspect": 0.7985,
+      "palette": [
+        {
+          "hex": "#e9e6d1",
+          "coverage": 0.8896
+        },
+        {
+          "hex": "#291709",
+          "coverage": 0.0973
+        },
+        {
+          "hex": "#b2a291",
+          "coverage": 0.0106
+        },
+        {
+          "hex": "#776757",
+          "coverage": 0.0024
+        }
+      ],
+      "detail": {
+        "energy": 11.1803
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "left-annotation",
+      "kind": "text",
+      "note": "small supporting annotation block",
+      "grid": "A3:A3",
+      "coverBox": {
+        "x": 0,
+        "y": 0.3,
+        "w": 0.1,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.0303,
+        "y": 0.3004,
+        "w": 0.07,
+        "h": 0.0786
+      },
+      "px": {
+        "x": 48,
+        "y": 298,
+        "w": 111,
+        "h": 78
+      },
+      "aspect": 1.4231,
+      "palette": [
+        {
+          "hex": "#eae5d1",
+          "coverage": 0.9023
+        },
+        {
+          "hex": "#978974",
+          "coverage": 0.052
+        },
+        {
+          "hex": "#cbbdac",
+          "coverage": 0.0437
+        },
+        {
+          "hex": "#482818",
+          "coverage": 0.001
+        },
+        {
+          "hex": "#785848",
+          "coverage": 0.001
+        }
+      ],
+      "detail": {
+        "energy": 10.8037
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 4,
+          "glyphs": 29,
+          "capHeightPx": 8.1,
+          "inkIsDark": true,
+          "allCaps": true,
+          "advance": 0.6583,
+          "advTall": 0.6583,
+          "advX": null,
+          "gap": 0.3473,
+          "xRatio": null,
+          "stemW": 0.201,
+          "contrast": 1.1246,
+          "serif": null,
+          "densTall": 0.5806,
+          "densX": null,
+          "weight": 0.5806
+        },
+        "widthClass": "normal",
+        "weightClass": "bold"
+      }
+    },
+    {
+      "id": "hero-name",
+      "kind": "text",
+      "note": "large two-line MITUL BHATIA display text",
+      "grid": "B1:G4",
+      "coverBox": {
+        "x": 0.1,
+        "y": 0.1,
+        "w": 0.6,
+        "h": 0.4
+      },
+      "box": {
+        "x": 0.1343,
+        "y": 0.1542,
+        "w": 0.5246,
+        "h": 0.3458
+      },
+      "px": {
+        "x": 213,
+        "y": 153,
+        "w": 832,
+        "h": 343
+      },
+      "aspect": 2.4257,
+      "palette": [
+        {
+          "hex": "#e9e7d4",
+          "coverage": 0.6961
+        },
+        {
+          "hex": "#291709",
+          "coverage": 0.2737
+        },
+        {
+          "hex": "#a39383",
+          "coverage": 0.0115
+        },
+        {
+          "hex": "#5f4f3f",
+          "coverage": 0.0099
+        },
+        {
+          "hex": "#d0c0b0",
+          "coverage": 0.0088
+        }
+      ],
+      "detail": {
+        "energy": 45.8514
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 2,
+          "glyphs": 11,
+          "capHeightPx": 149.4,
+          "inkIsDark": true,
+          "allCaps": true,
+          "advance": 0.8657,
+          "advTall": 0.8657,
+          "advX": null,
+          "gap": 0.1443,
+          "xRatio": null,
+          "stemW": 0.2168,
+          "contrast": 4.6747,
+          "serif": 1.353,
+          "densTall": 0.4687,
+          "densX": null,
+          "weight": 0.4687
+        },
+        "widthClass": "wide",
+        "weightClass": "regular",
+        "chosen": {
+          "family": "Libre Bodoni",
+          "weight": 700,
+          "fontSizePx": 197,
+          "source": "index",
+          "fp": {
+            "lines": 1,
+            "glyphs": 9,
+            "capHeightPx": 149.3,
+            "inkIsDark": true,
+            "allCaps": true,
+            "advance": 0.8505,
+            "advTall": 0.8505,
+            "advX": null,
+            "gap": 0.1976,
+            "xRatio": null,
+            "stemW": 0.2122,
+            "contrast": 4.6442,
+            "serif": 2.5209,
+            "densTall": 0.453,
+            "densX": null,
+            "weight": 0.453
+          },
+          "stamp": "2247c7c471cd"
+        }
+      }
+    },
+    {
+      "id": "hero-description",
+      "kind": "text",
+      "note": "two-line first-person engineering positioning statement",
+      "grid": "B5:F6",
+      "coverBox": {
+        "x": 0.1,
+        "y": 0.5,
+        "w": 0.5,
+        "h": 0.2
+      },
+      "box": {
+        "x": 0.1343,
+        "y": 0.6452,
+        "w": 0.1967,
+        "h": 0.0544
+      },
+      "px": {
+        "x": 213,
+        "y": 640,
+        "w": 312,
+        "h": 54
+      },
+      "aspect": 5.7778,
+      "palette": [
+        {
+          "hex": "#a76728",
+          "coverage": 0.6909
+        },
+        {
+          "hex": "#e9e4cd",
+          "coverage": 0.2727
+        },
+        {
+          "hex": "#b28152",
+          "coverage": 0.015
+        },
+        {
+          "hex": "#e6c7ad",
+          "coverage": 0.0118
+        },
+        {
+          "hex": "#c5a276",
+          "coverage": 0.0096
+        }
+      ],
+      "detail": {
+        "energy": 19.9413
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": null,
+        "measuredAt": "2026-09-13T03:48:59.475Z",
+        "note": "no separable lettering in the crop; size by the region box"
+      }
+    },
+    {
+      "id": "primary-action",
+      "kind": "control",
+      "note": "amber VIEW PROJECTS action",
+      "grid": "B6:D7",
+      "coverBox": {
+        "x": 0.1,
+        "y": 0.6,
+        "w": 0.3,
+        "h": 0.2
+      },
+      "box": {
+        "x": 0.1343,
+        "y": 0.6482,
+        "w": 0.1967,
+        "h": 0.0786
+      },
+      "px": {
+        "x": 213,
+        "y": 643,
+        "w": 312,
+        "h": 78
+      },
+      "aspect": 4,
+      "palette": [
+        {
+          "hex": "#a76728",
+          "coverage": 0.7369
+        },
+        {
+          "hex": "#e8dec7",
+          "coverage": 0.243
+        },
+        {
+          "hex": "#b58657",
+          "coverage": 0.0119
+        },
+        {
+          "hex": "#d2b590",
+          "coverage": 0.0082
+        }
+      ],
+      "detail": {
+        "energy": 18.0491
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "secondary-action",
+      "kind": "control",
+      "note": "outlined DOWNLOAD RESUME action",
+      "grid": "D6:F7",
+      "coverBox": {
+        "x": 0.3,
+        "y": 0.6,
+        "w": 0.3,
+        "h": 0.2
+      },
+      "box": {
+        "x": 0.3417,
+        "y": 0.6482,
+        "w": 0.2081,
+        "h": 0.0786
+      },
+      "px": {
+        "x": 542,
+        "y": 643,
+        "w": 330,
+        "h": 78
+      },
+      "aspect": 4.2308,
+      "palette": [
+        {
+          "hex": "#eae1cd",
+          "coverage": 0.9133
+        },
+        {
+          "hex": "#c3b39e",
+          "coverage": 0.0488
+        },
+        {
+          "hex": "#604e3c",
+          "coverage": 0.0235
+        },
+        {
+          "hex": "#9b8979",
+          "coverage": 0.0119
+        },
+        {
+          "hex": "#382818",
+          "coverage": 0.0025
+        }
+      ],
+      "detail": {
+        "energy": 28.0713
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "left-method-label",
+      "kind": "text",
+      "note": "small build observe iterate annotation",
+      "grid": "A6:A7",
+      "coverBox": {
+        "x": 0,
+        "y": 0.6,
+        "w": 0.1,
+        "h": 0.2
+      },
+      "box": {
+        "x": 0.034,
+        "y": 0.6784,
+        "w": 0.0416,
+        "h": 0.0665
+      },
+      "px": {
+        "x": 54,
+        "y": 673,
+        "w": 66,
+        "h": 66
+      },
+      "aspect": 1,
+      "palette": [
+        {
+          "hex": "#e9decb",
+          "coverage": 0.8988
+        },
+        {
+          "hex": "#b9aa98",
+          "coverage": 0.0723
+        },
+        {
+          "hex": "#8a7864",
+          "coverage": 0.0269
+        },
+        {
+          "hex": "#381808",
+          "coverage": 0.0021
+        }
+      ],
+      "detail": {
+        "energy": 7.8267
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 3,
+          "glyphs": 19,
+          "capHeightPx": 7.6,
+          "inkIsDark": true,
+          "allCaps": true,
+          "advance": 0.6372,
+          "advTall": 0.6372,
+          "advX": null,
+          "gap": 0.3537,
+          "xRatio": null,
+          "stemW": 0.2105,
+          "contrast": 1.1053,
+          "serif": 1.358,
+          "densTall": 0.6248,
+          "densX": null,
+          "weight": 0.6248
+        },
+        "widthClass": "normal",
+        "weightClass": "bold"
+      }
+    },
+    {
+      "id": "path-field-upper",
+      "kind": "chrome",
+      "note": "responsive mood-state interface paths with sparse right-angle rules and nodes",
+      "grid": "G1:I3",
+      "codeDrawn": true,
+      "box": {
+        "x": 0.6,
+        "y": 0.1,
+        "w": 0.3,
+        "h": 0.3
+      },
+      "px": {
+        "x": 952,
+        "y": 99,
+        "w": 476,
+        "h": 298
+      },
+      "aspect": 1.5973,
+      "palette": [
+        {
+          "hex": "#e9e6d1",
+          "coverage": 0.9869
+        },
+        {
+          "hex": "#281808",
+          "coverage": 0.0073
+        },
+        {
+          "hex": "#c8b49e",
+          "coverage": 0.0058
+        }
+      ],
+      "detail": {
+        "energy": 5.2577
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "path-field-middle",
+      "kind": "chrome",
+      "note": "responsive mood-state interface paths gathering toward the bot rail",
+      "grid": "G3:I5",
+      "codeDrawn": true,
+      "box": {
+        "x": 0.6,
+        "y": 0.3,
+        "w": 0.3,
+        "h": 0.3
+      },
+      "px": {
+        "x": 952,
+        "y": 298,
+        "w": 476,
+        "h": 298
+      },
+      "aspect": 1.5973,
+      "palette": [
+        {
+          "hex": "#e8e4ce",
+          "coverage": 0.9575
+        },
+        {
+          "hex": "#291809",
+          "coverage": 0.0318
+        },
+        {
+          "hex": "#cfb9a6",
+          "coverage": 0.0107
+        }
+      ],
+      "detail": {
+        "energy": 6.8994
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "path-field-lower",
+      "kind": "chrome",
+      "note": "responsive mood-state interface paths with vertical route rules",
+      "grid": "G5:I7",
+      "codeDrawn": true,
+      "box": {
+        "x": 0.6,
+        "y": 0.5,
+        "w": 0.3,
+        "h": 0.3
+      },
+      "px": {
+        "x": 952,
+        "y": 496,
+        "w": 476,
+        "h": 298
+      },
+      "aspect": 1.5973,
+      "palette": [
+        {
+          "hex": "#e8e3cd",
+          "coverage": 0.9924
+        },
+        {
+          "hex": "#ceb8a3",
+          "coverage": 0.0076
+        }
+      ],
+      "detail": {
+        "energy": 4.4729
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "bot-rail",
+      "kind": "chrome",
+      "note": "fixed narrow right-edge MB-01 instrument rail with rules and open trigger",
+      "grid": "J0:J8",
+      "box": {
+        "x": 0.9,
+        "y": 0,
+        "w": 0.1,
+        "h": 0.9
+      },
+      "px": {
+        "x": 1427,
+        "y": 0,
+        "w": 159,
+        "h": 893
+      },
+      "aspect": 0.1781,
+      "palette": [
+        {
+          "hex": "#e8d9bc",
+          "coverage": 0.9777
+        },
+        {
+          "hex": "#a59278",
+          "coverage": 0.0135
+        },
+        {
+          "hex": "#2f1b0b",
+          "coverage": 0.0052
+        },
+        {
+          "hex": "#65523f",
+          "coverage": 0.0036
+        }
+      ],
+      "detail": {
+        "energy": 6.6573
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "bot-face",
+      "kind": "chrome",
+      "note": "small geometric MB-01 interface icon",
+      "grid": "J1:J2",
+      "codeDrawn": true,
+      "box": {
+        "x": 0.9,
+        "y": 0.1,
+        "w": 0.1,
+        "h": 0.2
+      },
+      "px": {
+        "x": 1427,
+        "y": 99,
+        "w": 159,
+        "h": 198
+      },
+      "aspect": 0.803,
+      "palette": [
+        {
+          "hex": "#e8d9bb",
+          "coverage": 0.9437
+        },
+        {
+          "hex": "#2f1c0b",
+          "coverage": 0.0241
+        },
+        {
+          "hex": "#64503d",
+          "coverage": 0.0149
+        },
+        {
+          "hex": "#baa892",
+          "coverage": 0.0118
+        },
+        {
+          "hex": "#8e7c61",
+          "coverage": 0.0055
+        }
+      ],
+      "detail": {
+        "energy": 10.683
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "bot-name",
+      "kind": "text",
+      "note": "MB-01 label",
+      "grid": "J2:J2",
+      "coverBox": {
+        "x": 0.9,
+        "y": 0.2,
+        "w": 0.1,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.9338,
+        "y": 0.1996,
+        "w": 0.0416,
+        "h": 0.0302
+      },
+      "px": {
+        "x": 1481,
+        "y": 198,
+        "w": 66,
+        "h": 30
+      },
+      "aspect": 2.2,
+      "palette": [
+        {
+          "hex": "#e8d7b9",
+          "coverage": 0.8767
+        },
+        {
+          "hex": "#bba997",
+          "coverage": 0.0548
+        },
+        {
+          "hex": "#412f1d",
+          "coverage": 0.032
+        },
+        {
+          "hex": "#9b8b6d",
+          "coverage": 0.0274
+        },
+        {
+          "hex": "#585030",
+          "coverage": 0.0091
+        }
+      ],
+      "detail": {
+        "energy": 11.0333
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 5,
+          "capHeightPx": 12.1,
+          "inkIsDark": true,
+          "allCaps": false,
+          "advance": 0.6357,
+          "advTall": 0.6357,
+          "advX": null,
+          "gap": 0.3593,
+          "xRatio": 0.5119,
+          "stemW": 0.1526,
+          "contrast": 1.0217,
+          "serif": null,
+          "densTall": 0.5703,
+          "densX": null,
+          "weight": 0.5703
+        },
+        "widthClass": "normal",
+        "weightClass": "bold"
+      }
+    },
+    {
+      "id": "bot-moods",
+      "kind": "control",
+      "note": "stacked mood controls with one amber selected marker",
+      "grid": "J3:J6",
+      "coverBox": {
+        "x": 0.9,
+        "y": 0.3,
+        "w": 0.1,
+        "h": 0.4
+      },
+      "box": {
+        "x": 0.9224,
+        "y": 0.5121,
+        "w": 0.0416,
+        "h": 0.0302
+      },
+      "px": {
+        "x": 1463,
+        "y": 508,
+        "w": 66,
+        "h": 30
+      },
+      "aspect": 2.2,
+      "palette": [
+        {
+          "hex": "#e8d8b9",
+          "coverage": 0.8682
+        },
+        {
+          "hex": "#bba893",
+          "coverage": 0.0455
+        },
+        {
+          "hex": "#88765a",
+          "coverage": 0.0409
+        },
+        {
+          "hex": "#705e4e",
+          "coverage": 0.0364
+        },
+        {
+          "hex": "#483020",
+          "coverage": 0.0091
+        }
+      ],
+      "detail": {
+        "energy": 8.9147
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "mood-strip",
+      "kind": "chrome",
+      "note": "thin horizontal mood selector strip with section counter",
+      "grid": "A8:I8",
+      "box": {
+        "x": 0,
+        "y": 0.8,
+        "w": 0.9,
+        "h": 0.1
+      },
+      "px": {
+        "x": 0,
+        "y": 794,
+        "w": 1427,
+        "h": 99
+      },
+      "aspect": 14.4141,
+      "palette": [
+        {
+          "hex": "#e9e2cd",
+          "coverage": 0.9929
+        },
+        {
+          "hex": "#a5937f",
+          "coverage": 0.0042
+        },
+        {
+          "hex": "#786858",
+          "coverage": 0.0024
+        },
+        {
+          "hex": "#c8b8a8",
+          "coverage": 0.0005
+        }
+      ],
+      "detail": {
+        "energy": 5.7873
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "mood-strip-labels",
+      "kind": "control",
+      "note": "mood names and selected state",
+      "grid": "A8:F8",
+      "coverBox": {
+        "x": 0,
+        "y": 0.8,
+        "w": 0.6,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0,
+        "y": 0.8065,
+        "w": 0.6003,
+        "h": 0.0484
+      },
+      "px": {
+        "x": 0,
+        "y": 800,
+        "w": 952,
+        "h": 48
+      },
+      "aspect": 19.8333,
+      "palette": [
+        {
+          "hex": "#e9e0cc",
+          "coverage": 0.9849
+        },
+        {
+          "hex": "#7e6d5c",
+          "coverage": 0.0095
+        },
+        {
+          "hex": "#b1a191",
+          "coverage": 0.0022
+        },
+        {
+          "hex": "#9e682e",
+          "coverage": 0.0022
+        },
+        {
+          "hex": "#b09068",
+          "coverage": 0.0012
+        }
+      ],
+      "detail": {
+        "energy": 10.3025
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "section-counter",
+      "kind": "text",
+      "note": "01 / 05 state counter",
+      "grid": "I8:I8",
+      "coverBox": {
+        "x": 0.8,
+        "y": 0.8,
+        "w": 0.1,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.8001,
+        "y": 0.8065,
+        "w": 0.1003,
+        "h": 0.0484
+      },
+      "px": {
+        "x": 1269,
+        "y": 800,
+        "w": 159,
+        "h": 48
+      },
+      "aspect": 3.3125,
+      "palette": [
+        {
+          "hex": "#e8dccb",
+          "coverage": 0.9634
+        },
+        {
+          "hex": "#a2927d",
+          "coverage": 0.0236
+        },
+        {
+          "hex": "#76614d",
+          "coverage": 0.0106
+        },
+        {
+          "hex": "#c0b0a8",
+          "coverage": 0.0024
+        }
+      ],
+      "detail": {
+        "energy": 7.8418
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 5,
+          "capHeightPx": 9.4,
+          "inkIsDark": true,
+          "allCaps": false,
+          "advance": 0.6548,
+          "advTall": 0.6548,
+          "advX": null,
+          "gap": 0.3608,
+          "xRatio": 0.7837,
+          "stemW": 0.2313,
+          "contrast": 1.0449,
+          "serif": 1.511,
+          "densTall": 0.641,
+          "densX": null,
+          "weight": 0.641
+        },
+        "widthClass": "normal",
+        "weightClass": "bold"
+      }
+    },
+    {
+      "id": "projects-heading",
+      "kind": "text",
+      "note": "below-fold PROJECTS section heading",
+      "grid": "A9:C9",
+      "coverBox": {
+        "x": 0,
+        "y": 0.9,
+        "w": 0.3,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.0227,
+        "y": 0.9486,
+        "w": 0.2774,
+        "h": 0.0514
+      },
+      "px": {
+        "x": 36,
+        "y": 941,
+        "w": 440,
+        "h": 51
+      },
+      "aspect": 8.6275,
+      "palette": [
+        {
+          "hex": "#8d755a",
+          "coverage": 0.8011
+        },
+        {
+          "hex": "#e8dec9",
+          "coverage": 0.1989
+        }
+      ],
+      "detail": {
+        "energy": 15.0251
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": null,
+        "measuredAt": "2026-09-13T03:48:59.590Z",
+        "note": "no separable lettering in the crop; size by the region box"
+      }
+    },
+    {
+      "id": "projects-entry",
+      "kind": "chrome",
+      "note": "beginning of wide project index row below the first viewport",
+      "grid": "A9:J9",
+      "box": {
+        "x": 0,
+        "y": 0.9,
+        "w": 1,
+        "h": 0.1
+      },
+      "px": {
+        "x": 0,
+        "y": 893,
+        "w": 1586,
+        "h": 99
+      },
+      "aspect": 16.0202,
+      "palette": [
+        {
+          "hex": "#e8dec5",
+          "coverage": 0.8298
+        },
+        {
+          "hex": "#8e765b",
+          "coverage": 0.1634
+        },
+        {
+          "hex": "#25150b",
+          "coverage": 0.0035
+        },
+        {
+          "hex": "#b5a592",
+          "coverage": 0.0033
+        }
+      ],
+      "detail": {
+        "energy": 12.4529
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    }
+  ]
+}

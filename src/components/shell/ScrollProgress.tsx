@@ -1,25 +1,32 @@
 'use client';
 
-import React from 'react';
-import { motion, useScroll, useSpring, useReducedMotion } from 'motion/react';
+import { useEffect, useState } from 'react';
 
 export function ScrollProgress() {
-  const shouldReduceMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
+  const [progress, setProgress] = useState(0);
 
-  if (shouldReduceMotion) {
-    return null;
-  }
+  useEffect(() => {
+    let frameId: number;
+    const handleScroll = () => {
+      cancelAnimationFrame(frameId);
+      frameId = requestAnimationFrame(() => {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        setProgress(total > 0 ? Math.min(1, Math.max(0, window.scrollY / total)) : 0);
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(frameId);
+    };
+  }, []);
 
   return (
-    <motion.div
-      className="fixed top-0 left-0 right-0 h-[2px] bg-[var(--accent)] origin-left z-50 pointer-events-none transition-colors duration-500"
-      style={{ scaleX }}
+    <div
+      className="fixed left-0 right-0 top-0 z-50 h-[2px] origin-left bg-[var(--accent)] pointer-events-none transition-transform duration-75 ease-out"
+      style={{ transform: `scaleX(${progress})` }}
       aria-hidden="true"
     />
   );

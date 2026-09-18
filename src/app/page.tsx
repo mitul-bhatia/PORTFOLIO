@@ -1,60 +1,93 @@
-import React from 'react';
 import Link from 'next/link';
-import { PageSheet } from '@/components/shell/PageSheet';
 import { HeroStamp } from '@/components/proof/HeroStamp';
 import { PillarRow } from '@/components/proof/PillarRow';
 import { ProjectPlate } from '@/components/proof/ProjectPlate';
-import { PROJECTS } from '@/content/projects';
+import { SecondaryProjectCard } from '@/components/proof/SecondaryProjectCard';
+import { ExperienceSection } from '@/components/proof/ExperienceSection';
+import { FLAGSHIP_PROJECTS, SECONDARY_PROJECTS } from '@/content/projects';
+
 
 export default function HomePage() {
-  const aegisProject = PROJECTS.find((p) => p.slug === 'aegis') || PROJECTS[0];
-
   return (
-    <PageSheet folio="01 / MITUL — ORIENTATION">
-      {/* Screen 1: Orientation */}
+    <div className="w-full">
       <HeroStamp />
 
-      {/* Screen 2: Proof & Architecture */}
-      <PillarRow />
-
-      {/* Featured Flagship Case: AEGIS */}
-      <section className="py-16 border-b border-[#D9C9AC]">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-2">
-          <div>
-            <div className="font-mono text-xs text-[#A8672E] tracking-widest uppercase mb-1">
-              Start Here / Flagship 01
+      <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-8 lg:px-12">
+        <section className="border-b border-[var(--border-notebook)] py-16 sm:py-20">
+          <div className="mb-9 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="balanced-heading font-serif text-4xl font-semibold leading-tight text-[var(--ink)] sm:text-5xl">
+                Selected systems
+              </h2>
+              <p className="mt-3 max-w-[60ch] text-sm leading-6 text-[var(--muted)] sm:text-base">
+                Three projects from the resume, presented through the problem, architecture, interface, and measured outcome.
+              </p>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2B1D14]">
-              AEGIS — Multi-Agent AI Security
-            </h2>
-          </div>
-          <div className="font-mono text-xs text-[#6B5744]">
-            [REAL-TIME AST & LATENCY &lt;24ms]
-          </div>
-        </div>
-
-        <ProjectPlate project={aegisProject} featured />
-
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
-          <span className="text-[#6B5744]">
-            EXPLORE THE COMPLETE ARCHITECTURAL RECORD:
-          </span>
-          <div className="flex items-center gap-4">
             <Link
               href="/work"
-              className="px-5 py-2.5 bg-[#2B1D14] text-[#F3E9DA] hover:bg-[#A8672E] transition-colors shadow-notebook font-semibold"
+              className="font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--accent-dark)] hover:underline"
             >
-              VIEW ALL 7 PROJECTS (WORK INDEX) →
-            </Link>
-            <Link
-              href="/contact"
-              className="px-5 py-2.5 bg-[#EADFC8] text-[#2B1D14] border border-[#2B1D14] hover:bg-[#2B1D14] hover:text-[#F3E9DA] transition-colors shadow-notebook font-semibold"
-            >
-              GET IN TOUCH →
+              Browse all projects
             </Link>
           </div>
-        </div>
-      </section>
-    </PageSheet>
+
+          <div className="space-y-8">
+            {FLAGSHIP_PROJECTS.map((project) => (
+              <ProjectPlate key={project.slug} project={project} />
+            ))}
+          </div>
+        </section>
+
+        <ExperienceSection />
+
+        <PillarRow />
+
+        <section className="border-b border-[var(--border-notebook)] py-16 sm:py-20">
+
+          <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <h2 className="balanced-heading font-serif text-3xl font-semibold text-[var(--ink)] sm:text-4xl">
+              More experiments and applied work
+            </h2>
+            <Link
+              href="/work"
+              className="font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--accent-dark)] hover:underline"
+            >
+              Full work index
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 gap-px border border-[var(--border-notebook)] bg-[var(--border-notebook)] md:grid-cols-2">
+            {SECONDARY_PROJECTS.map((project) => (
+              <SecondaryProjectCard key={project.slug} project={project} />
+            ))}
+          </div>
+        </section>
+
+        <section className="grid gap-8 py-16 sm:grid-cols-[1fr_auto] sm:items-end sm:py-20">
+          <div>
+            <h2 className="balanced-heading max-w-[760px] font-serif text-4xl font-semibold leading-tight text-[var(--ink)] sm:text-5xl">
+              Looking for an engineer who can move between AI workflows and the product around them?
+            </h2>
+            <p className="mt-4 max-w-[60ch] text-base leading-7 text-[var(--muted)]">
+              I&apos;m open to internships and engineering work across agentic systems, backend infrastructure, and full-stack products.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/contact"
+              className="inline-flex min-h-12 items-center bg-[var(--ink)] px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--paper)] hover:bg-[var(--accent-dark)]"
+            >
+              Contact me
+            </Link>
+            <a
+              href="/assets/mitul-bhatia-resume.docx"
+              download
+              className="inline-flex min-h-12 items-center border border-[var(--ink)] px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)]"
+            >
+              Resume DOCX
+            </a>
+          </div>
+        </section>
+      </div>
+    </div>
   );
 }

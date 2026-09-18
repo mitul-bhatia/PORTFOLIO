@@ -1,0 +1,336 @@
+{
+  "tool": "build-phase",
+  "version": 2,
+  "startedAt": "2026-09-13T03:47:50.892Z",
+  "comp": ".impeccable/mocks/comp-b-path-field.png",
+  "direction": null,
+  "breakpoint": "1586x992",
+  "artifact": null,
+  "phase": "review",
+  "phases": {
+    "comps": {
+      "status": "skipped",
+      "openedAt": null,
+      "closedAt": null,
+      "attempts": 0,
+      "notes": [
+        {
+          "at": "2026-09-13T03:47:50.892Z",
+          "text": "started with an approved comp; the comp round happened before this state (surface round or manual)"
+        }
+      ],
+      "gate": null,
+      "forced": null
+    },
+    "spec": {
+      "status": "closed",
+      "openedAt": "2026-09-13T03:47:50.892Z",
+      "closedAt": "2026-09-13T03:49:23.263Z",
+      "attempts": 1,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "23 regions, 1 plates, 9 text regions measured",
+        "at": "2026-09-13T03:49:23.263Z"
+      },
+      "forced": null
+    },
+    "plates": {
+      "status": "closed",
+      "openedAt": "2026-09-13T03:49:23.263Z",
+      "closedAt": "2026-09-13T03:49:53.610Z",
+      "attempts": 1,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "1/1 plates",
+        "at": "2026-09-13T03:49:53.610Z"
+      },
+      "forced": null
+    },
+    "hero": {
+      "status": "closed",
+      "openedAt": "2026-09-13T03:49:53.610Z",
+      "closedAt": "2026-09-13T05:57:56.966Z",
+      "attempts": 2,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "hero 78% (drift)",
+        "score": 0.7751,
+        "verdict": "drift",
+        "report": ".impeccable/review/diff/hero/report.json",
+        "sideBySide": "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/hero/side-by-side.png",
+        "worst": [
+          "hero-name drift 46%",
+          "left-annotation drift 56%",
+          "bot-face drift 60%"
+        ],
+        "worstIds": [
+          "hero-name",
+          "left-annotation",
+          "bot-face"
+        ],
+        "worstCrops": [
+          {
+            "id": "hero-name",
+            "verdict": "drift",
+            "score": {
+              "overall": 0.4594,
+              "structure": 0.304,
+              "color": 0.8397,
+              "colorIntersection": 0.7136,
+              "paletteMatch": 0.9077,
+              "detail": 0.5394,
+              "detailRaw": 0.6072,
+              "detailAdded": 0.1354,
+              "bands": 0.1657
+            },
+            "file": ".impeccable/review/diff/hero/regions/hero-name.png"
+          },
+          {
+            "id": "left-annotation",
+            "verdict": "drift",
+            "score": {
+              "overall": 0.5621,
+              "structure": 0.6034,
+              "color": 0.7837,
+              "colorIntersection": 0.6003,
+              "paletteMatch": 0.8825,
+              "detail": 0.2633,
+              "detailRaw": 0.3675,
+              "detailAdded": 0.2083,
+              "bands": 0.25
+            },
+            "file": ".impeccable/review/diff/hero/regions/left-annotation.png"
+          },
+          {
+            "id": "bot-face",
+            "verdict": "drift",
+            "score": {
+              "overall": 0.6024,
+              "structure": 0.7405,
+              "color": 0.4944,
+              "colorIntersection": 0.0804,
+              "paletteMatch": 0.7173,
+              "detail": 0.42,
+              "detailRaw": 0.4408,
+              "detailAdded": 0.0417,
+              "bands": 0.7643
+            },
+            "file": ".impeccable/review/diff/hero/regions/bot-face.png"
+          }
+        ],
+        "regionVerdicts": {
+          "paper-texture": "drift",
+          "masthead": "drift",
+          "brand-label": "drift",
+          "nav-labels": "drift",
+          "ambient-left-paths": "drift",
+          "left-annotation": "drift",
+          "hero-name": "drift",
+          "hero-description": "drift",
+          "primary-action": "drift",
+          "secondary-action": "drift",
+          "left-method-label": "drift",
+          "path-field-upper": "drift",
+          "path-field-middle": "drift",
+          "path-field-lower": "match",
+          "bot-rail": "drift",
+          "bot-face": "drift",
+          "bot-name": "drift",
+          "bot-moods": "drift",
+          "mood-strip": "drift",
+          "mood-strip-labels": "drift",
+          "section-counter": "drift",
+          "projects-heading": "drift",
+          "projects-entry": "drift"
+        },
+        "at": "2026-09-13T05:57:56.966Z"
+      },
+      "forced": null,
+      "readingsSeen": {
+        "text hero-name: cap height 11.1px in the build, 149.4px in the comp (-93%); set font-size so the cap height renders at 149.4px (font-match ranked Libre Bodoni 700 at 197px)": 1,
+        "text hero-name: 4 lines in the build, 2 in the comp; the measure (max-width, font-size, letter-spacing) wraps it differently, so the block is a different shape": 1,
+        "text hero-name: ink is #96a0a3 in the build, #291709 in the comp; use the comp's colour": 1,
+        "text hero-name: it starts 275px further right than in the comp": 1,
+        "text hero-name: cap height 90.4px in the build, 149.4px in the comp (-39%); set font-size so the cap height renders at 149.4px (font-match ranked Libre Bodoni 700 at 197px)": 1,
+        "text hero-name: 1 line in the build, 2 in the comp; the measure (max-width, font-size, letter-spacing) wraps it differently, so the block is a different shape": 1,
+        "text hero-description: ink is #695949 in the build, #e9e4cd in the comp; use the comp's colour": 1,
+        "chrome masthead: its rule sits 58px into the box in the comp and 1px in the build (-57px), so the strip is shorter than the comp's; match the height, not only the position": 1,
+        "control primary-action: its rule sits 7px into the box in the comp and 21px in the build (+14px), so the strip is taller than the comp's; match the height, not only the position": 1,
+        "chrome mood-strip: its ink is 58px tall in the build and 34px in the comp (+24px); match the height, not only the position": 1,
+        "chrome projects-entry: its rule sits 56px into the box in the comp and 30px in the build (-26px), so the strip is shorter than the comp's; match the height, not only the position": 1,
+        "text projects-heading: ink is #281818 in the build, #e8dec9 in the comp; use the comp's colour": 1,
+        "chrome projects-entry: its rule sits 56px into the box in the comp and 67px in the build (+11px), so the strip is taller than the comp's; match the height, not only the position": 1,
+        "text nav-labels: the face renders 25% heavier than the comp's (ink density 0.65 vs 0.52); drop a weight step or use the ranked face": 2,
+        "text left-annotation: ink is #281818 in the build, #978974 in the comp; use the comp's colour": 1,
+        "text projects-heading: ink is #291c1c in the build, #e8dec9 in the comp; use the comp's colour": 1,
+        "chrome mood-strip: its rule sits 45px into the box in the comp and 1px in the build (-44px), so the strip is shorter than the comp's; match the height, not only the position": 2,
+        "text projects-heading: ink is #2a2929 in the build, #e8dec9 in the comp; use the comp's colour": 1,
+        "text brand-label: cap height 16px in the build, 10.3px in the comp (+55%); set font-size so the cap height renders at 10.3px": 1,
+        "text hero-name: cap height 96.2px in the build, 149.4px in the comp (-36%); set font-size so the cap height renders at 149.4px (font-match ranked Libre Bodoni 700 at 197px)": 1,
+        "text hero-description: ink is #3b291c in the build, #e9e4cd in the comp; use the comp's colour": 1,
+        "text projects-heading: ink is #34231a in the build, #e8dec9 in the comp; use the comp's colour": 1,
+        "chrome mood-strip: its ink is 86px tall in the build and 34px in the comp (+52px); match the height, not only the position": 1,
+        "chrome projects-entry: its rule sits 56px into the box in the comp and 95px in the build (+39px), so the strip is taller than the comp's; match the height, not only the position": 1,
+        "text left-annotation: ink is #784828 in the build, #978974 in the comp; use the comp's colour": 1,
+        "text hero-description: ink is #a86828 in the build, #e9e4cd in the comp; use the comp's colour": 2,
+        "text section-counter: ink is #392819 in the build, #a2927d in the comp; use the comp's colour": 1,
+        "text projects-heading: ink is #3c2a1c in the build, #e8dec9 in the comp; use the comp's colour": 1,
+        "control primary-action: its rule sits 7px into the box in the comp and 25px in the build (+18px), so the strip is taller than the comp's; match the height, not only the position": 2,
+        "chrome mood-strip: its ink is 78px tall in the build and 34px in the comp (+44px); match the height, not only the position": 1,
+        "text projects-heading: ink is #86745e in the build, #e8dec9 in the comp; use the comp's colour": 1,
+        "text projects-heading: ink is #281808 in the build, #e8dec9 in the comp; use the comp's colour": 1,
+        "chrome mood-strip: its ink is 12px tall in the build and 34px in the comp (-22px); match the height, not only the position": 1,
+        "chrome masthead: its rule sits 58px into the box in the comp and 88px in the build (+30px), so the strip is taller than the comp's; match the height, not only the position": 2,
+        "control primary-action: its rule sits 7px into the box in the comp and 19px in the build (+12px), so the strip is taller than the comp's; match the height, not only the position": 2,
+        "control secondary-action: its rule sits 7px into the box in the comp and 19px in the build (+12px), so the strip is taller than the comp's; match the height, not only the position": 2,
+        "chrome mood-strip: its rule sits 45px into the box in the comp and 26px in the build (-19px), so the strip is shorter than the comp's; match the height, not only the position": 2,
+        "control mood-strip-labels: its rule sits 39px into the box in the comp and 20px in the build (-19px), so the strip is shorter than the comp's; match the height, not only the position": 2,
+        "chrome projects-entry: its rule sits 56px into the box in the comp and 78px in the build (+22px), so the strip is taller than the comp's; match the height, not only the position": 1
+      },
+      "records": 17,
+      "history": [
+        {
+          "at": "2026-09-13T05:51:50.139Z",
+          "score": 0.7652,
+          "worstIds": [
+            "bot-face",
+            "bot-moods",
+            "masthead"
+          ],
+          "regionVerdicts": {
+            "paper-texture": "drift",
+            "masthead": "drift",
+            "brand-label": "missing",
+            "nav-labels": "missing",
+            "ambient-left-paths": "match",
+            "left-annotation": "drift",
+            "hero-name": "drift",
+            "hero-description": "missing",
+            "primary-action": "missing",
+            "secondary-action": "drift",
+            "left-method-label": "drift",
+            "path-field-upper": "drift",
+            "path-field-middle": "drift",
+            "path-field-lower": "match",
+            "bot-rail": "drift",
+            "bot-face": "contradicted",
+            "bot-name": "contradicted",
+            "bot-moods": "missing",
+            "mood-strip": "drift",
+            "mood-strip-labels": "drift",
+            "section-counter": "drift",
+            "projects-heading": "contradicted",
+            "projects-entry": "drift"
+          },
+          "artifactHash": null
+        },
+        {
+          "at": "2026-09-13T05:57:56.966Z",
+          "score": 0.7751,
+          "worstIds": [
+            "hero-name",
+            "left-annotation",
+            "bot-face"
+          ],
+          "regionVerdicts": {
+            "paper-texture": "drift",
+            "masthead": "drift",
+            "brand-label": "drift",
+            "nav-labels": "drift",
+            "ambient-left-paths": "drift",
+            "left-annotation": "drift",
+            "hero-name": "drift",
+            "hero-description": "drift",
+            "primary-action": "drift",
+            "secondary-action": "drift",
+            "left-method-label": "drift",
+            "path-field-upper": "drift",
+            "path-field-middle": "drift",
+            "path-field-lower": "match",
+            "bot-rail": "drift",
+            "bot-face": "drift",
+            "bot-name": "drift",
+            "bot-moods": "drift",
+            "mood-strip": "drift",
+            "mood-strip-labels": "drift",
+            "section-counter": "drift",
+            "projects-heading": "drift",
+            "projects-entry": "drift"
+          },
+          "artifactHash": null
+        }
+      ]
+    },
+    "sections": {
+      "status": "closed",
+      "openedAt": "2026-09-13T05:57:56.966Z",
+      "closedAt": "2026-09-13T05:58:13.840Z",
+      "attempts": 1,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "no mechanical gate",
+        "at": "2026-09-13T05:58:13.840Z"
+      },
+      "forced": null
+    },
+    "motion": {
+      "status": "closed",
+      "openedAt": "2026-09-13T05:58:13.840Z",
+      "closedAt": "2026-09-13T05:58:18.489Z",
+      "attempts": 1,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "no mechanical gate",
+        "at": "2026-09-13T05:58:18.489Z"
+      },
+      "forced": null
+    },
+    "responsive": {
+      "status": "closed",
+      "openedAt": "2026-09-13T05:58:18.489Z",
+      "closedAt": "2026-09-13T06:16:08.538Z",
+      "attempts": 6,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "desktop 77% (drift)",
+        "score": 0.7717,
+        "sideBySide": "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/side-by-side.png",
+        "at": "2026-09-13T06:16:08.538Z"
+      },
+      "forced": null
+    },
+    "review": {
+      "status": "closed",
+      "openedAt": "2026-09-13T06:16:08.538Z",
+      "closedAt": "2026-09-13T06:16:54.023Z",
+      "attempts": 0,
+      "notes": [],
+      "gate": null,
+      "forced": null
+    }
+  },
+  "finish": {
+    "disposition": "ship",
+    "at": "2026-09-13T06:16:54.023Z",
+    "phaseAtFinish": "review"
+  },
+  "plates": {
+    "paper-texture": {
+      "status": "ok",
+      "score": 0.5,
+      "size": "634x396"
+    }
+  }
+}

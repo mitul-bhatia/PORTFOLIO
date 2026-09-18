@@ -1,4 +1,4 @@
-import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { PageSheet } from '@/components/shell/PageSheet';
@@ -7,6 +7,7 @@ import { MetricStrip } from '@/components/proof/MetricStrip';
 import { PipelineSchematic } from '@/components/proof/PipelineSchematic';
 import { StackStamps } from '@/components/proof/StackStamps';
 import { PROJECTS, FLAGSHIP_PROJECTS, getProjectBySlug } from '@/content/projects';
+import { absoluteUrl, pageMetadata, serializeJsonLd, SITE_URL } from '@/lib/site';
 
 export async function generateStaticParams() {
   return PROJECTS.map((project) => ({
@@ -18,13 +19,21 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}) {
+}): Promise<Metadata> {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) return { title: 'Project Not Found' };
   return {
     title: `${project.title} — Case Study`,
     description: project.problem,
+    ...pageMetadata({
+      path: `/work/${project.slug}`,
+      title: `${project.title} case study — Mitul Bhatia`,
+      description: project.problem,
+      image: project.image,
+      imageAlt: `${project.title} interface`,
+      type: 'article',
+    }),
   };
 }
 
@@ -40,6 +49,24 @@ export default async function CaseStudyPage({
     notFound();
   }
 
+  const projectJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareSourceCode',
+    name: project.title,
+    headline: `${project.title} — ${project.tag}`,
+    description: project.problem,
+    url: absoluteUrl(`/work/${project.slug}`),
+    ...(project.githubUrl ? { codeRepository: project.githubUrl } : {}),
+    ...(project.liveUrl ? { targetProduct: { '@type': 'SoftwareApplication', url: project.liveUrl } } : {}),
+    ...(project.image ? { image: absoluteUrl(project.image) } : {}),
+    programmingLanguage: project.stack,
+    author: {
+      '@type': 'Person',
+      '@id': `${SITE_URL}/#person`,
+      name: 'Mitul Bhatia',
+    },
+  };
+
   // Flagship pager navigation
   const flagshipIndex = FLAGSHIP_PROJECTS.findIndex((p) => p.slug === project.slug);
   const prevFlagship =
@@ -50,123 +77,98 @@ export default async function CaseStudyPage({
       : null;
 
   return (
-    <PageSheet folio={`02 / WORK / ${project.slug.toUpperCase()}`}>
+    <PageSheet folio={`Work / ${project.title}`}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(projectJsonLd) }}
+      />
       {/* 1. Case Hero: Title, Tag, Problem Statement, Direct Links */}
       <CaseHero project={project} />
 
-      {/* 2. Verified Metrics (Flagship Only) */}
       {project.isFlagship && project.metrics && project.metrics.length > 0 && (
-        <section className="py-10 border-b border-[#D9C9AC]">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-4 gap-2">
-            <div>
-              <div className="font-mono text-xs text-[#A8672E] font-semibold uppercase mb-1">
-                02 / Operational Benchmarks
-              </div>
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#2B1D14]">
-                Verified Latency & Recall Metrics
-              </h2>
-            </div>
-            <div className="font-mono text-xs text-[#6B5744]">
-              [MEASURED RUNTIME EXECUTION]
-            </div>
-          </div>
+        <section className="border-b border-[var(--border-notebook)] py-12 sm:py-16">
+          <h2 className="mb-6 font-serif text-3xl font-semibold text-[var(--ink)] sm:text-4xl">
+            Documented outcomes
+          </h2>
 
           <MetricStrip metrics={project.metrics} />
         </section>
       )}
 
-      {/* 3. 5-Node Pipeline Schematic (Flagship Only) */}
       {project.isFlagship && project.nodes && project.nodes.length === 5 && (
-        <section className="py-10 border-b border-[#D9C9AC]">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-4 gap-2">
-            <div>
-              <div className="font-mono text-xs text-[#A8672E] font-semibold uppercase mb-1">
-                03 / Architectural Graph
-              </div>
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#2B1D14]">
-                System Pipeline & State Transitions
-              </h2>
-            </div>
-            <div className="font-mono text-xs text-[#6B5744]">
-              [DETERMINISTIC 5-NODE FLOW]
-            </div>
-          </div>
+        <section className="border-b border-[var(--border-notebook)] py-12 sm:py-16">
+          <h2 className="mb-6 font-serif text-3xl font-semibold text-[var(--ink)] sm:text-4xl">
+            How the system moves
+          </h2>
 
           <PipelineSchematic nodes={project.nodes} title={project.title} />
         </section>
       )}
 
-      {/* 4. Tech Stack Stamps */}
-      <section className="py-10 border-b border-[#D9C9AC]">
-        <div className="font-mono text-xs text-[#6B5744] uppercase tracking-wider mb-4">
-          {project.isFlagship ? '04 / Stack & Runtimes' : '02 / Stack & Runtimes'}
-        </div>
+      <section className="border-b border-[var(--border-notebook)] py-12 sm:py-16">
+        <h2 className="mb-6 font-serif text-3xl font-semibold text-[var(--ink)] sm:text-4xl">Stack</h2>
         <StackStamps stack={project.stack} />
       </section>
 
-      {/* 5. Architectural Reflection (Flagship Only) */}
       {project.isFlagship && project.reflection && (
-        <section className="py-10 border-b border-[#D9C9AC]">
-          <div className="font-mono text-xs text-[#A8672E] uppercase tracking-wider mb-2 font-semibold">
-            05 / Architectural Reflection & Scaling
-          </div>
-          <div className="p-6 bg-[#EADFC8] border border-[#2B1D14] shadow-notebook">
-            <p className="text-sm sm:text-base text-[#2B1D14] leading-relaxed font-sans">
+        <section className="border-b border-[var(--border-notebook)] py-12 sm:py-16">
+          <h2 className="font-serif text-3xl font-semibold text-[var(--ink)] sm:text-4xl">Engineering note</h2>
+          <div className="mt-6 max-w-[72ch] border-t border-[var(--ink)] pt-5">
+            <p className="text-sm leading-7 text-[var(--muted)] sm:text-base">
               {project.reflection}
             </p>
           </div>
         </section>
       )}
 
-      {/* 6. Modular Pager */}
-      <section className="py-10 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
+      <section className="flex flex-col items-center justify-between gap-4 py-10 font-mono text-[10px] font-semibold uppercase tracking-[0.1em] sm:flex-row">
         {project.isFlagship ? (
           <>
             {prevFlagship ? (
               <Link
                 href={`/work/${prevFlagship.slug}`}
-                className="text-[#2B1D14] hover:text-[#A8672E] flex items-center gap-1.5 font-semibold"
+                className="text-[var(--ink)] hover:text-[var(--accent)] flex items-center gap-1.5 font-semibold"
               >
-                <span>← PREV FLAGSHIP:</span>
+                <span>← Previous:</span>
                 <span>{prevFlagship.title}</span>
               </Link>
             ) : (
-              <span className="text-[#6B5744]/60">← FIRST FLAGSHIP</span>
+              <span className="text-[var(--muted)]/60">First project</span>
             )}
 
             <Link
               href="/work"
-              className="px-4 py-2 bg-[#EADFC8] border border-[#2B1D14] hover:bg-[#2B1D14] hover:text-[#F3E9DA] text-[#2B1D14] transition-colors shadow-notebook font-semibold"
+              className="border border-[var(--ink)] px-4 py-2 text-[var(--ink)] transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]"
             >
-              ALL WORK INDEX ↗
+              All work
             </Link>
 
             {nextFlagship ? (
               <Link
                 href={`/work/${nextFlagship.slug}`}
-                className="text-[#2B1D14] hover:text-[#A8672E] flex items-center gap-1.5 font-semibold"
+                className="text-[var(--ink)] hover:text-[var(--accent)] flex items-center gap-1.5 font-semibold"
               >
-                <span>NEXT FLAGSHIP:</span>
+                <span>Next:</span>
                 <span>{nextFlagship.title}</span>
                 <span>→</span>
               </Link>
             ) : (
-              <span className="text-[#6B5744]/60">LAST FLAGSHIP →</span>
+              <span className="text-[var(--muted)]/60">Last project</span>
             )}
           </>
         ) : (
           <div className="w-full flex items-center justify-between">
             <Link
               href="/work"
-              className="px-5 py-2.5 bg-[#2B1D14] text-[#F3E9DA] hover:bg-[#A8672E] transition-colors shadow-notebook font-semibold"
+              className="bg-[var(--ink)] px-5 py-2.5 text-[var(--paper)] transition-colors hover:bg-[var(--accent-dark)]"
             >
-              ← RETURN TO WORK CATALOG
+              ← Return to work
             </Link>
             <Link
               href="/work/aegis"
-              className="px-5 py-2.5 bg-[#EADFC8] text-[#2B1D14] border border-[#2B1D14] hover:bg-[#2B1D14] hover:text-[#F3E9DA] transition-colors shadow-notebook font-semibold"
+              className="border border-[var(--ink)] px-5 py-2.5 text-[var(--ink)] transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]"
             >
-              EXPLORE FLAGSHIP ARCHITECTURES →
+              Start with AEGIS →
             </Link>
           </div>
         )}

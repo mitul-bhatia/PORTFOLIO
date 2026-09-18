@@ -1,26 +1,13 @@
-import React from 'react';
 import { PILLARS } from '@/content/pillars';
 import { PillarCard } from './PillarCard';
 
 export function PillarRow() {
   return (
-    <section className="py-16 border-b border-[#D9C9AC]">
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
-        <div>
-          <div className="font-mono text-xs text-[#A8672E] tracking-widest uppercase mb-1">
-            Architectural Foundation
-          </div>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2B1D14]">
-            Three Systems Pillars
-          </h2>
-        </div>
-        <div className="font-mono text-xs text-[#6B5744]">
-          [03 CORE DISCIPLINES]
-        </div>
-      </div>
-
-      {/* 3 Pillars Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <section className="border-b border-[var(--border-notebook)] py-16 sm:py-20">
+      <h2 className="balanced-heading max-w-[820px] font-serif text-4xl font-semibold leading-tight text-[var(--ink)] sm:text-5xl">
+        Three areas that connect the work
+      </h2>
+      <div className="mt-9 grid gap-px border-y border-[var(--border-notebook)] bg-[var(--border-notebook)] md:grid-cols-3">
         {PILLARS.map((pillar) => (
           <PillarCard key={pillar.id} pillar={pillar} />
         ))}

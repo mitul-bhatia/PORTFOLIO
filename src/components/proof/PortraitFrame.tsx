@@ -1,41 +1,80 @@
-import React from 'react';
+import { PROFILE } from '@/content/profile';
 
 export function PortraitFrame() {
   return (
-    <div className="border border-[#2B1D14] bg-[#EADFC8] p-4 shadow-notebook w-full max-w-sm mx-auto lg:mx-0">
-      <div className="relative w-full aspect-[4/5] bg-[#F3E9DA] border border-[#D9C9AC] flex flex-col items-center justify-between p-6 overflow-hidden">
-        {/* Paper top stamp */}
-        <div className="w-full flex justify-between items-center text-[10px] font-mono text-[#6B5744] border-b border-[#D9C9AC] pb-2">
-          <span>PLATE REF: 01-PORTRAIT</span>
-          <span className="text-[#A8672E] font-bold">SONIPAT, IN</span>
+    <figure className="border border-[var(--ink)] bg-[var(--paper-soft)] p-4 shadow-notebook sm:p-5">
+      {/* Archival Dossier Header */}
+      <div className="flex items-center justify-between border-b border-[var(--border-notebook)] pb-3 font-mono text-[9px] uppercase tracking-[0.14em]">
+        <span className="font-semibold text-[var(--accent-dark)]">[CANDIDATE DOSSIER]</span>
+        <span className="text-[var(--muted)]">REF: MB-2026-AI</span>
+      </div>
+
+      {/* Architectural Identity Monogram Plate */}
+      <div className="relative mt-4 flex aspect-[4/4.2] flex-col justify-between border border-[var(--ink)] bg-[var(--ink)] p-5 text-[var(--paper)]">
+        {/* Background Grid Pattern */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: 'radial-gradient(circle at 1px 1px, var(--paper) 1px, transparent 0)',
+            backgroundSize: '16px 16px',
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Top Monogram Coordinates */}
+        <div className="relative flex items-start justify-between font-mono text-[9px] tracking-[0.12em] opacity-80">
+          <div>
+            <div>COORDINATES: 28.99° N, 77.02° E</div>
+            <div className="text-[var(--accent)]">SONIPAT, HARYANA · INDIA</div>
+          </div>
+          <div className="border border-[var(--paper)] px-2 py-0.5 font-bold">
+            SEAL // 2026
+          </div>
         </div>
 
-        {/* Center portrait or paper fallback plate */}
-        <div className="my-auto flex flex-col items-center text-center">
-          <div className="w-20 h-20 bg-[#2B1D14] text-[#F3E9DA] flex items-center justify-center font-serif text-3xl font-bold shadow-notebook mb-4">
+        {/* Center Architectural Monogram */}
+        <div className="relative my-auto text-center">
+          <div className="font-serif text-5xl font-bold tracking-tight sm:text-6xl">
             MB
           </div>
-          <div className="font-serif text-2xl font-bold text-[#2B1D14] tracking-tight">
-            Mitul Bhatia
+          <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--accent)] font-semibold">
+            {PROFILE.name}
           </div>
-          <div className="font-mono text-xs text-[#6B5744] mt-1">
-            B.Tech in Artificial Intelligence
-          </div>
-          <div className="font-mono text-[11px] text-[#A8672E] font-semibold mt-1">
-            Newton School of Technology &apos;28
+          <div className="mt-1 font-mono text-[9px] tracking-[0.1em] opacity-75">
+            {PROFILE.primaryTitle}
           </div>
         </div>
 
-        {/* Bottom footer stamp */}
-        <div className="w-full pt-2 border-t border-[#D9C9AC] flex justify-between items-center text-[10px] font-mono text-[#6B5744]">
-          <span>RECORD: VERIFIED</span>
-          <span className="font-bold text-[#2B1D14]">CGPA 9.80</span>
+        {/* Bottom Verified Seals */}
+        <div className="relative grid grid-cols-2 gap-2 border-t border-[var(--paper)]/30 pt-3 font-mono text-[9px]">
+          <div>
+            <div className="text-[var(--accent)] font-semibold">ACADEMIC CGPA</div>
+            <div className="font-serif text-base font-bold leading-tight">{PROFILE.cgpa}</div>
+          </div>
+          <div>
+            <div className="text-[var(--accent)] font-semibold">INSTITUTION</div>
+            <div className="truncate text-[8.5px] opacity-85">Newton School of Tech</div>
+          </div>
         </div>
       </div>
-      <div className="mt-2.5 flex justify-between items-center text-[10px] font-mono text-[#6B5744]">
-        <span>FILE: /assets/portrait.jpg</span>
-        <span>PAPER STOCK: CREAM</span>
-      </div>
-    </div>
+
+      {/* Bottom Technical Specifications Caption */}
+      <figcaption className="mt-4 border-t border-[var(--border-notebook)] pt-3 font-mono text-[9.5px]">
+        <div className="flex items-center justify-between text-[var(--muted)] uppercase tracking-[0.1em]">
+          <span>STATUS: RESEARCH &amp; INDUSTRY</span>
+          <span className="text-[var(--accent-dark)] font-semibold">VERIFIED RECORD</span>
+        </div>
+        <div className="mt-2 grid grid-cols-2 gap-2 text-xs">
+          <div className="border border-[var(--border-notebook)] bg-[var(--paper)] p-2">
+            <div className="font-mono text-[8px] uppercase tracking-[0.1em] text-[var(--muted)]">Focus Area</div>
+            <div className="font-medium text-[var(--ink)]">Agentic Systems &amp; LLM Infra</div>
+          </div>
+          <div className="border border-[var(--border-notebook)] bg-[var(--paper)] p-2">
+            <div className="font-mono text-[8px] uppercase tracking-[0.1em] text-[var(--muted)]">Current</div>
+            <div className="font-medium text-[var(--ink)]">Kolably (Intern)</div>
+          </div>
+        </div>
+      </figcaption>
+    </figure>
   );
 }

@@ -1,189 +1,101 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-import { useReducedMotion } from 'motion/react';
-import { animate, stagger } from 'animejs';
+import { useEffect, useRef, useState } from 'react';
 import { PipelineNode } from '@/content/projects';
 
-export function PipelineSchematic({
-  nodes,
-  title,
-}: {
-  nodes: PipelineNode[];
-  title: string;
-}) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const pathRef = useRef<SVGPathElement>(null);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
+export function PipelineSchematic({ nodes, title }: { nodes: PipelineNode[]; title: string }) {
+  const containerRef = useRef<HTMLElement>(null);
+  const [hasDrawn, setHasDrawn] = useState(false);
 
   useEffect(() => {
-    if (shouldReduceMotion || hasAnimated) {
+    const el = containerRef.current;
+    if (!el || typeof window === 'undefined') return;
+
+    // Check reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setHasDrawn(true);
       return;
     }
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
-
-          // 1. Anime.js SVG path stroke draw-in
-          if (pathRef.current) {
-            const length = pathRef.current.getTotalLength();
-            pathRef.current.style.strokeDasharray = `${length}`;
-            pathRef.current.style.strokeDashoffset = `${length}`;
-
-            animate(pathRef.current, {
-              strokeDashoffset: [length, 0],
-              duration: 1000,
-              ease: 'easeOutQuad',
-            });
-          }
-
-          // 2. Anime.js Node stamp stagger reveal
-          if (containerRef.current) {
-            const nodeElements = containerRef.current.querySelectorAll('.schematic-node-card');
-            if (nodeElements.length > 0) {
-              animate(nodeElements, {
-                opacity: [0, 1],
-                translateY: [12, 0],
-                delay: stagger(140, { start: 200 }),
-                duration: 500,
-                ease: 'easeOutQuad',
-              });
-            }
-          }
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setHasDrawn(true);
+          observer.disconnect();
         }
       },
-      { threshold: 0.25 }
+      { threshold: 0.25 },
     );
 
-    const currentEl = containerRef.current;
-    if (currentEl) {
-      observer.observe(currentEl);
-    }
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
-    return () => {
-      if (currentEl) observer.unobserve(currentEl);
-    };
-  }, [hasAnimated, shouldReduceMotion]);
-
-  // Strict rule: PipelineSchematic refuses to render if nodes.length !== 5
-  if (!nodes || nodes.length !== 5) {
-    return null;
-  }
-
-  const isAnimated = hasAnimated || shouldReduceMotion;
+  // Spec rule: refuse to render if nodes !== 5
+  if (!nodes || nodes.length !== 5) return null;
 
   return (
-    <div
+    <figure
       ref={containerRef}
-      className="border border-[#2B1D14] bg-[#F3E9DA] p-6 sm:p-8 shadow-notebook"
+      className="border border-[var(--border-notebook)] bg-[var(--paper-soft)] p-5 shadow-notebook sm:p-7"
     >
-      {/* Header plate */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between font-mono text-xs text-[#6B5744] mb-8 pb-3 border-b border-[#D9C9AC] gap-2">
-        <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 bg-[#A8672E]" />
-          <span className="font-bold text-[#2B1D14] tracking-wider uppercase">
-            5-NODE SYSTEM PIPELINE SCHEMATIC
-          </span>
-        </div>
-        <div className="text-[11px] text-[#A8672E] font-semibold">
-          {title.toUpperCase()} · AUDITABLE STATE GRAPH
-        </div>
+      <div className="flex items-center justify-between border-b border-[var(--border-notebook)] pb-3 font-mono text-[9px] uppercase tracking-[0.11em] text-[var(--muted)]">
+        <span>{title} Architecture Pipeline</span>
+        <span>5 Discrete Stages // Inspectable</span>
       </div>
 
-      {/* Desktop 5-Node Layout with Anime.js SVG Stroke Draw */}
-      <div className="hidden md:block relative py-6">
-        {/* Orthogonal SVG connector line */}
-        <svg
-          className="absolute inset-0 w-full h-full pointer-events-none z-0"
-          viewBox="0 0 1000 120"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path
-            ref={pathRef}
-            className="schematic-connector-path"
-            d="M 100 60 L 900 60"
-            stroke="#A8672E"
-            strokeWidth="2.5"
-            fill="none"
+      {/* Native SVG bus interconnect line with stroke-dashoffset animation */}
+      <div className="relative mt-7 hidden md:block">
+        <svg className="h-6 w-full overflow-visible" viewBox="0 0 1000 24" fill="none">
+          <line
+            x1="100"
+            y1="12"
+            x2="900"
+            y2="12"
+            stroke="var(--border-notebook)"
+            strokeWidth="1.5"
+            strokeDasharray="800"
+            strokeDashoffset={hasDrawn ? '0' : '800'}
+            className="transition-all duration-1000 ease-out"
           />
-        </svg>
-
-        {/* 5 Node Cards */}
-        <div className="grid grid-cols-5 gap-4 relative z-10">
-          {nodes.map((node, idx) => (
-            <div
-              key={node.id}
-              className={`schematic-node-card border-2 border-[#2B1D14] bg-[#EADFC8] p-4 flex flex-col justify-between min-h-[120px] shadow-notebook hover:bg-[#2B1D14] hover:text-[#F3E9DA] transition-all group relative ${
-                !isAnimated ? 'opacity-0' : 'opacity-100'
-              }`}
-            >
-              <div className="flex items-center justify-between font-mono text-[11px] mb-2">
-                <span className="text-[#A8672E] group-hover:text-[#F3E9DA] font-bold">
-                  STAGE {node.number}
-                </span>
-                <span className="w-1.5 h-1.5 bg-[#2B1D14] group-hover:bg-[#A8672E]" />
-              </div>
-              <div className="font-mono text-xs font-bold tracking-tight text-[#2B1D14] group-hover:text-[#F3E9DA] leading-snug">
-                {node.label}
-              </div>
-              <div className="mt-3 pt-2 border-t border-[#D9C9AC] group-hover:border-[#6B5744] font-mono text-[9px] text-[#6B5744] group-hover:text-[#F3E9DA]/70 uppercase">
-                {idx === 0
-                  ? 'INGEST'
-                  : idx === 4
-                  ? 'FINAL DISPATCH'
-                  : 'ISOLATED THREAD'}
-              </div>
-
-              {/* Direction Indicator */}
-              {idx < 4 && (
-                <div
-                  className="absolute -right-3 top-1/2 -translate-y-1/2 w-5 h-5 bg-[#2B1D14] text-[#F3E9DA] text-[10px] font-mono flex items-center justify-center z-20 shadow-sm"
-                  aria-hidden="true"
-                >
-                  ›
-                </div>
-              )}
-            </div>
+          {/* Stage bus nodes */}
+          {[100, 300, 500, 700, 900].map((cx, i) => (
+            <g key={cx} className={`transition-opacity duration-300 ${hasDrawn ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: `${i * 180 + 200}ms` }}>
+              <circle cx={cx} cy="12" r="6" fill="var(--paper)" stroke="var(--ink)" strokeWidth="1.5" />
+              <rect x={cx - 2} y="10" width="4" height="4" fill="var(--accent)" />
+            </g>
           ))}
-        </div>
+        </svg>
       </div>
 
-      {/* Mobile Vertical Flow */}
-      <div className="block md:hidden space-y-3">
-        {nodes.map((node, idx) => (
-          <div key={node.id} className="relative">
-            <div className="border-2 border-[#2B1D14] bg-[#EADFC8] p-3 flex items-center justify-between shadow-notebook">
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-xs text-[#A8672E] font-bold">
-                  STAGE {node.number}
-                </span>
-                <span className="font-mono text-xs font-semibold text-[#2B1D14]">
-                  {node.label}
-                </span>
-              </div>
-              <span className="text-[10px] font-mono text-[#6B5744] uppercase">
-                {idx === 0 ? 'INGEST' : idx === 4 ? 'DISPATCH' : 'STATE'}
+      <ol className="mt-3 grid gap-3 md:grid-cols-5 md:gap-0">
+        {nodes.map((node, index) => (
+          <li
+            key={node.id}
+            className={`relative flex min-h-24 items-center border border-[var(--border-notebook)] bg-[var(--paper)] p-4 transition-all duration-500 md:border-r-0 md:last:border-r ${
+              hasDrawn ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'
+            }`}
+            style={{ transitionDelay: `${index * 120 + 100}ms` }}
+          >
+            <div>
+              <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-[var(--accent-dark)]">
+                Stage {node.number}
               </span>
+              <p className="mt-2 text-sm font-semibold leading-5 text-[var(--ink)]">{node.label}</p>
             </div>
-            {idx < 4 && (
-              <div className="text-center font-mono text-xs text-[#A8672E] py-1 font-bold">
-                ↓
-              </div>
+            {index < nodes.length - 1 && (
+              <span
+                className="absolute -bottom-[7px] left-5 z-10 h-3 w-3 rotate-45 border-b border-r border-[var(--accent)] bg-[var(--paper-soft)] md:-right-[7px] md:bottom-auto md:left-auto md:rotate-[-45deg]"
+                aria-hidden="true"
+              />
             )}
-          </div>
+          </li>
         ))}
-      </div>
+      </ol>
 
-      {/* Footer Meta & Audit Trail */}
-      <div className="mt-6 pt-3 border-t border-[#D9C9AC] flex flex-col sm:flex-row items-center justify-between gap-2 font-mono text-[10px] text-[#6B5744]">
-        <span>CONSTRAINT: STRICT STATE GRAPH · NO UNBOUNDED RECURSION</span>
-        <span className="text-[#2B1D14] font-semibold">VERIFICATION: 100% REPRODUCIBLE</span>
-      </div>
-    </div>
+      <figcaption className="mt-5 max-w-[68ch] font-mono text-[10px] leading-5 text-[var(--muted)]">
+        Hand-rolled native SVG pipeline draw-in (07B compliant). End-to-end handoffs are auditable with zero runtime motion overhead.
+      </figcaption>
+    </figure>
   );
 }

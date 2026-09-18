@@ -21,7 +21,7 @@ export interface Project {
   metrics?: MetricItem[];
   reflection?: string;
   nodes?: PipelineNode[];
-  githubUrl: string;
+  githubUrl?: string;
   liveUrl?: string;
   image?: string;
 }
@@ -33,15 +33,15 @@ export const PROJECTS: Project[] = [
     tag: 'Multi-Agent AI Security & Guardrail Engine',
     isFlagship: true,
     problem:
-      'Production multi-agent systems face severe risks from untrusted prompt injections, rogue tool calls, and payload leaks. Aegis enforces real-time AST policy evaluation, strict memory isolation, and automated zero-human threat remediation.',
+      'An autonomous seven-agent security pipeline that detects, exploits, patches, and validates software vulnerabilities. It combines Semgrep static analysis, AST policy evaluation, prompt-injection guardrails, and isolated Docker execution.',
     stack: ['FastAPI', 'Python', 'LangChain', 'Semgrep', 'React', 'Next.js', 'Docker'],
     metrics: [
       { label: 'Guardrail latency', value: '<24ms' },
       { label: 'Injection recall', value: '99.8%' },
-      { label: 'Zero-human intervention', value: '100%' },
+      { label: 'Cooperating agents', value: '7' },
     ],
     reflection:
-      'Autonomous multi-agent guardrails filtering malicious payloads and enforcing strict execution bounds before tools execute.',
+      'The project separates detection, exploitation, patching, and validation into explicit roles so the security workflow stays inspectable from end to end.',
     nodes: [
       { id: '01', number: '01', label: 'Payload Ingest' },
       { id: '02', number: '02', label: 'Semgrep AST Scan' },
@@ -59,15 +59,15 @@ export const PROJECTS: Project[] = [
     tag: 'Full-Stack & Real-Time',
     isFlagship: true,
     problem:
-      'Matching compatible roommates requires complex multi-factor preference scoring, real-time message routing, and reliable state delivery under peak traffic without latency spikes.',
-    stack: ['React 19', 'Redux Toolkit', 'Express 5', 'MongoDB Atlas', 'Socket.IO', 'Node.js'],
+      'A real-time housing and roommate matching product with multi-factor preference scoring, concurrent chat, and low-latency state delivery.',
+    stack: ['React 19', 'Redux Toolkit', 'Express 5', 'MongoDB Atlas', 'Socket.IO', 'Redis', 'Node.js'],
     metrics: [
       { label: 'Socket sync', value: '<45ms' },
       { label: 'Match precision', value: '94.2%' },
-      { label: 'Uptime', value: '99.9%' },
+      { label: 'State transport', value: 'WebSocket' },
     ],
     reflection:
-      'Implement horizontal Redis Pub/Sub scaling across WebSocket worker instances to handle high concurrent chat volume with zero message loss.',
+      'Redis Pub/Sub lets WebSocket workers scale horizontally while keeping chat state and matching updates responsive across instances.',
     nodes: [
       { id: '01', number: '01', label: 'Client Dispatch' },
       { id: '02', number: '02', label: 'Socket.IO Gateway' },
@@ -85,15 +85,15 @@ export const PROJECTS: Project[] = [
     tag: 'AI Soil & Crop Intelligence',
     isFlagship: true,
     problem:
-      'Agricultural soil testing and crop selection lack deterministic multi-factor analysis, resulting in yield losses due to unoptimized N-P-K nutrient application and poor weather integration.',
+      'An AI assistant that turns raw soil inputs into crop and fertilizer recommendations for low-connectivity, low-literacy users.',
     stack: ['FastAPI', 'LangChain', 'FAISS RAG', 'Python', 'React'],
     metrics: [
-      { label: 'Rec reliability', value: '+35%' },
-      { label: 'Retrieval latency', value: '<85ms' },
-      { label: 'Soil analysis acc.', value: '96.8%' },
+      { label: 'Recommendation reliability', value: '+35%' },
+      { label: 'Retrieval', value: 'FAISS RAG' },
+      { label: 'Validation', value: 'Multi-stage' },
     ],
     reflection:
-      'Integrate multi-modal satellite spectral imagery to automatically validate soil nitrogen-phosphorus-potassium readings and soil moisture.',
+      'The system combines retrieval with multi-stage validation so recommendations remain useful when source inputs are incomplete or inconsistent.',
     nodes: [
       { id: '01', number: '01', label: 'Telemetry Ingest' },
       { id: '02', number: '02', label: 'Embedding Encoder' },
@@ -113,7 +113,7 @@ export const PROJECTS: Project[] = [
     problem:
       'RBI lending compliance engine with rapid customer profile retrieval and regulatory rule checks.',
     stack: ['LightRAG', 'Groq API', 'FastAPI', 'React', 'Vite'],
-    githubUrl: 'https://github.com/mitul-bhatia/creditsense',
+    image: '/assets/projects/creditsense.jpg',
   },
   {
     slug: 'loan-classifier',
@@ -123,8 +123,9 @@ export const PROJECTS: Project[] = [
     problem:
       'Explainable tabular classification: XGBoost + LlamaIndex + TabNet audit trails.',
     stack: ['XGBoost', 'RAG', 'Streamlit', 'Python', 'LlamaIndex'],
-    githubUrl: 'https://github.com/mitul-bhatia',
+    githubUrl: 'https://github.com/mitul-bhatia/GEN_AI_LOAN_APPROVAL',
     liveUrl: 'https://genailoanapproval-fdwemcnw96p8fgwpen6xcd.streamlit.app/',
+    image: '/assets/projects/loan-classifier.jpg',
   },
   {
     slug: 'f1-strategy',
@@ -135,6 +136,7 @@ export const PROJECTS: Project[] = [
       'DVA capstone, 7-member team, 744K+ Ergast rows, 10 KPIs analyzing pit window optimization.',
     stack: ['Jupyter', 'Python', 'Tableau'],
     githubUrl: 'https://github.com/mitul-bhatia/Sec-A_g-4_F1_Race_Strategy_Intelligence',
+    image: '/assets/projects/f1-strategy.jpg',
   },
   {
     slug: 'vulnswarm',
@@ -144,7 +146,7 @@ export const PROJECTS: Project[] = [
     problem:
       'Autonomous repository triage and CVE remediation through multi-agent vulnerability analysis.',
     stack: ['LangGraph', 'ChromaDB', 'Docker', 'Semgrep', 'FastAPI'],
-    githubUrl: 'https://github.com/mitul-bhatia/zombie-api-defense-operator',
+    image: '/assets/projects/vulnswarm.jpg',
   },
 ];
 

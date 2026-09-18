@@ -1,113 +1,46 @@
-import React from 'react';
-import Link from 'next/link';
+import type { Metadata } from 'next';
 import { PageSheet } from '@/components/shell/PageSheet';
 import { ProjectPlate } from '@/components/proof/ProjectPlate';
+import { SecondaryProjectCard } from '@/components/proof/SecondaryProjectCard';
+import { ExperienceSection } from '@/components/proof/ExperienceSection';
 import { FLAGSHIP_PROJECTS, SECONDARY_PROJECTS } from '@/content/projects';
+import { pageMetadata } from '@/lib/site';
 
-export const metadata = {
-  title: 'Work Index',
-  description: 'Auditable systems, measured latency metrics, and 5-node pipeline schematics across production projects.',
+export const metadata: Metadata = {
+  title: 'Work',
+  description: 'Selected agentic, backend, data, and full-stack projects by Mitul Bhatia.',
+  ...pageMetadata({
+    path: '/work',
+    title: 'Selected engineering work — Mitul Bhatia',
+    description: 'Agentic, backend, data, and full-stack case studies with architecture and documented outcomes.',
+  }),
 };
 
 export default function WorkPage() {
   return (
-    <PageSheet folio="02 / WORK — CATALOG OF PROOF">
-      <div className="py-8 border-b border-[#D9C9AC]">
-        <div className="font-mono text-xs text-[#A8672E] tracking-widest uppercase mb-2">
-          Systems Catalog
-        </div>
-        <h1 className="font-serif text-4xl sm:text-6xl font-bold text-[#2B1D14] mb-4">
-          Production Work & Architectures
+    <PageSheet folio="Work / Selected projects">
+      <section className="border-b border-[var(--border-notebook)] pb-12 pt-4 sm:pb-16">
+        <h1 className="balanced-heading max-w-[930px] font-serif text-5xl font-semibold leading-[0.98] text-[var(--ink)] sm:text-6xl">
+          Systems built to be used, inspected, and improved.
         </h1>
-        <p className="max-w-2xl text-base sm:text-lg text-[#6B5744] font-serif leading-relaxed">
-          Every project below carries verified metrics, exact state transitions, and live deployment artifacts. No placeholders or inflated statistics.
+        <p className="mt-6 max-w-[70ch] text-base leading-7 text-[var(--muted)] sm:text-lg">
+          The three lead projects mirror the supplied resume. Each case study keeps the problem, implementation, interface, and documented result close together.
         </p>
-      </div>
-
-      {/* Flagship Projects Section */}
-      <section className="py-12 border-b border-[#D9C9AC]">
-        <div className="flex items-center justify-between font-mono text-xs text-[#6B5744] mb-8">
-          <span className="text-[#A8672E] font-semibold">01 / FLAGSHIP CASE STUDIES (03)</span>
-          <span>5-NODE SCHEMATICS & VERIFIED METRICS</span>
-        </div>
-
-        <div className="space-y-10">
-          {FLAGSHIP_PROJECTS.map((project) => (
-            <ProjectPlate key={project.slug} project={project} featured={project.slug === 'aegis'} />
-          ))}
-        </div>
       </section>
 
-      {/* Secondary Projects Section */}
-      <section className="py-12">
-        <div className="flex items-center justify-between font-mono text-xs text-[#6B5744] mb-8">
-          <span className="text-[#2B1D14] font-semibold">02 / SECONDARY SYSTEMS & RESEARCH (04)</span>
-          <span>COMPACT PROOF INDEX</span>
-        </div>
+      <section className="space-y-8 border-b border-[var(--border-notebook)] py-12 sm:py-16">
+        {FLAGSHIP_PROJECTS.map((project) => (
+          <ProjectPlate key={project.slug} project={project} headingLevel="h2" />
+        ))}
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <ExperienceSection />
+
+      <section className="py-12 sm:py-16">
+        <h2 className="font-serif text-4xl font-semibold text-[var(--ink)]">Additional work</h2>
+        <div className="mt-8 grid grid-cols-1 gap-px border border-[var(--border-notebook)] bg-[var(--border-notebook)] md:grid-cols-2">
           {SECONDARY_PROJECTS.map((project) => (
-            <div
-              key={project.slug}
-              className="border border-[#D9C9AC] bg-[#F3E9DA] p-6 flex flex-col justify-between hover:border-[#2B1D14] transition-colors shadow-notebook"
-            >
-              <div>
-                <div className="flex items-center justify-between font-mono text-[11px] text-[#6B5744] mb-2">
-                  <span className="text-[#A8672E] font-semibold uppercase">{project.tag}</span>
-                  <span>SYSTEM</span>
-                </div>
-                <h3 className="font-serif text-2xl font-bold text-[#2B1D14] mb-2 hover:text-[#A8672E] transition-colors">
-                  <Link href={`/work/${project.slug}`}>{project.title}</Link>
-                </h3>
-                <p className="text-xs sm:text-sm text-[#2B1D14] leading-relaxed mb-4">
-                  {project.problem}
-                </p>
-              </div>
-
-              <div>
-                <div className="flex flex-wrap gap-1 mb-4">
-                  {project.stack.map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="font-mono text-[10px] px-1.5 py-0.5 bg-[#EADFC8] border border-[#D9C9AC] text-[#2B1D14]"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex items-center justify-between pt-3 border-t border-[#D9C9AC] font-mono text-xs">
-                  <Link
-                    href={`/work/${project.slug}`}
-                    className="text-[#2B1D14] font-semibold hover:text-[#A8672E]"
-                  >
-                    DETAILS →
-                  </Link>
-                  <div className="flex items-center gap-3">
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[#6B5744] hover:text-[#2B1D14]"
-                      >
-                        GITHUB ↗
-                      </a>
-                    )}
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[#A8672E] hover:underline"
-                      >
-                        LIVE ↗
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
+            <SecondaryProjectCard key={project.slug} project={project} />
           ))}
         </div>
       </section>

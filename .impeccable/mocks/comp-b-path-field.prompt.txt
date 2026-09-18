@@ -1,0 +1,10 @@
+Use case: ui-mockup
+Asset type: high-fidelity desktop website homepage comp, 16:10 landscape
+Primary request: Create a practical recruiter-facing portfolio first viewport. Use a thin top masthead, a very large left-weighted editorial name occupying two thirds of the canvas, a short evidence-led introduction, two square actions, and a collapsed MB-01 vertical instrument tab attached to the right edge. Make the background itself the hero: layered thin path lines, right-angle turns, sparse dots and rectangular registration marks form a broad horizontal paper current that becomes slightly denser around the bot tab. Show a slim mood switcher near the lower edge and hint at a wide project row below the fold.
+Subject: Mitul Bhatia, AI systems engineer; MB-01 is a fictional geometric interface construct represented by a sharp square face in the rail, not a humanoid robot.
+Style/medium: realistic shippable web UI mockup; warm editorial engineering notebook; sophisticated print composition; influenced by 21st.dev Background Paths but fully reinterpreted for a paper portfolio.
+Composition/framing: 1440x900 desktop frame; thin right rail only 76px wide; name and description remain readable with strong negative space; background paths never cross the main text at high contrast.
+Color palette: only cream paper #F3E9DA, raised paper #EADFC8, ink brown #2B1D14, muted ink #6B5744, amber #A8672E, pencil rule #D9C9AC.
+Materials/textures: restrained paper grain, crisp one-pixel rules, sharp rectangular controls, no rounded cards.
+Text (verbatim): "MITUL BHATIA"; "VIEW PROJECTS"; "DOWNLOAD RESUME"; "MB-01"; "PROJECTS".
+Constraints: recruiter-readable in seconds; no invented metrics; no stock imagery; no illustrations beyond geometric MB-01 and paths; no glass; no gradients; no glow; no neon; no dark mode; no purple or blue; no rounded pills; no dashboard cards; no generic chatbot bubble; no watermark.

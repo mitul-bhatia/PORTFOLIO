@@ -1,0 +1,887 @@
+{
+  "tool": "comp-diff",
+  "version": 1,
+  "createdAt": "2026-09-13T06:16:08.537Z",
+  "label": "desktop",
+  "comp": ".impeccable/mocks/comp-b-path-field.png",
+  "build": ".impeccable/review/desktop.png",
+  "spec": ".impeccable/build/spec.json",
+  "compSize": "1586x992",
+  "buildSize": "1440x992",
+  "align": "top",
+  "overall": 0.7717,
+  "verdict": "drift",
+  "scores": {
+    "overall": 0.7717,
+    "structure": 0.7217,
+    "color": 0.8149,
+    "colorIntersection": 0.599,
+    "paletteMatch": 0.9312,
+    "detail": 0.6881,
+    "detailRaw": 0.7194,
+    "detailAdded": 0.0625,
+    "bands": 0.9556
+  },
+  "palette": {
+    "comp": [
+      {
+        "hex": "#e8e3cd",
+        "coverage": 0.8972
+      },
+      {
+        "hex": "#281709",
+        "coverage": 0.0548
+      },
+      {
+        "hex": "#8c745c",
+        "coverage": 0.0178
+      },
+      {
+        "hex": "#bdaa97",
+        "coverage": 0.0154
+      },
+      {
+        "hex": "#a8692b",
+        "coverage": 0.0114
+      },
+      {
+        "hex": "#5a4a3a",
+        "coverage": 0.0033
+      }
+    ],
+    "build": [
+      {
+        "hex": "#ece7cf",
+        "coverage": 0.8777
+      },
+      {
+        "hex": "#291909",
+        "coverage": 0.05
+      },
+      {
+        "hex": "#88785a",
+        "coverage": 0.0391
+      },
+      {
+        "hex": "#cabba7",
+        "coverage": 0.0177
+      },
+      {
+        "hex": "#a86828",
+        "coverage": 0.0121
+      },
+      {
+        "hex": "#5a4a3a",
+        "coverage": 0.0034
+      }
+    ]
+  },
+  "regions": [
+    {
+      "id": "paper-texture",
+      "x": 0,
+      "y": 0.1,
+      "w": 0.2,
+      "h": 0.2,
+      "kind": "texture",
+      "score": {
+        "overall": 0.6597,
+        "structure": 0.8489,
+        "color": 0.8091,
+        "colorIntersection": 0.6622,
+        "paletteMatch": 0.8882,
+        "detail": 0.4984,
+        "detailRaw": 0.5818,
+        "detailAdded": 0.1667,
+        "bands": 0
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": {
+          "x": 33,
+          "y": 15,
+          "w": 284,
+          "h": 184
+        },
+        "build": {
+          "x": 34,
+          "y": 30,
+          "w": 283,
+          "h": 166
+        }
+      }
+    },
+    {
+      "id": "masthead",
+      "x": 0,
+      "y": 0,
+      "w": 1,
+      "h": 0.1,
+      "kind": "chrome",
+      "score": {
+        "overall": 0.6416,
+        "structure": 0.9676,
+        "color": 0.7609,
+        "colorIntersection": 0.523,
+        "paletteMatch": 0.8889,
+        "detail": 0.4508,
+        "detailRaw": 0.5185,
+        "detailAdded": 0.1354,
+        "bands": 0
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 32,
+          "y": 0,
+          "w": 1554,
+          "h": 99
+        },
+        "build": {
+          "x": 229,
+          "y": 23,
+          "w": 1273,
+          "h": 76
+        }
+      }
+    },
+    {
+      "id": "brand-label",
+      "x": 0.1438,
+      "y": 0.0181,
+      "w": 0.1286,
+      "h": 0.0302,
+      "kind": "text",
+      "score": {
+        "overall": 0.5981,
+        "structure": 0.7168,
+        "color": 0.5589,
+        "colorIntersection": 0.1511,
+        "paletteMatch": 0.7785,
+        "detail": 0.4332,
+        "detailRaw": 0.4905,
+        "detailAdded": 0.1146,
+        "bands": 0.35
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 6,
+          "y": 18,
+          "w": 191,
+          "h": 10
+        },
+        "build": {
+          "x": 1,
+          "y": 14,
+          "w": 203,
+          "h": 12
+        }
+      }
+    },
+    {
+      "id": "nav-labels",
+      "x": 0.8159,
+      "y": 0.0181,
+      "w": 0.053,
+      "h": 0.0302,
+      "kind": "text",
+      "score": {
+        "overall": 0.6627,
+        "structure": 0.9218,
+        "color": 0.5448,
+        "colorIntersection": 0.1141,
+        "paletteMatch": 0.7767,
+        "detail": 0.4377,
+        "detailRaw": 0.4897,
+        "detailAdded": 0.1042,
+        "bands": 0
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 11,
+          "y": 18,
+          "w": 64,
+          "h": 11
+        },
+        "build": {
+          "x": 9,
+          "y": 14,
+          "w": 65,
+          "h": 10
+        }
+      }
+    },
+    {
+      "id": "ambient-left-paths",
+      "x": 0,
+      "y": 0.1,
+      "w": 0.2,
+      "h": 0.4,
+      "kind": "chrome",
+      "score": {
+        "overall": 0.6507,
+        "structure": 0.7807,
+        "color": 0.815,
+        "colorIntersection": 0.6792,
+        "paletteMatch": 0.8882,
+        "detail": 0.5953,
+        "detailRaw": 0.6473,
+        "detailAdded": 0.1042,
+        "bands": 0.1657
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 33,
+          "y": 15,
+          "w": 284,
+          "h": 375
+        },
+        "build": {
+          "x": 34,
+          "y": 30,
+          "w": 283,
+          "h": 327
+        }
+      }
+    },
+    {
+      "id": "left-annotation",
+      "x": 0.0303,
+      "y": 0.3004,
+      "w": 0.07,
+      "h": 0.0786,
+      "kind": "text",
+      "score": {
+        "overall": 0.5678,
+        "structure": 0.6277,
+        "color": 0.7541,
+        "colorIntersection": 0.5678,
+        "paletteMatch": 0.8544,
+        "detail": 0.2141,
+        "detailRaw": 0.3131,
+        "detailAdded": 0.1979,
+        "bands": 0.3333
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 11,
+          "y": 0,
+          "w": 95,
+          "h": 72
+        },
+        "build": {
+          "x": 0,
+          "y": 5,
+          "w": 99,
+          "h": 73
+        }
+      }
+    },
+    {
+      "id": "hero-name",
+      "x": 0.1343,
+      "y": 0.1542,
+      "w": 0.5246,
+      "h": 0.3458,
+      "kind": "text",
+      "score": {
+        "overall": 0.5462,
+        "structure": 0.4903,
+        "color": 0.7878,
+        "colorIntersection": 0.6289,
+        "paletteMatch": 0.8734,
+        "detail": 0.5834,
+        "detailRaw": 0.6355,
+        "detailAdded": 0.1042,
+        "bands": 0.1657
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 5,
+          "y": 12,
+          "w": 818,
+          "h": 325
+        },
+        "build": {
+          "x": 4,
+          "y": 0,
+          "w": 828,
+          "h": 303
+        }
+      }
+    },
+    {
+      "id": "hero-description",
+      "x": 0.1343,
+      "y": 0.6452,
+      "w": 0.1967,
+      "h": 0.0544,
+      "kind": "text",
+      "score": {
+        "overall": 0.7133,
+        "structure": 0.776,
+        "color": 0.9025,
+        "colorIntersection": 0.8082,
+        "paletteMatch": 0.9532,
+        "detail": 0.4423,
+        "detailRaw": 0.4631,
+        "detailAdded": 0.0417,
+        "bands": 0.3333
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 0,
+          "y": 0,
+          "w": 312,
+          "h": 54
+        },
+        "build": {
+          "x": 0,
+          "y": 0,
+          "w": 312,
+          "h": 45
+        }
+      }
+    },
+    {
+      "id": "primary-action",
+      "x": 0.1343,
+      "y": 0.6482,
+      "w": 0.1967,
+      "h": 0.0786,
+      "kind": "control",
+      "score": {
+        "overall": 0.7614,
+        "structure": 0.7652,
+        "color": 0.878,
+        "colorIntersection": 0.7712,
+        "paletteMatch": 0.9355,
+        "detail": 0.5491,
+        "detailRaw": 0.5699,
+        "detailAdded": 0.0417,
+        "bands": 0.78
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 0,
+          "y": 0,
+          "w": 312,
+          "h": 78
+        },
+        "build": {
+          "x": 0,
+          "y": 0,
+          "w": 312,
+          "h": 78
+        }
+      }
+    },
+    {
+      "id": "secondary-action",
+      "x": 0.3417,
+      "y": 0.6482,
+      "w": 0.2081,
+      "h": 0.0786,
+      "kind": "control",
+      "score": {
+        "overall": 0.6241,
+        "structure": 0.6195,
+        "color": 0.7038,
+        "colorIntersection": 0.4449,
+        "paletteMatch": 0.8432,
+        "detail": 0.4947,
+        "detailRaw": 0.5729,
+        "detailAdded": 0.1563,
+        "bands": 0.9429
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 6,
+          "y": 8,
+          "w": 316,
+          "h": 64
+        },
+        "build": {
+          "x": 9,
+          "y": 6,
+          "w": 321,
+          "h": 64
+        }
+      }
+    },
+    {
+      "id": "left-method-label",
+      "x": 0.034,
+      "y": 0.6784,
+      "w": 0.0416,
+      "h": 0.0665,
+      "kind": "text",
+      "score": {
+        "overall": 0.6581,
+        "structure": 0.663,
+        "color": 0.6841,
+        "colorIntersection": 0.4362,
+        "paletteMatch": 0.8175,
+        "detail": 0.3704,
+        "detailRaw": 0.4693,
+        "detailAdded": 0.1979,
+        "bands": 1
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 9,
+          "y": 8,
+          "w": 51,
+          "h": 51
+        },
+        "build": {
+          "x": 0,
+          "y": 4,
+          "w": 52,
+          "h": 57
+        }
+      }
+    },
+    {
+      "id": "path-field-upper",
+      "x": 0.6,
+      "y": 0.1,
+      "w": 0.3,
+      "h": 0.3,
+      "kind": "chrome",
+      "score": {
+        "overall": 0.7634,
+        "structure": 0.9159,
+        "color": 0.8237,
+        "colorIntersection": 0.6905,
+        "paletteMatch": 0.8954,
+        "detail": 0.3478,
+        "detailRaw": 0.452,
+        "detailAdded": 0.2083,
+        "bands": 1
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 0,
+          "y": 10,
+          "w": 471,
+          "h": 288
+        },
+        "build": {
+          "x": 0,
+          "y": 0,
+          "w": 444,
+          "h": 298
+        }
+      }
+    },
+    {
+      "id": "path-field-middle",
+      "x": 0.6,
+      "y": 0.3,
+      "w": 0.3,
+      "h": 0.3,
+      "kind": "chrome",
+      "score": {
+        "overall": 0.6402,
+        "structure": 0.8947,
+        "color": 0.8578,
+        "colorIntersection": 0.7469,
+        "paletteMatch": 0.9175,
+        "detail": 0.4502,
+        "detailRaw": 0.4971,
+        "detailAdded": 0.0938,
+        "bands": 0
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 0,
+          "y": 13,
+          "w": 473,
+          "h": 278
+        },
+        "build": {
+          "x": 0,
+          "y": 0,
+          "w": 393,
+          "h": 185
+        }
+      }
+    },
+    {
+      "id": "path-field-lower",
+      "x": 0.6,
+      "y": 0.5,
+      "w": 0.3,
+      "h": 0.3,
+      "kind": "chrome",
+      "score": {
+        "overall": 0.797,
+        "structure": 0.9675,
+        "color": 0.8346,
+        "colorIntersection": 0.7438,
+        "paletteMatch": 0.8835,
+        "detail": 0.3987,
+        "detailRaw": 0.3987,
+        "detailAdded": 0,
+        "bands": 1
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 16,
+          "y": 0,
+          "w": 457,
+          "h": 290
+        },
+        "build": null
+      }
+    },
+    {
+      "id": "bot-rail",
+      "x": 0.9,
+      "y": 0,
+      "w": 0.1,
+      "h": 0.9,
+      "kind": "chrome",
+      "score": {
+        "overall": 0.602,
+        "structure": 0.8416,
+        "color": 0.4449,
+        "colorIntersection": 0.0417,
+        "paletteMatch": 0.662,
+        "detail": 0.2403,
+        "detailRaw": 0.2559,
+        "detailAdded": 0.0313,
+        "bands": 0.9077
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 0,
+          "y": 0,
+          "w": 159,
+          "h": 841
+        },
+        "build": {
+          "x": 27,
+          "y": 51,
+          "w": 88,
+          "h": 734
+        }
+      }
+    },
+    {
+      "id": "bot-face",
+      "x": 0.9,
+      "y": 0.1,
+      "w": 0.1,
+      "h": 0.2,
+      "kind": "chrome",
+      "score": {
+        "overall": 0.556,
+        "structure": 0.7255,
+        "color": 0.5092,
+        "colorIntersection": 0.0657,
+        "paletteMatch": 0.7479,
+        "detail": 0.3048,
+        "detailRaw": 0.3412,
+        "detailAdded": 0.0729,
+        "bands": 0.6571
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 16,
+          "y": 0,
+          "w": 143,
+          "h": 199
+        },
+        "build": {
+          "x": 27,
+          "y": 0,
+          "w": 88,
+          "h": 117
+        }
+      }
+    },
+    {
+      "id": "bot-name",
+      "x": 0.9338,
+      "y": 0.1996,
+      "w": 0.0416,
+      "h": 0.0302,
+      "kind": "text",
+      "score": {
+        "overall": 0.6107,
+        "structure": 0.7722,
+        "color": 0.4103,
+        "colorIntersection": 0.0328,
+        "paletteMatch": 0.6135,
+        "detail": 0.4802,
+        "detailRaw": 0.5323,
+        "detailAdded": 0.1042,
+        "bands": 0.5
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 7,
+          "y": 0,
+          "w": 52,
+          "h": 29
+        },
+        "build": {
+          "x": 0,
+          "y": 15,
+          "w": 51,
+          "h": 12
+        }
+      }
+    },
+    {
+      "id": "bot-moods",
+      "x": 0.9224,
+      "y": 0.5121,
+      "w": 0.0416,
+      "h": 0.0302,
+      "kind": "control",
+      "score": {
+        "overall": 0.5977,
+        "structure": 0.8299,
+        "color": 0.3985,
+        "colorIntersection": 0.0455,
+        "paletteMatch": 0.5886,
+        "detail": 0.4239,
+        "detailRaw": 0.4344,
+        "detailAdded": 0.0208,
+        "bands": 1
+      },
+      "verdict": "contradicted",
+      "inkBox": {
+        "comp": {
+          "x": 7,
+          "y": 20,
+          "w": 53,
+          "h": 9
+        },
+        "build": {
+          "x": 0,
+          "y": 20,
+          "w": 46,
+          "h": 8
+        }
+      }
+    },
+    {
+      "id": "mood-strip",
+      "x": 0,
+      "y": 0.8,
+      "w": 0.9,
+      "h": 0.1,
+      "kind": "chrome",
+      "score": {
+        "overall": 0.5895,
+        "structure": 0.9829,
+        "color": 0.5409,
+        "colorIntersection": 0.0576,
+        "paletteMatch": 0.8012,
+        "detail": 0.2012,
+        "detailRaw": 0.2741,
+        "detailAdded": 0.1458,
+        "bands": 0.4
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 0,
+          "y": 13,
+          "w": 1427,
+          "h": 34
+        },
+        "build": {
+          "x": 59,
+          "y": 14,
+          "w": 1326,
+          "h": 12
+        }
+      }
+    },
+    {
+      "id": "mood-strip-labels",
+      "x": 0,
+      "y": 0.8065,
+      "w": 0.6003,
+      "h": 0.0484,
+      "kind": "control",
+      "score": {
+        "overall": 0.6596,
+        "structure": 0.9505,
+        "color": 0.5512,
+        "colorIntersection": 0.0675,
+        "paletteMatch": 0.8117,
+        "detail": 0.1946,
+        "detailRaw": 0.205,
+        "detailAdded": 0.0208,
+        "bands": 0.4
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 0,
+          "y": 7,
+          "w": 952,
+          "h": 34
+        },
+        "build": {
+          "x": 59,
+          "y": 8,
+          "w": 437,
+          "h": 11
+        }
+      }
+    },
+    {
+      "id": "section-counter",
+      "x": 0.8001,
+      "y": 0.8065,
+      "w": 0.1003,
+      "h": 0.0484,
+      "kind": "text",
+      "score": {
+        "overall": 0.5841,
+        "structure": 0.8038,
+        "color": 0.5482,
+        "colorIntersection": 0.0573,
+        "paletteMatch": 0.8125,
+        "detail": 0.3014,
+        "detailRaw": 0.317,
+        "detailAdded": 0.0313,
+        "bands": 0
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 0,
+          "y": 11,
+          "w": 159,
+          "h": 30
+        },
+        "build": {
+          "x": 0,
+          "y": 10,
+          "w": 116,
+          "h": 10
+        }
+      }
+    },
+    {
+      "id": "projects-heading",
+      "x": 0.0227,
+      "y": 0.9486,
+      "w": 0.2774,
+      "h": 0.0514,
+      "kind": "text",
+      "score": {
+        "overall": 0.7995,
+        "structure": 0.9687,
+        "color": 0.6856,
+        "colorIntersection": 0.4131,
+        "paletteMatch": 0.8323,
+        "detail": 0.4253,
+        "detailRaw": 0.4253,
+        "detailAdded": 0,
+        "bands": 0.8
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 0,
+          "y": 0,
+          "w": 440,
+          "h": 51
+        },
+        "build": {
+          "x": 0,
+          "y": 0,
+          "w": 440,
+          "h": 51
+        }
+      }
+    },
+    {
+      "id": "projects-entry",
+      "x": 0,
+      "y": 0.9,
+      "w": 1,
+      "h": 0.1,
+      "kind": "chrome",
+      "score": {
+        "overall": 0.6822,
+        "structure": 0.8382,
+        "color": 0.7191,
+        "colorIntersection": 0.4424,
+        "paletteMatch": 0.8681,
+        "detail": 0.356,
+        "detailRaw": 0.455,
+        "detailAdded": 0.1979,
+        "bands": 0.8
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 46,
+          "y": 0,
+          "w": 1494,
+          "h": 99
+        },
+        "build": {
+          "x": 37,
+          "y": 19,
+          "w": 1360,
+          "h": 80
+        }
+      }
+    }
+  ],
+  "files": {
+    "sideBySide": "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/side-by-side.png",
+    "heatmap": "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/heatmap.png",
+    "regionFiles": [
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/paper-texture.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/masthead.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/brand-label.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/nav-labels.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/ambient-left-paths.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/left-annotation.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/hero-name.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/hero-description.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/primary-action.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/secondary-action.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/left-method-label.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/path-field-upper.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/path-field-middle.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/path-field-lower.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/bot-rail.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/bot-face.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/bot-name.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/bot-moods.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/mood-strip.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/mood-strip-labels.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/section-counter.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/projects-heading.png",
+      "/Users/mitulbhatia/Desktop/FINAL_PORTFOLIO/.impeccable/review/diff/desktop/regions/projects-entry.png"
+    ]
+  }
+}

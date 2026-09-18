@@ -1,80 +1,67 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
+import { useEffect, useState } from 'react';
 
 export function CustomCursor() {
-  const shouldReduceMotion = useReducedMotion();
-  const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
-  const [isPointer, setIsPointer] = useState(false);
+  const [position, setPosition] = useState({ x: -100, y: -100 });
+  const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [isTouch, setIsTouch] = useState(true);
 
   useEffect(() => {
-    // Only enable on fine pointer (desktop mouse)
-    const isFinePointer = window.matchMedia('(pointer: fine)').matches;
-    if (!isFinePointer) return;
+    // Disable on touch / mobile devices or prefers-reduced-motion
+    if (
+      typeof window === 'undefined' ||
+      window.matchMedia('(pointer: coarse)').matches ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      return;
+    }
 
-    const handleMouseMove = (e: MouseEvent) => {
-      setIsTouch(false);
-      setMousePos({ x: e.clientX, y: e.clientY });
-      setIsVisible(true);
+    const handlePointerMove = (e: PointerEvent) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+      if (!isVisible) setIsVisible(true);
 
-      // Detect if hovering over a clickable / interactive element
       const target = e.target as HTMLElement | null;
-      if (
-        target &&
-        (target.tagName === 'BUTTON' ||
-          target.tagName === 'A' ||
-          target.tagName === 'INPUT' ||
-          target.closest('button') ||
-          target.closest('a') ||
-          target.getAttribute('role') === 'button')
-      ) {
-        setIsPointer(true);
-      } else {
-        setIsPointer(false);
+      if (target) {
+        const isInteractive = Boolean(
+          target.closest('button, a, input, [role="button"], [data-magnetic="true"]'),
+        );
+        setIsHovered(isInteractive);
       }
     };
 
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
+    const handlePointerLeave = () => {
+      setIsVisible(false);
+    };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseleave', handleMouseLeave);
-    document.addEventListener('mouseenter', handleMouseEnter);
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    document.addEventListener('pointerleave', handlePointerLeave);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      document.removeEventListener('mouseenter', handleMouseEnter);
+      window.removeEventListener('pointermove', handlePointerMove);
+      document.removeEventListener('pointerleave', handlePointerLeave);
     };
   }, [isVisible]);
 
-  if (shouldReduceMotion || isTouch || !isVisible) {
-    return null;
-  }
+  if (!isVisible) return null;
 
   return (
-    <motion.div
-      className="fixed top-0 left-0 pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference"
-      animate={{
-        x: mousePos.x,
-        y: mousePos.y,
-        scale: isPointer ? 1.6 : 1,
+    <div
+      className="pointer-events-none fixed z-[999] hidden -translate-x-1/2 -translate-y-1/2 transition-transform duration-75 ease-out md:block"
+      style={{
+        left: `${position.x}px`,
+        top: `${position.y}px`,
       }}
-      transition={{
-        type: 'spring',
-        stiffness: 400,
-        damping: 28,
-        mass: 0.1,
-      }}
+      aria-hidden="true"
     >
+      {/* 0px Brutalist Reticle Pointer */}
       <div
-        className={`w-3.5 h-3.5 bg-[#F3E9DA] border border-[#2B1D14] transition-colors duration-150 ${
-          isPointer ? 'bg-[#A8672E]' : ''
+        className={`border border-[var(--ink)] bg-[var(--paper)] transition-all duration-150 ${
+          isHovered
+            ? 'h-6 w-6 border-[var(--accent)] bg-[var(--accent)]/15'
+            : 'h-2.5 w-2.5 bg-[var(--ink)]'
         }`}
       />
-    </motion.div>
+    </div>
   );
 }

@@ -1,181 +1,113 @@
-import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PageSheet } from '@/components/shell/PageSheet';
 import { PortraitFrame } from '@/components/proof/PortraitFrame';
 import { MethodList } from '@/components/proof/MethodList';
+import { ExperienceSection } from '@/components/proof/ExperienceSection';
 import { PROFILE } from '@/content/profile';
+import { pageMetadata } from '@/lib/site';
 
-export const metadata = {
-  title: 'About & Methodology',
-  description: 'AI Systems Engineer specializing in agentic orchestration loops, memory consistency, and predictable scaling runtimes.',
+export const metadata: Metadata = {
+  title: 'About',
+  description: 'Mitul Bhatia\'s experience, education, engineering approach, and resume.',
+  ...pageMetadata({
+    path: '/about',
+    title: 'About Mitul Bhatia — AI / Full-Stack Engineer',
+    description: 'Experience, education, engineering approach, and resume.',
+    image: '/assets/profile.jpg',
+    imageAlt: 'Portrait of Mitul Bhatia',
+  }),
 };
 
 export default function AboutPage() {
   return (
-    <PageSheet folio="03 / ABOUT — PERSON & METHODOLOGY">
-      {/* Bio Header */}
-      <section className="py-8 border-b border-[#D9C9AC]">
-        <div className="font-mono text-xs text-[#A8672E] tracking-widest uppercase mb-2">
-          Engineering Dossier
-        </div>
-        <h1 className="font-serif text-4xl sm:text-6xl font-bold text-[#2B1D14] mb-4">
-          Mitul Bhatia
-        </h1>
-        <p className="font-mono text-sm text-[#6B5744]">
-          {PROFILE.primaryTitle} · {PROFILE.subtitle}
-        </p>
-      </section>
-
-      {/* Main Grid: Portrait & Bio */}
-      <section className="py-12 border-b border-[#D9C9AC] grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-        {/* Modular Portrait Plate */}
-        <div className="lg:col-span-4">
+    <PageSheet folio="About / Experience and approach">
+      <section className="grid gap-10 border-b border-[var(--border-notebook)] pb-14 pt-4 lg:grid-cols-12 lg:items-start lg:pb-20">
+        <div className="lg:col-span-5">
           <PortraitFrame />
         </div>
-
-        {/* Canonical Bio */}
-        <div className="lg:col-span-8 space-y-6">
-          <div className="font-mono text-xs text-[#A8672E] uppercase tracking-wider font-semibold">
-            Canonical Narrative (CGPA 9.80 / 10.0)
-          </div>
-          <div className="text-lg sm:text-xl text-[#2B1D14] font-serif leading-relaxed space-y-4">
-            {PROFILE.bio.split('\n\n').map((para, idx) => (
-              <p key={idx}>{para}</p>
+        <div className="lg:col-span-7 lg:pt-4">
+          <h1 className="balanced-heading font-serif text-5xl font-semibold leading-[0.98] text-[var(--ink)] sm:text-6xl">
+            Engineer, student, and careful system builder.
+          </h1>
+          <div className="mt-7 max-w-[68ch] space-y-5 text-base leading-7 text-[var(--muted)] sm:text-lg">
+            {PROFILE.bio.split('\n\n').map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
 
-          <div className="p-6 bg-[#EADFC8] border border-[#D9C9AC] shadow-notebook font-mono text-xs sm:text-sm text-[#2B1D14] leading-relaxed">
-            <span className="font-bold block mb-1 text-[#6B5744] uppercase text-[11px]">
-              Summary for Recruiters & AI Labs:
-            </span>
-            {PROFILE.resumeSummary}
+          <div className="mt-8 border-y border-[var(--border-notebook)] py-5">
+            <p className="max-w-[68ch] text-sm leading-6 text-[var(--ink)]">{PROFILE.resumeSummary}</p>
           </div>
 
-          <div className="pt-2 flex flex-wrap gap-4 font-mono text-xs">
+          <div className="mt-7 flex flex-wrap gap-3">
             <a
               href="/assets/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2.5 bg-[#2B1D14] text-[#F3E9DA] shadow-notebook hover:bg-[#A8672E] transition-colors"
+              className="inline-flex min-h-12 items-center bg-[var(--ink)] px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--paper)] hover:bg-[var(--accent-dark)]"
             >
-              DOWNLOAD RESUME PDF ↗
+              Open resume PDF
+            </a>
+            <a
+              href="/assets/mitul-bhatia-resume.docx"
+              download
+              className="inline-flex min-h-12 items-center border border-[var(--ink)] px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)]"
+            >
+              Download DOCX
             </a>
             <Link
               href="/contact"
-              className="px-5 py-2.5 bg-[#EADFC8] text-[#2B1D14] border border-[#2B1D14] shadow-notebook hover:bg-[#2B1D14] hover:text-[#F3E9DA] transition-colors"
+              className="inline-flex min-h-12 items-center px-2 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--accent-dark)] hover:underline"
             >
-              DIRECT CONTACT →
+              Contact me
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 4 Methodologies via MethodList */}
-      <section className="py-12 border-b border-[#D9C9AC]">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-2">
-          <div>
-            <div className="font-mono text-xs text-[#A8672E] font-semibold uppercase mb-1">
-              01 / Engineering Methodology
-            </div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2B1D14]">
-              How I Design Production Agents
-            </h2>
-          </div>
-          <div className="font-mono text-xs text-[#6B5744]">
-            [EXPLICIT STATE & DETERMINISTIC LOOPS]
-          </div>
-        </div>
+      <ExperienceSection />
 
-        <MethodList />
+      <section className="border-b border-[var(--border-notebook)] py-14 sm:py-20">
+        <h2 className="balanced-heading font-serif text-4xl font-semibold text-[var(--ink)] sm:text-5xl">
+          How I approach the work
+        </h2>
+        <div className="mt-9">
+          <MethodList />
+        </div>
       </section>
 
-      {/* Academics, CP & Signal */}
-      <section className="py-12 border-b border-[#D9C9AC]">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-2">
-          <div>
-            <div className="font-mono text-xs text-[#2B1D14] font-semibold uppercase mb-1">
-              02 / Academic & Algorithmic Signal
-            </div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2B1D14]">
-              Competitive Metrics & Rigor
-            </h2>
-          </div>
-          <div className="font-mono text-xs text-[#6B5744]">
-            [AUDITABLE CREDENTIALS]
+      <section className="grid gap-12 py-14 sm:py-20 lg:grid-cols-2">
+        <div>
+          <h2 className="font-serif text-4xl font-semibold text-[var(--ink)]">Education</h2>
+          <div className="mt-7 border-t border-[var(--ink)] pt-5">
+            <p className="font-serif text-2xl font-semibold text-[var(--ink)]">{PROFILE.degree}</p>
+            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{PROFILE.school} · {PROFILE.years}</p>
+            <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--accent-dark)]">
+              {PROFILE.cgpa} CGPA · {PROFILE.academicStatus}
+            </p>
+            <p className="mt-5 text-sm leading-6 text-[var(--muted)]">{PROFILE.aiStudio.description}</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Degree & CGPA */}
-          <div className="border border-[#D9C9AC] bg-[#EADFC8] p-6 shadow-notebook">
-            <div className="font-mono text-[10px] text-[#A8672E] uppercase font-bold mb-1">
-              Degree & CGPA
+        <div>
+          <h2 className="font-serif text-4xl font-semibold text-[var(--ink)]">Other signals</h2>
+          <dl className="mt-7 border-t border-[var(--ink)]">
+            <div className="flex items-baseline justify-between gap-5 border-b border-[var(--border-notebook)] py-4">
+              <dt className="text-sm text-[var(--muted)]">LeetCode</dt>
+              <dd className="font-serif text-2xl font-semibold text-[var(--ink)]">{PROFILE.ratings.leetcode}</dd>
             </div>
-            <div className="font-serif text-xl font-bold text-[#2B1D14] mb-1">
-              {PROFILE.degree}
+            <div className="flex items-baseline justify-between gap-5 border-b border-[var(--border-notebook)] py-4">
+              <dt className="text-sm text-[var(--muted)]">Codeforces</dt>
+              <dd className="font-serif text-2xl font-semibold text-[var(--ink)]">{PROFILE.ratings.codeforces}</dd>
             </div>
-            <div className="text-xs text-[#6B5744] mb-4">
-              {PROFILE.school} ({PROFILE.years})
-            </div>
-            <div className="p-2.5 bg-[#F3E9DA] border border-[#D9C9AC] font-mono text-sm font-bold text-[#2B1D14]">
-              CGPA: <span className="text-[#A8672E]">{PROFILE.cgpa}</span>
-            </div>
-          </div>
-
-          {/* Competitive Programming */}
-          <div className="border border-[#D9C9AC] bg-[#EADFC8] p-6 shadow-notebook">
-            <div className="font-mono text-[10px] text-[#A8672E] uppercase font-bold mb-1">
-              Competitive Programming
-            </div>
-            <div className="font-serif text-xl font-bold text-[#2B1D14] mb-1">
-              Algorithmic Foundation
-            </div>
-            <div className="text-xs text-[#6B5744] mb-4">
-              Daily practice on data structures & graph algorithms
-            </div>
-            <div className="space-y-2 font-mono text-xs">
-              <div className="flex justify-between p-2 bg-[#F3E9DA] border border-[#D9C9AC]">
-                <span>LEETCODE:</span>
-                <span className="font-bold text-[#A8672E]">{PROFILE.ratings.leetcode}</span>
+            {PROFILE.honors.map((honor) => (
+              <div key={honor.title} className="border-b border-[var(--border-notebook)] py-4">
+                <dt className="text-sm font-medium text-[var(--ink)]">{honor.title}</dt>
+                {honor.detail && <dd className="mt-1 text-xs text-[var(--muted)]">{honor.detail}</dd>}
               </div>
-              <div className="flex justify-between p-2 bg-[#F3E9DA] border border-[#D9C9AC]">
-                <span>CODEFORCES:</span>
-                <span className="font-bold text-[#A8672E]">{PROFILE.ratings.codeforces}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* AI Studio & Cluster */}
-          <div className="border border-[#D9C9AC] bg-[#EADFC8] p-6 shadow-notebook">
-            <div className="font-mono text-[10px] text-[#A8672E] uppercase font-bold mb-1">
-              Specialized Program
-            </div>
-            <div className="font-serif text-xl font-bold text-[#2B1D14] mb-1">
-              AI Studio Program
-            </div>
-            <div className="text-xs text-[#6B5744] mb-4">
-              {PROFILE.aiStudio.tenure}
-            </div>
-            <div className="p-2.5 bg-[#F3E9DA] border border-[#D9C9AC] text-xs text-[#2B1D14]">
-              {PROFILE.aiStudio.description}
-            </div>
-          </div>
-        </div>
-
-        {/* School Percentages Allowed on About */}
-        <div className="mt-8 p-4 border border-[#D9C9AC] bg-[#F3E9DA] flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-[#6B5744]">
-          <div>
-            <span className="font-semibold text-[#2B1D14]">Class XII:</span>{' '}
-            {PROFILE.classXII.school} ({PROFILE.classXII.percentage})
-          </div>
-          <div>
-            <span className="font-semibold text-[#2B1D14]">Class X:</span>{' '}
-            {PROFILE.classX.school} ({PROFILE.classX.percentage})
-          </div>
-          <div>
-            <span className="font-semibold text-[#2B1D14]">Certifications & Hackathons:</span>{' '}
-            Tata Data Visualisation · Mumbai Hacks · Hacktoberfest
-          </div>
+            ))}
+          </dl>
         </div>
       </section>
     </PageSheet>

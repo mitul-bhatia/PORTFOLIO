@@ -33,24 +33,26 @@ Use as recipes, re-skinned to 0px / ink / sienna:
 
 ## Motion.dev
 
-**Role:** The UI motion runtime.
+> [!NOTE]
+> **Amended by `07B-MOOD-SYSTEM-AND-AGENT-BUILD-PROTOCOL.md`:** Motion.dev runtime dropped in favor of hand-rolled native CSS transitions/keyframes and native pointermove hooks for magnetic moments.
 
-- Dependency name: `motion` (Framer Motion rebrand)
-- Page transitions: short sheet-slide or fade (one language sitewide)
-- `useInView` / `useScroll` for metric trigger and progress
-- Hardware-friendly; honor `useReducedMotion`
+**Role:** The UI motion runtime (superseded by native motion in `07B`).
+
+- Originally planned: `motion` (Framer Motion rebrand)
+- Now: hand-coded CSS transitions/keyframes, zero runtime overhead
 
 ---
 
 ## Anime.js v4
 
-**Role:** **Only** SVG pipeline draw-in on `PipelineSchematic`.
+> [!NOTE]
+> **Amended by `07B-MOOD-SYSTEM-AND-AGENT-BUILD-PROTOCOL.md`:** Anime.js runtime dropped in favor of native SVG `stroke-dasharray`/`stroke-dashoffset` + `IntersectionObserver` / lightweight rAF easing loop.
 
-- IntersectionObserver to start (not ScrollTrigger)
-- Stroke draw + node stamp stagger
+**Role:** SVG pipeline draw-in (superseded by native SVG animation in `07B`).
+
+- Native SVG stroke draw + node stamp stagger
 - Instant complete on reduced motion
-- Do not use for page scroll, Lenis, or bot
-- Budget: ~36KB gzip; if the bundle explodes, something is duplicated
+- Zero third-party dependency; zero bundle footprint
 
 ---
 
@@ -123,4 +125,4 @@ Plus the v2 fourth move:
 
 4. Grounded navigational Notebook bot → file 06
 
-Next: the module catalog — `08-MODULAR-SYSTEM.md`.
+Next: `07B-MOOD-SYSTEM-AND-AGENT-BUILD-PROTOCOL.md`.

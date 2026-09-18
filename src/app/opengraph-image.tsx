@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const alt = 'Mitul Bhatia — AI Agent & Systems Engineer';
+export const alt = 'Mitul Bhatia — AI and Full-Stack Engineer';
 export const size = {
   width: 1200,
   height: 630,
@@ -44,7 +44,7 @@ export default async function Image() {
             </span>
           </div>
           <span style={{ color: '#A8672E', fontWeight: 'bold' }}>
-            ● NST CLASS OF &apos;28
+              NST CLASS OF &apos;28
           </span>
         </div>
 
@@ -70,7 +70,7 @@ export default async function Image() {
               letterSpacing: '1px',
             }}
           >
-            AI Agent & Systems Engineer · Agentic Systems & LLM Infrastructure
+            AI / Full-Stack Engineer · Agentic Systems & LLM Infrastructure
           </div>
           <div
             style={{
@@ -81,7 +81,7 @@ export default async function Image() {
               marginTop: '8px',
             }}
           >
-            Architecting autonomous coordination loops, RAG pipelines, and high-reliability AI infrastructure.
+            Agentic systems, backend APIs, and real-time products with clear architecture and measured behavior.
           </div>
         </div>
 
@@ -101,13 +101,13 @@ export default async function Image() {
         >
           <div style={{ display: 'flex', gap: '40px' }}>
             <span>
-              CGPA: <strong style={{ color: '#A8672E' }}>9.80 / 10.0</strong>
-            </span>
-            <span>
               GUARDRAIL: <strong style={{ color: '#A8672E' }}>&lt;24ms</strong>
             </span>
             <span>
-              CODEFORCES: <strong style={{ color: '#A8672E' }}>900+</strong>
+              SYNC: <strong style={{ color: '#A8672E' }}>&lt;45ms</strong>
+            </span>
+            <span>
+              CGPA: <strong style={{ color: '#A8672E' }}>9.65 / 10.0</strong>
             </span>
           </div>
           <span style={{ fontWeight: 'bold' }}>MITULBHATIA.DEV</span>

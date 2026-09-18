@@ -1,125 +1,115 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Magnetic } from './Magnetic';
+import { useMagnetic } from '@/lib/motion';
 
 const NAV_LINKS = [
-  { href: '/work', label: 'WORK' },
-  { href: '/about', label: 'ABOUT' },
-  { href: '/skills', label: 'SKILLS' },
-  { href: '/contact', label: 'CONTACT' },
+  { href: '/work', label: 'Work' },
+  { href: '/about', label: 'About' },
+  { href: '/skills', label: 'Skills' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export function Masthead() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const resumeMagnetic = useMagnetic<HTMLAnchorElement>(36);
 
-  // Close mobile menu on Escape key
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && mobileMenuOpen) {
-        setMobileMenuOpen(false);
-      }
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMobileMenuOpen(false);
     };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [mobileMenuOpen]);
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-[var(--paper)]/95 backdrop-blur-sm border-b border-[var(--border-notebook)] transition-colors duration-500">
-      <div className="max-w-[1180px] mx-auto px-4 sm:px-6 md:px-12 h-16 flex items-center justify-between">
-        {/* Brand Name */}
-        <Link
-          href="/"
-          className="group flex flex-col focus:outline-none"
-        >
-          <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
+    <header className="sticky top-0 z-40 border-b border-[var(--border-notebook)] bg-[var(--paper)]">
+      <div className="mx-auto flex h-16 w-full max-w-[1320px] items-center justify-between px-5 sm:px-8 lg:px-12">
+        <Link href="/" className="group flex min-w-0 items-center gap-3" aria-label="Mitul Bhatia, home">
+          <span className="font-serif text-lg font-semibold tracking-tight text-[var(--ink)] transition-colors group-hover:text-[var(--accent)] sm:text-xl">
             Mitul Bhatia
           </span>
-          <span className="text-[10px] font-mono tracking-widest text-[var(--muted)] uppercase -mt-0.5">
-            Systems & Agentic Eng.
+          <span className="hidden h-4 border-l border-[var(--border-notebook)] sm:block" />
+          <span className="hidden truncate font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)] sm:block">
+            AI / Full-Stack Engineer
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((item) => {
-            const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`font-mono text-xs tracking-wider transition-colors py-1 border-b ${
-                  isActive
-                    ? 'text-[var(--ink)] border-[var(--accent)] font-semibold'
-                    : 'text-[var(--muted)] border-transparent hover:text-[var(--ink)] hover:border-[var(--border-notebook)]'
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+        <div className="hidden items-center gap-7 md:flex">
+          <nav className="flex items-center gap-7" aria-label="Primary navigation">
+            {NAV_LINKS.map((item) => {
+              const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={active ? 'page' : undefined}
+                  className={`relative py-2 font-mono text-[11px] font-medium uppercase tracking-[0.13em] transition-colors after:absolute after:inset-x-0 after:-bottom-[13px] after:h-px after:bg-[var(--accent)] after:transition-transform ${
+                    active
+                      ? 'text-[var(--ink)] after:scale-x-100'
+                      : 'text-[var(--muted)] after:scale-x-0 hover:text-[var(--ink)] hover:after:scale-x-100'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
 
-          {/* Stamped Resume Button */}
-          <Magnetic strength={0.2}>
-            <a
-              href="/assets/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-xs tracking-wider px-3.5 py-1.5 border border-[var(--ink)] bg-[var(--elevated)] text-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)] transition-colors shadow-notebook active:translate-x-0.5 active:translate-y-0.5 inline-block"
-            >
-              RESUME ↗
-            </a>
-          </Magnetic>
-        </nav>
+          <span className="h-4 border-l border-[var(--border-notebook)]" />
 
-        {/* Mobile Menu Button */}
-        <div className="flex items-center gap-3 md:hidden">
           <a
+            ref={resumeMagnetic.ref}
+            style={resumeMagnetic.style}
             href="/assets/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-[11px] px-2.5 py-1.5 min-h-[40px] flex items-center border border-[var(--ink)] bg-[var(--elevated)] text-[var(--ink)]"
+            className="border border-[var(--ink)] bg-[var(--paper-soft)] px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--ink)] shadow-notebook transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]"
           >
-            RESUME
+            Resume ↗
           </a>
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="min-h-[44px] min-w-[44px] p-2 border border-[var(--border-notebook)] bg-[var(--elevated)] text-[var(--ink)] font-mono text-xs cursor-pointer flex items-center justify-center"
-            aria-label="Toggle Navigation Menu"
-            aria-expanded={mobileMenuOpen}
-            aria-controls="mobile-navigation"
-          >
-            {mobileMenuOpen ? 'CLOSE [✕]' : 'MENU [≡]'}
-          </button>
         </div>
+
+        <button
+          type="button"
+          onClick={() => setMobileMenuOpen((open) => !open)}
+          className="border border-[var(--border-notebook)] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--ink)] md:hidden"
+          aria-controls="mobile-navigation"
+          aria-expanded={mobileMenuOpen}
+        >
+          {mobileMenuOpen ? 'Close' : 'Menu'}
+        </button>
       </div>
 
-      {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <nav
           id="mobile-navigation"
-          aria-label="Mobile Navigation"
-          className="md:hidden border-b border-[var(--border-notebook)] bg-[var(--elevated)] px-6 py-4 flex flex-col gap-3"
+          aria-label="Mobile navigation"
+          className="border-t border-[var(--border-notebook)] bg-[var(--paper-soft)] px-5 py-5 md:hidden"
         >
-          {NAV_LINKS.map((item) => {
-            const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
-            return (
+          <div className="mx-auto grid max-w-[1320px] gap-1">
+            {NAV_LINKS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`font-mono text-xs tracking-wider py-2.5 px-3 min-h-[44px] flex items-center border border-[var(--border-notebook)] ${
-                  isActive ? 'bg-[var(--ink)] text-[var(--paper)] font-semibold' : 'bg-[var(--paper)] text-[var(--ink)]'
-                }`}
+                className="border-b border-[var(--border-notebook)] py-3 font-serif text-xl text-[var(--ink)]"
               >
                 {item.label}
               </Link>
-            );
-          })}
+            ))}
+            <a
+              href="/assets/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--accent-dark)]"
+            >
+              Open resume PDF
+            </a>
+          </div>
         </nav>
       )}
     </header>

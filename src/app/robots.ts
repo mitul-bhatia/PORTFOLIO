@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { absoluteUrl, SITE_URL } from '@/lib/site';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,6 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/'],
     },
-    sitemap: 'https://mitulbhatia.dev/sitemap.xml',
+    sitemap: absoluteUrl('/sitemap.xml'),
+    host: SITE_URL,
   };
 }

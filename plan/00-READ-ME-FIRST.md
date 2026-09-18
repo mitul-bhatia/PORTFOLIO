@@ -22,11 +22,12 @@ Read in order. Each file **continues** the previous one. Do not skip.
 | 05 | `05-INFORMATION-ARCHITECTURE.md` | 04 | Routes, modules, what lives on which page |
 | 06 | `06-AI-CONCIERGE.md` | 05 | Bubbly Q&A bot: knowledge, navigation, safety |
 | 07 | `07-TOOLING-AND-REFERENCES.md` | 06 | Watermelon, Manus, Haikei, Motion, Anime.js, 21st.dev |
-| 08 | `08-MODULAR-SYSTEM.md` | 07 | Component modules a builder may assemble, never restyle ad hoc |
+| 07B | `07B-MOOD-SYSTEM-AND-AGENT-BUILD-PROTOCOL.md` | 07 | Mood system, hand-rolled motion amends 07, Antigravity loop |
+| 08 | `08-MODULAR-SYSTEM.md` | 07B | Component modules a builder may assemble, never restyle ad hoc |
 | 09 | `09-PHASE-01-FOUNDATION.md` | 08 | Scaffold, tokens, content files, routing shell |
 | 10 | `10-PHASE-02-SURFACES.md` | 09 | Home, About, Work index, Contact |
 | 11 | `11-PHASE-03-CASE-STUDIES.md` | 10 | Flagship + secondary project pages |
-| 12 | `12-PHASE-04-MOTION.md` | 11 | Motion.dev, primitives patterns, Anime.js schematics |
+| 12 | `12-PHASE-04-MOTION.md` | 11 | Hand-rolled motion, primitives patterns, SVG draw-in schematics |
 | 13 | `13-PHASE-05-AI-BOT.md` | 12 | Ship the concierge against the knowledge pack |
 | 14 | `14-PHASE-06-HARDEN-AND-SHIP.md` | 13 | A11y, SEO, performance, reduced motion, launch |
 | 15 | `15-BUILDER-HANDOFF.md` | 14 | Single paste-block for a later coding agent |
@@ -49,7 +50,7 @@ Confirmed with Mitul before writing this corpus:
 Still delegated (builder must not invent; use the recommendations in later files):
 
 - Stack: **Next.js App Router + TypeScript + Tailwind** (same family as v1 / PRD).
-- Motion: **Motion.dev** (`motion`) for UI; **Anime.js v4** only for SVG pipeline draw-in.
+- Motion: **Hand-coded native CSS/SVG/rAF motion** (amended in `07B`; Motion.dev and Anime.js dropped in favor of zero runtime dependencies).
 - Haikei: **one** Low Poly Grid texture, ink-on-cream.
 - Manus: **research only**, never edits this repo.
 - Watermelon UI / 21st.dev / Motion Primitives: **patterns and structure**, restyle to tokens. Do not install their default look.

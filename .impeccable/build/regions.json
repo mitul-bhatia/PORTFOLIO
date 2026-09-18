@@ -1,0 +1,27 @@
+{
+  "regions": [
+    { "id": "paper-texture", "kind": "texture", "grid": "A1:B2", "note": "clean cream paper grain sample without foreground ink" },
+    { "id": "masthead", "kind": "chrome", "grid": "A0:J0", "note": "thin top masthead with brand, role, navigation, and bottom rule" },
+    { "id": "brand-label", "kind": "text", "grid": "A0:C0", "note": "MITUL BHATIA and AI SYSTEMS ENGINEER masthead labels" },
+    { "id": "nav-labels", "kind": "text", "grid": "G0:I0", "note": "WORK ABOUT NOTES CONTACT navigation labels" },
+    { "id": "ambient-left-paths", "kind": "chrome", "grid": "A1:B4", "note": "responsive interface path fragments and amber state nodes", "codeDrawn": true },
+    { "id": "left-annotation", "kind": "text", "grid": "A3:A3", "note": "small supporting annotation block" },
+    { "id": "hero-name", "kind": "text", "grid": "B1:G4", "note": "large two-line MITUL BHATIA display text" },
+    { "id": "hero-description", "kind": "text", "grid": "B5:F6", "note": "two-line first-person engineering positioning statement" },
+    { "id": "primary-action", "kind": "control", "grid": "B6:D7", "note": "amber VIEW PROJECTS action" },
+    { "id": "secondary-action", "kind": "control", "grid": "D6:F7", "note": "outlined DOWNLOAD RESUME action" },
+    { "id": "left-method-label", "kind": "text", "grid": "A6:A7", "note": "small build observe iterate annotation" },
+    { "id": "path-field-upper", "kind": "chrome", "grid": "G1:I3", "note": "responsive mood-state interface paths with sparse right-angle rules and nodes", "codeDrawn": true },
+    { "id": "path-field-middle", "kind": "chrome", "grid": "G3:I5", "note": "responsive mood-state interface paths gathering toward the bot rail", "codeDrawn": true },
+    { "id": "path-field-lower", "kind": "chrome", "grid": "G5:I7", "note": "responsive mood-state interface paths with vertical route rules", "codeDrawn": true },
+    { "id": "bot-rail", "kind": "chrome", "grid": "J0:J8", "note": "fixed narrow right-edge MB-01 instrument rail with rules and open trigger" },
+    { "id": "bot-face", "kind": "chrome", "grid": "J1:J2", "note": "small geometric MB-01 interface icon", "codeDrawn": true },
+    { "id": "bot-name", "kind": "text", "grid": "J2:J2", "note": "MB-01 label" },
+    { "id": "bot-moods", "kind": "control", "grid": "J3:J6", "note": "stacked mood controls with one amber selected marker" },
+    { "id": "mood-strip", "kind": "chrome", "grid": "A8:I8", "note": "thin horizontal mood selector strip with section counter" },
+    { "id": "mood-strip-labels", "kind": "control", "grid": "A8:F8", "note": "mood names and selected state" },
+    { "id": "section-counter", "kind": "text", "grid": "I8:I8", "note": "01 / 05 state counter" },
+    { "id": "projects-heading", "kind": "text", "grid": "A9:C9", "note": "below-fold PROJECTS section heading" },
+    { "id": "projects-entry", "kind": "chrome", "grid": "A9:J9", "note": "beginning of wide project index row below the first viewport" }
+  ]
+}

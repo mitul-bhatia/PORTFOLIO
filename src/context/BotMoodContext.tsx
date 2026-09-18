@@ -1,130 +1,95 @@
 'use client';
 
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
-  useSyncExternalStore,
-} from 'react';
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { classifyPromptMood, MOOD_DETAILS, SiteMood } from '@/lib/moodClassifier';
 
-export type BotMood = 'jealous' | 'fan' | 'bragger';
+export type BotMood = SiteMood;
 
 interface BotMoodContextType {
-  mood: BotMood;
-  setMood: (mood: BotMood) => void;
-  steerMood: (target: BotMood, feedback?: string) => void;
-  isUnlocked: boolean;
-  unlockSecret: () => void;
+  mood: SiteMood;
+  setMood: (mood: SiteMood, reason?: string) => void;
+  inferFromPrompt: (prompt: string) => SiteMood;
+  decayToAmbient: () => void;
   lastSteerFeedback: string | null;
+  steerReason: string | null;
 }
 
 const BotMoodContext = createContext<BotMoodContextType | null>(null);
 
-const STORAGE_KEY = 'archivist-mood';
-const UNLOCKED_KEY = 'archivist-unlocked';
-
-// External store event bus for reactive state
-const listeners = new Set<() => void>();
-function notify() {
-  listeners.forEach((listener) => listener());
-}
-
-function subscribe(callback: () => void) {
-  listeners.add(callback);
-  if (typeof window !== 'undefined') {
-    window.addEventListener('storage', callback);
-  }
-  return () => {
-    listeners.delete(callback);
-    if (typeof window !== 'undefined') {
-      window.removeEventListener('storage', callback);
-    }
-  };
-}
-
-function getStoredMood(): BotMood {
-  if (typeof window === 'undefined') return 'jealous';
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY) as BotMood | null;
-    if (saved === 'fan' || saved === 'bragger' || saved === 'jealous') return saved;
-    if (saved === ('happy' as string)) return 'fan';
-  } catch {
-    // noop
-  }
-  return 'jealous';
-}
-
-function getStoredUnlocked(): boolean {
-  if (typeof window === 'undefined') return false;
-  try {
-    return localStorage.getItem(UNLOCKED_KEY) === 'true';
-  } catch {
-    return false;
-  }
-}
-
 export function BotMoodProvider({ children }: { children: React.ReactNode }) {
-  const mood = useSyncExternalStore<BotMood>(subscribe, getStoredMood, () => 'jealous' as BotMood);
-  const isUnlocked = useSyncExternalStore<boolean>(subscribe, getStoredUnlocked, () => false);
-
+  const [mood, setMoodState] = useState<SiteMood>('ambient');
   const [lastSteerFeedback, setLastSteerFeedback] = useState<string | null>(null);
+  const [steerReason, setSteerReason] = useState<string | null>(MOOD_DETAILS.ambient.defaultReason);
+  const decayTimerRef = useRef<number | null>(null);
 
-  // Sync HTML theme class with current mood
+  // Sync to document.documentElement.dataset.mood so PathField & CSS can read it cleanly
   useEffect(() => {
-    const root = document.documentElement;
-    root.classList.remove('theme-jealous', 'theme-fan', 'theme-bragger', 'theme-happy');
-    root.classList.add(`theme-${mood}`);
-    if (mood === 'fan' || mood === 'bragger') {
-      root.classList.add('theme-happy');
-    }
-    root.setAttribute('data-bot-mood', mood);
+    document.documentElement.dataset.mood = mood;
   }, [mood]);
 
-  const setMood = useCallback((newMood: BotMood) => {
-    try {
-      localStorage.setItem(STORAGE_KEY, newMood);
-      if (newMood === 'fan' || newMood === 'bragger') {
-        localStorage.setItem(UNLOCKED_KEY, 'true');
-      }
-      notify();
-    } catch {
-      // noop
+  const clearDecayTimer = useCallback(() => {
+    if (decayTimerRef.current !== null) {
+      window.clearTimeout(decayTimerRef.current);
+      decayTimerRef.current = null;
     }
   }, []);
 
-  const steerMood = useCallback(
-    (target: BotMood, feedback?: string) => {
-      setMood(target);
-      if (feedback) {
-        setLastSteerFeedback(feedback);
-        const timer = setTimeout(() => setLastSteerFeedback(null), 3500);
-        return () => clearTimeout(timer);
+  const decayToAmbient = useCallback(() => {
+    clearDecayTimer();
+    setMoodState('ambient');
+    setSteerReason(MOOD_DETAILS.ambient.defaultReason);
+  }, [clearDecayTimer]);
+
+  const scheduleDecay = useCallback(() => {
+    clearDecayTimer();
+    // 07B spec: decay to Ambient after 8s
+    decayTimerRef.current = window.setTimeout(() => {
+      decayToAmbient();
+    }, 8000);
+  }, [clearDecayTimer, decayToAmbient]);
+
+  const setMood = useCallback(
+    (nextMood: SiteMood, reason?: string) => {
+      setMoodState(nextMood);
+      const activeReason = reason || MOOD_DETAILS[nextMood].defaultReason;
+      setSteerReason(activeReason);
+
+      if (nextMood !== 'ambient') {
+        scheduleDecay();
+      } else {
+        clearDecayTimer();
       }
     },
-    [setMood]
+    [clearDecayTimer, scheduleDecay],
   );
 
-  const unlockSecret = useCallback(() => {
-    try {
-      localStorage.setItem(UNLOCKED_KEY, 'true');
-      localStorage.setItem(STORAGE_KEY, 'fan');
-      notify();
-    } catch {
-      // noop
-    }
-  }, []);
+  const inferFromPrompt = useCallback(
+    (prompt: string): SiteMood => {
+      const result = classifyPromptMood(prompt, mood);
+      setMood(result.mood, result.reason);
+
+      if (result.mood !== 'ambient') {
+        setLastSteerFeedback(`Mood: ${result.label.toUpperCase()} · ${result.reason}`);
+        window.setTimeout(() => setLastSteerFeedback(null), 3000);
+      }
+      return result.mood;
+    },
+    [mood, setMood],
+  );
+
+  useEffect(() => {
+    return () => clearDecayTimer();
+  }, [clearDecayTimer]);
 
   return (
     <BotMoodContext.Provider
       value={{
         mood,
         setMood,
-        steerMood,
-        isUnlocked,
-        unlockSecret,
+        inferFromPrompt,
+        decayToAmbient,
         lastSteerFeedback,
+        steerReason,
       }}
     >
       {children}
@@ -134,8 +99,6 @@ export function BotMoodProvider({ children }: { children: React.ReactNode }) {
 
 export function useBotMood(): BotMoodContextType {
   const context = useContext(BotMoodContext);
-  if (!context) {
-    throw new Error('useBotMood must be used within a BotMoodProvider');
-  }
+  if (!context) throw new Error('useBotMood must be used within a BotMoodProvider');
   return context;
 }

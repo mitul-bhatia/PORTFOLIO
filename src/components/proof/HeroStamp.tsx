@@ -1,88 +1,63 @@
 'use client';
 
-import React from 'react';
 import Link from 'next/link';
-import { motion, useReducedMotion } from 'motion/react';
 import { PROFILE } from '@/content/profile';
+import { HeroSchematicPlate } from './HeroSchematicPlate';
 
 export function HeroStamp() {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
-    <section className="pt-8 pb-16 border-b border-[#D9C9AC]">
-      {/* Top institution stamp */}
-      <motion.div
-        initial={shouldReduceMotion ? false : { opacity: 0, y: -4 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-        className="inline-flex items-center gap-2 px-3 py-1 bg-[#EADFC8] border border-[#D9C9AC] text-[#2B1D14] font-mono text-xs tracking-wider mb-8 shadow-sm"
-      >
-        <span className="w-1.5 h-1.5 bg-[#A8672E]" />
-        <span>{PROFILE.heroStamp}</span>
-      </motion.div>
+    <section className="relative mx-auto w-full max-w-[1320px] overflow-hidden px-5 pb-0 pt-12 sm:px-8 sm:pt-16 lg:px-12 lg:pt-20">
+      <div className="grid items-center gap-10 border-b border-[var(--border-notebook)] pb-14 lg:grid-cols-12 lg:gap-12 lg:pb-20">
+        <div className="lg:col-span-7">
+          <div className="mb-4 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">
+            Folio 01 / Architecture & Systems
+          </div>
 
-      {/* Kinetic Split Name */}
-      <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight text-[#2B1D14] leading-[0.95] mb-6 select-none overflow-hidden">
-        <motion.span
-          className="block"
-          initial={shouldReduceMotion ? false : { y: '100%', opacity: 0 }}
-          animate={{ y: '0%', opacity: 1 }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-        >
-          MITUL
-        </motion.span>
-        <motion.span
-          className="block italic font-normal text-[#A8672E]"
-          initial={shouldReduceMotion ? false : { y: '100%', opacity: 0 }}
-          animate={{ y: '0%', opacity: 1 }}
-          transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        >
-          BHATIA
-        </motion.span>
-      </h1>
+          <h1 className="balanced-heading font-serif text-[clamp(4.4rem,10vw,8rem)] font-bold uppercase leading-[0.82] tracking-[-0.03em] text-[var(--ink)]">
+            <span className="block">Mitul</span>
+            <span className="block text-[var(--accent-dark)]">Bhatia</span>
+          </h1>
 
-      {/* Role / Subtitle */}
-      <motion.div
-        initial={shouldReduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.2 }}
-        className="flex items-center gap-3 font-mono text-sm sm:text-base text-[#6B5744] tracking-wide mb-8"
-      >
-        <span className="font-semibold text-[#2B1D14]">{PROFILE.primaryTitle}</span>
-        <span>/</span>
-        <span>{PROFILE.subtitle}</span>
-      </motion.div>
+          <p className="mt-7 max-w-[650px] balanced-heading font-serif text-[clamp(1.45rem,2.5vw,2.45rem)] leading-[1.12] text-[var(--ink)]">
+            {PROFILE.positioning}
+          </p>
 
-      {/* Tagline Text Effect */}
-      <motion.p
-        initial={shouldReduceMotion ? false : { opacity: 0, y: 6 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45, delay: 0.25 }}
-        className="max-w-2xl text-lg sm:text-xl text-[#2B1D14] leading-relaxed font-serif mb-10"
-      >
-        &ldquo;{PROFILE.positioning}&rdquo;
-      </motion.p>
+          <p className="mt-5 max-w-[64ch] text-base leading-7 text-[var(--muted)]">
+            {PROFILE.primaryTitle} focused on {PROFILE.subtitle.toLowerCase()}, backend APIs, and real-time product systems.
+          </p>
 
-      {/* Action triggers */}
-      <motion.div
-        initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.3 }}
-        className="flex flex-wrap items-center gap-4 font-mono text-xs"
-      >
-        <Link
-          href="/work"
-          className="px-6 py-3 bg-[#2B1D14] text-[#F3E9DA] border border-[#2B1D14] shadow-notebook hover:bg-[#A8672E] hover:border-[#A8672E] transition-colors tracking-wider font-semibold"
-        >
-          VIEW WORK (07) ↗
-        </Link>
-        <Link
-          href="/about"
-          className="px-6 py-3 bg-[#EADFC8] text-[#2B1D14] border border-[#2B1D14] shadow-notebook hover:bg-[#2B1D14] hover:text-[#F3E9DA] transition-colors tracking-wider font-semibold"
-        >
-          METHODOLOGY & ABOUT →
-        </Link>
-      </motion.div>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/work"
+              className="inline-flex min-h-12 items-center justify-between gap-10 bg-[var(--ink)] px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--paper)] transition-colors hover:bg-[var(--accent-dark)]"
+            >
+              View selected work
+              <span aria-hidden="true">→</span>
+            </Link>
+            <a
+              href="/assets/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-12 items-center justify-between gap-8 border border-[var(--ink)] px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--ink)] transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]"
+            >
+              Resume PDF
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-2 border-t border-[var(--border-notebook)] pt-4 font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">
+            <li>LangGraph</li>
+            <li>FastAPI</li>
+            <li>React 19</li>
+            <li>Redis</li>
+            <li>RAG</li>
+          </ul>
+        </div>
+
+        <div className="lg:col-span-5">
+          <HeroSchematicPlate />
+        </div>
+      </div>
     </section>
   );
 }

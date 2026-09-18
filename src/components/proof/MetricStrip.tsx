@@ -1,6 +1,4 @@
-import React from 'react';
 import { MetricItem } from '@/content/projects';
-import { SlidingNumber } from './SlidingNumber';
 
 export function MetricStrip({
   metrics,
@@ -10,28 +8,20 @@ export function MetricStrip({
   compact?: boolean;
 }) {
   return (
-    <div
-      className={`grid grid-cols-1 sm:grid-cols-3 gap-3 border border-[#D9C9AC] bg-[#EADFC8] ${
-        compact ? 'p-3' : 'p-4 sm:p-6'
-      }`}
-    >
+    <dl className="grid gap-px border border-[var(--border-notebook)] bg-[var(--border-notebook)] sm:grid-cols-3">
       {metrics.map((m, idx) => (
         <div
           key={idx}
-          className={`border-b sm:border-b-0 sm:border-r border-[#D9C9AC] last:border-b-0 last:border-r-0 ${
-            compact ? 'pb-2 sm:pb-0 sm:pr-3' : 'pb-3 sm:pb-0 sm:pr-4'
-          }`}
+          className={`bg-[var(--paper-soft)] ${compact ? 'p-3' : 'p-5 sm:p-6'}`}
         >
-          <div className="font-mono text-[10px] sm:text-[11px] text-[#6B5744] uppercase tracking-wider mb-1">
+          <dt className="font-mono text-[9px] uppercase tracking-[0.1em] text-[var(--muted)]">
             {m.label}
-          </div>
-          <div className="font-mono text-xl sm:text-2xl lg:text-3xl font-bold text-[#2B1D14] tracking-tight tabular-nums">
-            <span className="text-[#A8672E]">
-              <SlidingNumber value={m.value} />
-            </span>
-          </div>
+          </dt>
+          <dd className="mt-2 font-serif text-2xl font-semibold text-[var(--ink)] tabular-nums sm:text-3xl">
+            {m.value}
+          </dd>
         </div>
       ))}
-    </div>
+    </dl>
   );
 }

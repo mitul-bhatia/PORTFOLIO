@@ -79,11 +79,19 @@ export default function HomePage() {
               Contact me
             </Link>
             <a
-              href="/assets/mitul-bhatia-resume.docx"
-              download
+              href="/assets/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center border border-[var(--ink)] px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)]"
             >
-              Resume DOCX
+              Resume PDF ↗
+            </a>
+            <a
+              href="/assets/mitul-bhatia-resume.docx"
+              download
+              className="inline-flex min-h-12 items-center border border-[var(--border-notebook)] bg-[var(--paper)] px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--muted)] hover:border-[var(--ink)] hover:text-[var(--ink)]"
+            >
+              Resume DOCX ↓
             </a>
           </div>
         </section>

@@ -28,15 +28,24 @@ export async function generateMetadata({
   const project = getProjectBySlug(slug);
   if (!project) return { title: 'Project Not Found' };
   return {
-    title: `${project.title} — Case Study`,
+    title: `${project.title} — ${project.tag}`,
     description: project.problem,
     ...pageMetadata({
       path: `/work/${project.slug}`,
-      title: `${project.title} case study — Mitul Bhatia`,
-      description: project.problem,
+      title: `${project.title} — Mitul Bhatia | ${project.tag}`,
+      description: `${project.title}: ${project.problem}`,
       image: project.image,
-      imageAlt: `${project.title} interface`,
+      imageAlt: `${project.title} interface designed by Mitul Bhatia`,
       type: 'article',
+      keywords: [
+        project.title,
+        project.tag,
+        'Mitul Bhatia',
+        'mitulb95',
+        'Mitul Bhatia Projects',
+        'Mitul Bhatia Case Study',
+        ...project.stack,
+      ],
     }),
   };
 }
@@ -68,6 +77,7 @@ export default async function CaseStudyPage({
       '@type': 'Person',
       '@id': `${SITE_URL}/#person`,
       name: 'Mitul Bhatia',
+      url: SITE_URL,
     },
   };
 

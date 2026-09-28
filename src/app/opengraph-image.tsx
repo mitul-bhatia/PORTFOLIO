@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const alt = 'Mitul Bhatia — AI and Full-Stack Engineer';
+export const alt = 'Mitul Bhatia (mitulb95.dev) — AI and Full-Stack Engineer';
 export const size = {
   width: 1200,
   height: 630,
@@ -110,7 +110,7 @@ export default async function Image() {
               CGPA: <strong style={{ color: '#A8672E' }}>9.65 / 10.0</strong>
             </span>
           </div>
-          <span style={{ fontWeight: 'bold' }}>MITULBHATIA.DEV</span>
+          <span style={{ fontWeight: 'bold' }}>MITULB95.DEV</span>
         </div>
       </div>
     ),

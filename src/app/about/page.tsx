@@ -8,12 +8,24 @@ import { PROFILE } from '@/content/profile';
 import { pageMetadata } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'About',
-  description: 'Mitul Bhatia\'s experience, education, engineering approach, and resume.',
+  title: 'About Mitul Bhatia — AI & Full-Stack Engineer',
+  description: 'Mitul Bhatia\'s experience, education, engineering methodology, and background in AI and full-stack systems.',
   ...pageMetadata({
     path: '/about',
-    title: 'About Mitul Bhatia — AI / Full-Stack Engineer',
-    description: 'Experience, education, engineering approach, and resume.',
+    title: 'About Mitul Bhatia — AI & Full-Stack Engineer',
+    description: 'Mitul Bhatia\'s experience, education, engineering methodology, and background in AI and full-stack systems.',
+    keywords: [
+      'About Mitul Bhatia',
+      'Mitul Bhatia Bio',
+      'Mitul Bhatia Resume',
+      'Mitul Bhatia Education',
+      'Newton School of Technology',
+      'Rishihood University',
+      'AI Systems Engineer',
+      'Mitul Bhatia Experience',
+      'Kolably Developer',
+      'Raindeer AI Lead',
+    ],
     image: '/assets/profile.jpg',
     imageAlt: 'Portrait of Mitul Bhatia',
   }),
@@ -27,7 +39,10 @@ export default function AboutPage() {
           <PortraitFrame />
         </div>
         <div className="lg:col-span-7 lg:pt-4">
-          <h1 className="balanced-heading font-serif text-5xl font-semibold leading-[0.98] text-[var(--ink)] sm:text-6xl">
+          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent-dark)]">
+            About Mitul Bhatia · Profile & Approach
+          </p>
+          <h1 className="mt-2 balanced-heading font-serif text-5xl font-semibold leading-[0.98] text-[var(--ink)] sm:text-6xl">
             Engineer, student, and careful system builder.
           </h1>
           <div className="mt-7 max-w-[var(--measure)] space-y-5 text-base leading-7 text-[var(--muted)] sm:text-lg">

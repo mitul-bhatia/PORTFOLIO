@@ -16,6 +16,8 @@ export interface Profile {
   phone: string;
   location: string;
   domain: string;
+  alternateNames: string[];
+  keywords: string[];
   github: string;
   linkedin: string;
   x: string;
@@ -49,7 +51,54 @@ export const PROFILE: Profile = {
   email: 'mitul.bhatia2024@nst.rishihood.edu.in',
   phone: '+91 76686 46665',
   location: 'Sonipat, Haryana, India',
-  domain: 'https://mitulbhatia.dev',
+  domain: 'https://mitulb95.dev',
+  alternateNames: ['mitulb95', 'mitul-bhatia', 'Mitul Bhatai', 'Mitul Bhatia NST', 'mitulb05'],
+  keywords: [
+    'Mitul Bhatia',
+    'mitulb95',
+    'mitul-bhatia',
+    'Mitul Bhatai',
+    'mitulb95.dev',
+    'Mitul Bhatia Portfolio',
+    'Mitul Bhatia AI Engineer',
+    'Mitul Bhatia Newton School of Technology',
+    'Mitul Bhatia Rishihood University',
+    'AI Engineer',
+    'AI Agent Engineer',
+    'Full-Stack Engineer',
+    'Backend Engineer',
+    'AI Systems Engineer',
+    'LLM Infrastructure Engineer',
+    'LangGraph',
+    'CrewAI',
+    'LangChain',
+    'RAG Pipelines',
+    'Retrieval-Augmented Generation',
+    'FastAPI',
+    'Next.js',
+    'React 19',
+    'Python',
+    'TypeScript',
+    'Vector Databases',
+    'FAISS',
+    'Qdrant',
+    'ChromaDB',
+    'LightRAG',
+    'GraphRAG',
+    'Docker',
+    'PostgreSQL',
+    'Redis',
+    'WebSockets',
+    'Socket.IO',
+    'Semgrep',
+    'Multi-Agent Systems',
+    'AI Guardrails',
+    'AEGIS AI Guardrail',
+    'Flately',
+    'Agrovers',
+    'CreditSense',
+    'VulnSwarm',
+  ],
   github: 'https://github.com/mitul-bhatia',
   linkedin: 'https://linkedin.com/in/mitul-bhatia',
   x: 'https://x.com/mitulb05',
@@ -124,9 +173,9 @@ export const PROFILE: Profile = {
   resumeSummary:
     'Backend and AI systems engineer with startup experience at Kolably and Raindeer.social, hands-on work across multi-agent systems, RAG pipelines, FastAPI, React, and real-time infrastructure, holding a 9.65 CGPA at Newton School of Technology.',
   metaDescription:
-    'Portfolio of Mitul Bhatia, an AI and full-stack engineer building agentic systems, RAG pipelines, backend APIs, and real-time products.',
+    'Official portfolio of Mitul Bhatia (mitulb95) — AI and Full-Stack Engineer. Building agentic systems, LangGraph multi-agent workflows, RAG pipelines, FastAPI services, and production web applications.',
   openGraphDescription:
-    'Agentic systems, backend engineering, and full-stack products with clear architecture and measured results.',
+    'Mitul Bhatia (mitulb95.dev) — AI & Full-Stack Engineer building agentic systems, LangGraph orchestration, RAG pipelines, and resilient backend systems.',
   methodology: [
     {
       id: '01',

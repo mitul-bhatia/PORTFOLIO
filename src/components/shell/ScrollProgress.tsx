@@ -1,12 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { usePrefersReducedMotion } from '@/lib/motion';
 
 export function ScrollProgress() {
+  const reduced = usePrefersReducedMotion();
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    let frameId: number;
+    let frameId = 0;
     const handleScroll = () => {
       cancelAnimationFrame(frameId);
       frameId = requestAnimationFrame(() => {
@@ -23,9 +25,11 @@ export function ScrollProgress() {
     };
   }, []);
 
+  if (reduced) return null;
+
   return (
     <div
-      className="fixed left-0 right-0 top-0 z-50 h-[2px] origin-left bg-[var(--accent)] pointer-events-none transition-transform duration-75 ease-out"
+      className="pointer-events-none fixed left-0 right-0 top-0 z-50 h-[2px] origin-left bg-[var(--accent)]"
       style={{ transform: `scaleX(${progress})` }}
       aria-hidden="true"
     />

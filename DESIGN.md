@@ -7,13 +7,14 @@ colors:
   ink: "#2B1D14"
   ink-muted: "#6B5744"
   amber: "#A8672E"
-  rule: "#D9C9AC"
+  accent-ink: "#945B29"
+  rule: "#CDBC9D"
 typography:
   display:
     fontFamily: "Fraunces, Georgia, serif"
-    fontSize: "clamp(8rem, 11vw, 10.9rem) on desktop; clamp(4.2rem, 19vw, 5rem) on mobile"
+    fontSize: "clamp(4.4rem, 10vw, 7.5rem)"
     fontWeight: 700
-    lineHeight: 0.88
+    lineHeight: 0.86
     letterSpacing: "-0.03em"
   body:
     fontFamily: "Inter, Arial, sans-serif"
@@ -60,7 +61,7 @@ components:
 
 The portfolio reads like an engineering folio prepared for another engineer to inspect: tactile paper, decisive ink, real labels, and enough whitespace for evidence to lead. Its memorable layer is a family of mood-reactive path fields—derived from technical signal routes and folded paper diagrams—that connect the existing concierge to the whole interface.
 
-The assistant may change tone; the site remains disciplined. Tone changes the answer cadence inside one fixed visual world rather than switching themes.
+The assistant may change tone and the folio may shift paper, ink, and accent with mood. Facts on the page never change with mood—only how the room feels and how the concierge speaks.
 
 **Delight thesis:** The portfolio notebook feels like a useful editorial margin note. It stays visually quiet, answers only from the portfolio, and lets the real portrait and project evidence remain the focal points.
 
@@ -69,14 +70,25 @@ The assistant may change tone; the site remains disciplined. Tone changes the an
 - Editorial scale with technical precision.
 - Sharp rectangles and thin ink rules.
 - Paper grain as the primary atmospheric effect.
-- One amber signal across all moods.
+- Eight mood themes on one square, editorial system (ambient through fan).
 - A compact right rail on desktop and bottom dock on mobile.
 
 ## Colors
 
-One fixed palette carries every route and mood. Workshop Amber marks state, action, and sparse path nodes. Notebook Paper, Raised Sheet, Writing Ink, Faded Annotation, and Pencil Rule provide the neutral structure.
+Each induced mood sets registered color tokens in `globals.css`. Paper, ink, muted, accent, accent-ink, and rules interpolate together over 320ms. `--accent` is for fills and rules (at least 3:1 on that mood's paper). `--accent-ink` is for accent text (at least 4.5:1). Components consume those variables, so the page recolors as one surface.
 
-**The One Signal Rule.** Mood never introduces a new hue; it changes how the existing palette is distributed.
+| Mood | Paper | Ink | Accent | Path character |
+|------|-------|-----|--------|----------------|
+| Ambient | `#F3E9DA` | `#2B1D14` | `#A8672E` | Sparse drift |
+| Focused | `#E6E0D4` | `#16120E` | `#7A3E1C` | Tighter grid |
+| Charting | `#E3DDD0` | `#2C332C` | `#6B5344` | Diagonal rules |
+| Arriving | `#F6E4D0` | `#2B1D14` | `#C56A28` | Converge to dock |
+| Guarded | `#E8E2D6` | `#1C140F` | `#5C4033` | Minimal paths, strong rules |
+| Jealous | `#E6E3D2` | `#2A2416` | `#6A7344` | Asymmetric lines |
+| Bragger | `#F4E0C8` | `#2B1D14` | `#B4531A` | Brighter sheet; name scale via `--mood-display` |
+| Fan | `#F6E4DA` | `#3A241C` | `#C06F4F` | Soft waves |
+
+**The fact lock.** Mood changes paper and voice, never résumé numbers, project metrics, employers, or links. CGPA, AEGIS latency, and experience lines always come from `profile.ts` and `projects.ts`.
 
 ## Typography
 
@@ -112,7 +124,7 @@ Buttons use ink/paper inversion and thin borders. Panels use paper or raised pap
 
 ### Don't:
 
-- **Don't** add new mood colors, gradients, glow, bloom, or dark mode.
+- **Don't** add gradients, glow, glass, neon, or a second purple “AI” palette; mood hues stay within the eight theme sets above.
 - **Don't** stack path animation on top of the current Three.js atmosphere.
 - **Don't** retain a custom cursor, magnetic effect, or animated bot as competing global signatures.
 - **Don't** invent terminal-style labels or performance claims.

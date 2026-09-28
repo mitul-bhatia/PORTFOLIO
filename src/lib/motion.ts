@@ -1,6 +1,28 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+
+function subscribeReducedMotion(onChange: () => void) {
+  const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+  media.addEventListener('change', onChange);
+  return () => media.removeEventListener('change', onChange);
+}
+
+function reducedMotionSnapshot() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+export function usePrefersReducedMotion() {
+  return useSyncExternalStore(subscribeReducedMotion, reducedMotionSnapshot, () => false);
+}
+
+export function useIsClient() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+}
 
 /**
  * Native pointermove-based magnetic hover hook (07B §2).
@@ -9,13 +31,13 @@ import { useEffect, useRef, useState } from 'react';
 export function useMagnetic<T extends HTMLElement = HTMLElement>(threshold = 40) {
   const ref = useRef<T>(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const reduced = usePrefersReducedMotion();
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || typeof window === 'undefined') return;
+    if (!el || typeof window === 'undefined' || reduced) return;
 
-    // Skip on touch devices or prefers-reduced-motion
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.matchMedia('(pointer: coarse)').matches) {
+    if (window.matchMedia('(pointer: coarse)').matches) {
       return;
     }
 
@@ -51,36 +73,13 @@ export function useMagnetic<T extends HTMLElement = HTMLElement>(threshold = 40)
       window.removeEventListener('pointermove', handlePointerMove);
       el.removeEventListener('pointerleave', handlePointerLeave);
     };
-  }, [threshold]);
+  }, [threshold, reduced]);
 
-  return { ref, style: { transform: `translate3d(${offset.x}px, ${offset.y}px, 0)`, transition: 'transform 0.15s cubic-bezier(0.16, 1, 0.3, 1)' } };
-}
-
-/**
- * Lightweight native IntersectionObserver hook for in-view trigger.
- */
-export function useInView(options: IntersectionObserverInit = { threshold: 0.15, once: true } as IntersectionObserverInit & { once?: boolean }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isInView, setIsInView] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || typeof window === 'undefined') return;
-
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry?.isIntersecting) {
-        setIsInView(true);
-        if ((options as { once?: boolean }).once !== false) {
-          observer.disconnect();
-        }
-      } else if ((options as { once?: boolean }).once === false) {
-        setIsInView(false);
-      }
-    }, options);
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [options]);
-
-  return { ref, isInView };
+  return {
+    ref,
+    style: {
+      transform: `translate3d(${offset.x}px, ${offset.y}px, 0)`,
+      transition: reduced ? 'none' : 'transform var(--dur-1) var(--ease-out)',
+    },
+  };
 }

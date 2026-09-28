@@ -3,10 +3,13 @@ import { PROJECTS } from '@/content/projects';
 import { absoluteUrl, CONTENT_UPDATED_AT } from '@/lib/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const primaryRoutes = ['', '/work', '/about', '/skills', '/contact'].map((route) => ({
+  const primaryRoutes = ['', '/work', '/about', '/skills', '/news', '/contact'].map((route) => ({
     url: absoluteUrl(route || '/'),
     lastModified: CONTENT_UPDATED_AT,
-    changeFrequency: (route === '' ? 'weekly' : 'monthly') as 'weekly' | 'monthly',
+    changeFrequency: (route === '/news' ? 'daily' : route === '' ? 'weekly' : 'monthly') as
+      | 'daily'
+      | 'weekly'
+      | 'monthly',
     priority: route === '' ? 1.0 : 0.8,
     ...(route === '' ? { images: [absoluteUrl('/assets/profile.jpg')] } : {}),
   }));

@@ -14,7 +14,7 @@ export function MetricStrip({
           key={idx}
           className={`bg-[var(--paper-soft)] ${compact ? 'p-3' : 'p-5 sm:p-6'}`}
         >
-          <dt className="font-mono text-[9px] uppercase tracking-[0.1em] text-[var(--muted)]">
+          <dt className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)]">
             {m.label}
           </dt>
           <dd className="mt-2 font-serif text-2xl font-semibold text-[var(--ink)] tabular-nums sm:text-3xl">

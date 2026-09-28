@@ -3,20 +3,17 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useMagnetic } from '@/lib/motion';
-
 const NAV_LINKS = [
   { href: '/work', label: 'Work' },
   { href: '/about', label: 'About' },
   { href: '/skills', label: 'Skills' },
+  { href: '/news', label: 'News' },
   { href: '/contact', label: 'Contact' },
 ];
 
 export function Masthead() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const resumeMagnetic = useMagnetic<HTMLAnchorElement>(36);
-
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setMobileMenuOpen(false);
@@ -26,14 +23,17 @@ export function Masthead() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--border-notebook)] bg-[var(--paper)]">
+    <header
+      className="sticky top-0 z-40 border-b border-[var(--border-notebook)] bg-[var(--paper)]"
+      style={{ viewTransitionName: 'site-header' } as React.CSSProperties}
+    >
       <div className="mx-auto flex h-16 w-full max-w-[1320px] items-center justify-between px-5 sm:px-8 lg:px-12">
         <Link href="/" className="group flex min-w-0 items-center gap-3" aria-label="Mitul Bhatia, home">
           <span className="font-serif text-lg font-semibold tracking-tight text-[var(--ink)] transition-colors group-hover:text-[var(--accent)] sm:text-xl">
             Mitul Bhatia
           </span>
-          <span className="hidden h-4 border-l border-[var(--border-notebook)] sm:block" />
-          <span className="hidden truncate font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)] sm:block">
+          <span className="hidden h-4 border-l border-[var(--border-notebook)] xl:block" />
+          <span className="hidden min-w-0 truncate font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)] xl:block">
             AI / Full-Stack Engineer
           </span>
         </Link>
@@ -62,12 +62,10 @@ export function Masthead() {
           <span className="h-4 border-l border-[var(--border-notebook)]" />
 
           <a
-            ref={resumeMagnetic.ref}
-            style={resumeMagnetic.style}
-            href="/assets/resume.pdf"
+            href="/assets/Mitul_Bhatia_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="border border-[var(--ink)] bg-[var(--paper-soft)] px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--ink)] shadow-notebook transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]"
+            className="border border-[var(--ink)] bg-[var(--paper-soft)] px-3 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--ink)] transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]"
           >
             Resume ↗
           </a>
@@ -76,7 +74,7 @@ export function Masthead() {
         <button
           type="button"
           onClick={() => setMobileMenuOpen((open) => !open)}
-          className="border border-[var(--border-notebook)] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--ink)] md:hidden"
+          className="border border-[var(--border-notebook)] px-3 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--ink)] md:hidden"
           aria-controls="mobile-navigation"
           aria-expanded={mobileMenuOpen}
         >
@@ -88,7 +86,7 @@ export function Masthead() {
         <nav
           id="mobile-navigation"
           aria-label="Mobile navigation"
-          className="border-t border-[var(--border-notebook)] bg-[var(--paper-soft)] px-5 py-5 md:hidden"
+          className="border-t border-[var(--border-notebook)] bg-[var(--paper-soft)] px-5 py-5 animate-fadeIn md:hidden"
         >
           <div className="mx-auto grid max-w-[1320px] gap-1">
             {NAV_LINKS.map((item) => (
@@ -102,7 +100,7 @@ export function Masthead() {
               </Link>
             ))}
             <a
-              href="/assets/resume.pdf"
+              href="/assets/Mitul_Bhatia_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-3 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--accent-dark)]"

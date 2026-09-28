@@ -7,7 +7,7 @@ export function SkillCluster({ cluster }: { cluster: SkillClusterType }) {
         <h2 className="balanced-heading font-serif text-3xl font-semibold text-[var(--ink)]">
           {cluster.name}
         </h2>
-        <p className="mt-3 max-w-[36ch] text-sm leading-6 text-[var(--muted)]">{cluster.description}</p>
+        <p className="mt-3 max-w-[var(--measure)] text-sm leading-6 text-[var(--muted)]">{cluster.description}</p>
       </div>
       <ul className="grid gap-px border border-[var(--border-notebook)] bg-[var(--border-notebook)] sm:grid-cols-2 md:col-span-8">
         {cluster.skills.map((skill) => (

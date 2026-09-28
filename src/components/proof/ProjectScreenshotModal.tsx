@@ -57,7 +57,7 @@ export function ProjectScreenshotModal({ project, isOpen, onClose }: ProjectScre
       <div
         aria-hidden="true"
         onClick={onClose}
-        className="absolute inset-0 bg-[var(--ink)]/88 backdrop-blur-[1px] transition-opacity duration-200"
+        className="absolute inset-0 bg-[var(--ink)]/88 backdrop-blur-[1px] transition-opacity duration-[var(--dur-2)] ease-[var(--ease-out)]"
       />
 
       {/* Dialog Frame */}
@@ -66,7 +66,7 @@ export function ProjectScreenshotModal({ project, isOpen, onClose }: ProjectScre
         role="dialog"
         aria-modal="true"
         aria-labelledby={`screenshot-title-${project.slug}`}
-        className="relative z-10 flex max-h-[92vh] w-full max-w-6xl flex-col overflow-hidden border border-[var(--ink)] bg-[var(--paper)] shadow-2xl transition-all duration-200 animate-fadeIn"
+        className="relative z-10 flex max-h-[92vh] w-full max-w-6xl flex-col overflow-hidden border border-[var(--ink)] bg-[var(--paper)] shadow-notebook transition-opacity duration-[var(--dur-2)] ease-[var(--ease-out)] animate-fadeIn"
       >
         <header className="flex items-center justify-between gap-4 border-b border-[var(--border-notebook)] bg-[var(--paper-soft)] px-4 py-3">
           <h2 id={`screenshot-title-${project.slug}`} className="font-serif text-xl font-semibold text-[var(--ink)]">
@@ -76,14 +76,14 @@ export function ProjectScreenshotModal({ project, isOpen, onClose }: ProjectScre
             ref={closeButtonRef}
             type="button"
             onClick={onClose}
-            className="border border-[var(--ink)] px-3 py-2 font-mono text-[9px] font-semibold uppercase tracking-[0.1em] text-[var(--ink)] transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]"
+            className="border border-[var(--ink)] px-3 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink)] transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]"
           >
             Close
           </button>
         </header>
 
         <div className="overflow-y-auto p-3 sm:p-5">
-          <div className="relative aspect-[16/9] w-full overflow-hidden border border-[var(--border-notebook)] bg-[#17191c]">
+          <div className="relative aspect-[16/9] w-full overflow-hidden border border-[var(--border-notebook)] bg-[var(--plate)]">
             <Image
               src={project.image}
               alt={`${project.title} interface screenshot`}
@@ -94,8 +94,8 @@ export function ProjectScreenshotModal({ project, isOpen, onClose }: ProjectScre
             />
           </div>
           <div className="mt-4 flex flex-col gap-4 border-t border-[var(--border-notebook)] pt-4 sm:flex-row sm:items-start sm:justify-between">
-            <p className="max-w-[68ch] text-sm leading-6 text-[var(--muted)]">{project.problem}</p>
-            <div className="flex flex-wrap gap-3 font-mono text-[9px] font-semibold uppercase tracking-[0.1em]">
+            <p className="max-w-[var(--measure)] text-sm leading-6 text-[var(--muted)]">{project.problem}</p>
+            <div className="flex flex-wrap gap-3 font-mono text-[11px] font-semibold uppercase tracking-[0.1em]">
               {project.liveUrl && (
                 <a
                   href={project.liveUrl}

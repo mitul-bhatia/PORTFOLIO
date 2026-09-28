@@ -2,25 +2,22 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { PipelineNode } from '@/content/projects';
+import { usePrefersReducedMotion } from '@/lib/motion';
 
 export function PipelineSchematic({ nodes, title }: { nodes: PipelineNode[]; title: string }) {
   const containerRef = useRef<HTMLElement>(null);
-  const [hasDrawn, setHasDrawn] = useState(false);
+  const reduced = usePrefersReducedMotion();
+  const [observed, setObserved] = useState(false);
+  const hasDrawn = reduced || observed;
 
   useEffect(() => {
     const el = containerRef.current;
-    if (!el || typeof window === 'undefined') return;
-
-    // Check reduced motion
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setHasDrawn(true);
-      return;
-    }
+    if (!el || reduced) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
-          setHasDrawn(true);
+          setObserved(true);
           observer.disconnect();
         }
       },
@@ -29,7 +26,7 @@ export function PipelineSchematic({ nodes, title }: { nodes: PipelineNode[]; tit
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [reduced]);
 
   // Spec rule: refuse to render if nodes !== 5
   if (!nodes || nodes.length !== 5) return null;
@@ -39,7 +36,7 @@ export function PipelineSchematic({ nodes, title }: { nodes: PipelineNode[]; tit
       ref={containerRef}
       className="border border-[var(--border-notebook)] bg-[var(--paper-soft)] p-5 shadow-notebook sm:p-7"
     >
-      <div className="flex items-center justify-between border-b border-[var(--border-notebook)] pb-3 font-mono text-[9px] uppercase tracking-[0.11em] text-[var(--muted)]">
+      <div className="flex items-center justify-between border-b border-[var(--border-notebook)] pb-3 font-mono text-[11px] uppercase tracking-[0.11em] text-[var(--muted)]">
         <span>{title} Architecture Pipeline</span>
         <span>5 Discrete Stages // Inspectable</span>
       </div>
@@ -56,11 +53,11 @@ export function PipelineSchematic({ nodes, title }: { nodes: PipelineNode[]; tit
             strokeWidth="1.5"
             strokeDasharray="800"
             strokeDashoffset={hasDrawn ? '0' : '800'}
-            className="transition-all duration-1000 ease-out"
+            className="transition-[stroke-dashoffset] duration-[var(--dur-3)] ease-[var(--ease-out)]"
           />
           {/* Stage bus nodes */}
           {[100, 300, 500, 700, 900].map((cx, i) => (
-            <g key={cx} className={`transition-opacity duration-300 ${hasDrawn ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: `${i * 180 + 200}ms` }}>
+            <g key={cx} className={`transition-opacity duration-[var(--dur-2)] ease-[var(--ease-out)] ${hasDrawn ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: reduced ? '0ms' : `${i * 180}ms` }}>
               <circle cx={cx} cy="12" r="6" fill="var(--paper)" stroke="var(--ink)" strokeWidth="1.5" />
               <rect x={cx - 2} y="10" width="4" height="4" fill="var(--accent)" />
             </g>
@@ -72,13 +69,13 @@ export function PipelineSchematic({ nodes, title }: { nodes: PipelineNode[]; tit
         {nodes.map((node, index) => (
           <li
             key={node.id}
-            className={`relative flex min-h-24 items-center border border-[var(--border-notebook)] bg-[var(--paper)] p-4 transition-all duration-500 md:border-r-0 md:last:border-r ${
+            className={`relative flex min-h-24 items-center border border-[var(--border-notebook)] bg-[var(--paper)] p-4 transition-[opacity,transform] duration-[var(--dur-3)] ease-[var(--ease-out)] md:border-r-0 md:last:border-r ${
               hasDrawn ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'
             }`}
-            style={{ transitionDelay: `${index * 120 + 100}ms` }}
+            style={{ transitionDelay: reduced ? '0ms' : `${index * 180}ms` }}
           >
             <div>
-              <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-[var(--accent-dark)]">
+              <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-[var(--accent-dark)]">
                 Stage {node.number}
               </span>
               <p className="mt-2 text-sm font-semibold leading-5 text-[var(--ink)]">{node.label}</p>
@@ -93,7 +90,7 @@ export function PipelineSchematic({ nodes, title }: { nodes: PipelineNode[]; tit
         ))}
       </ol>
 
-      <figcaption className="mt-5 max-w-[68ch] font-mono text-[10px] leading-5 text-[var(--muted)]">
+      <figcaption className="mt-5 max-w-[var(--measure)] font-mono text-[11px] leading-5 text-[var(--muted)]">
         Hand-rolled native SVG pipeline draw-in (07B compliant). End-to-end handoffs are auditable with zero runtime motion overhead.
       </figcaption>
     </figure>

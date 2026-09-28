@@ -14,6 +14,12 @@ const nextConfig: NextConfig = {
         destination: '/work/:slug',
         permanent: true,
       },
+      {
+        // Old résumé URL; the file now lives at one path only.
+        source: '/assets/resume.pdf',
+        destination: '/assets/Mitul_Bhatia_Resume.pdf',
+        permanent: true,
+      },
     ];
   },
 };

@@ -36,15 +36,15 @@ Built with **Next.js App Router**, **TypeScript**, and **Tailwind CSS**. Built f
 - `/work/loan-classifier` — Secondary: GEN AI Tabular Loan Classifier (XGBoost, LlamaIndex)
 - `/work/f1-strategy` — Secondary: Formula 1 Strategy Intelligence (744K+ rows)
 - `/work/vulnswarm` — Secondary: Autonomous Repo CVE Remediation
-- `/about` — Dossier, Canonical Bio (CGPA 9.80 / 10.0), 4 Methodologies, Academics, CP
-- `/skills` — 48-node technical inventory across 5 strict clusters
+- `/about` — Dossier, Canonical Bio (CGPA 9.65 / 10.0), 4 Methodologies, Academics, CP
+- `/skills` — Technical inventory grouped into skill clusters
 - `/contact` — Direct channels, resume PDF, verified GitHub/LinkedIn/LeetCode/Codeforces
 
 ---
 
 ## Local Development
 
-No external API keys are required to run the portfolio locally.
+No external API keys are required to run the portfolio locally. Without `NOTEBOOK_API_KEY`, Pip (the portfolio guide) answers from the record and lists news headlines unsummarised.
 
 ```bash
 # Install dependencies
@@ -55,11 +55,14 @@ npm run dev
 
 # Build for production
 npm run build
+
+# Contrast + notebook eval (adds a live-model pass when NOTEBOOK_API_KEY is set)
+npm test
 ```
 
 ---
 
 ## Verified Invariants
 
-- **CGPA**: Strictly **9.80 / 10.0** everywhere.
+- **CGPA**: Strictly **9.65 / 10.0** everywhere.
 - **Factual Integrity**: Derived solely from `plan/02-SOURCE-OF-TRUTH.md`.

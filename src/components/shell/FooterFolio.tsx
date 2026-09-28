@@ -14,9 +14,12 @@ export function FooterFolio() {
             {PROFILE.email}
           </a>
         </div>
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-3 font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--paper)]/70">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-3 font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--paper)]/70">
           <Link href="/work" className="hover:text-[var(--paper)]">Work</Link>
           <Link href="/about" className="hover:text-[var(--paper)]">About</Link>
+          <Link href="/news" className="hover:text-[var(--paper)]">News</Link>
+          <Link href="/contact" className="hover:text-[var(--paper)]">Contact</Link>
+          <a href="/assets/Mitul_Bhatia_Resume.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--paper)]">Résumé ↗</a>
           <a href={PROFILE.github} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--paper)]">GitHub ↗</a>
           <a href={PROFILE.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--paper)]">LinkedIn ↗</a>
           <span>© {new Date().getFullYear()}</span>

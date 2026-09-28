@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <PageSheet folio="About / Experience and approach">
-      <section className="grid gap-10 border-b border-[var(--border-notebook)] pb-14 pt-4 lg:grid-cols-12 lg:items-start lg:pb-20">
+      <section data-tour="about" className="grid gap-10 border-b border-[var(--border-notebook)] pb-14 pt-4 lg:grid-cols-12 lg:items-start lg:pb-20">
         <div className="lg:col-span-5">
           <PortraitFrame />
         </div>
@@ -30,19 +30,19 @@ export default function AboutPage() {
           <h1 className="balanced-heading font-serif text-5xl font-semibold leading-[0.98] text-[var(--ink)] sm:text-6xl">
             Engineer, student, and careful system builder.
           </h1>
-          <div className="mt-7 max-w-[68ch] space-y-5 text-base leading-7 text-[var(--muted)] sm:text-lg">
+          <div className="mt-7 max-w-[var(--measure)] space-y-5 text-base leading-7 text-[var(--muted)] sm:text-lg">
             {PROFILE.bio.split('\n\n').map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
 
           <div className="mt-8 border-y border-[var(--border-notebook)] py-5">
-            <p className="max-w-[68ch] text-sm leading-6 text-[var(--ink)]">{PROFILE.resumeSummary}</p>
+            <p className="max-w-[var(--measure)] text-sm leading-6 text-[var(--ink)]">{PROFILE.resumeSummary}</p>
           </div>
 
           <div className="mt-7 flex flex-wrap gap-3">
             <a
-              href="/assets/resume.pdf"
+              href="/assets/Mitul_Bhatia_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center bg-[var(--ink)] px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--paper)] hover:bg-[var(--accent-dark)]"

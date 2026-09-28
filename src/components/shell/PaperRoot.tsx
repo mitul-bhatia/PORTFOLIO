@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { BotMoodProvider } from '@/context/BotMoodContext';
+import { PetProvider } from '@/context/PetContext';
 import { BackgroundAtmosphere } from './BackgroundAtmosphere';
 
 function PaperRootContent({ children }: { children: React.ReactNode }) {
@@ -17,8 +17,8 @@ function PaperRootContent({ children }: { children: React.ReactNode }) {
 
 export function PaperRoot({ children }: { children: React.ReactNode }) {
   return (
-    <BotMoodProvider>
+    <PetProvider>
       <PaperRootContent>{children}</PaperRootContent>
-    </BotMoodProvider>
+    </PetProvider>
   );
 }

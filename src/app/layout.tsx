@@ -2,11 +2,9 @@ import type { Metadata, Viewport } from 'next';
 import { Fraunces, Inter, IBM_Plex_Mono } from 'next/font/google';
 import './globals.css';
 import { PaperRoot } from '@/components/shell/PaperRoot';
-import { ScrollProgress } from '@/components/shell/ScrollProgress';
 import { Masthead } from '@/components/shell/Masthead';
 import { FooterFolio } from '@/components/shell/FooterFolio';
-import { BotDock } from '@/components/notebook/BotDock';
-import { CustomCursor } from '@/components/shell/CustomCursor';
+import { PetDock } from '@/components/pet/PetDock';
 import { PROFILE } from '@/content/profile';
 import { absoluteUrl, serializeJsonLd, SITE_URL } from '@/lib/site';
 
@@ -150,19 +148,17 @@ export default function RootLayout({
         {/* Accessibility Skip Link */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#2B1D14] focus:text-[#F3E9DA] focus:font-mono focus:text-xs focus:border focus:border-[#A8672E] shadow-notebook"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--ink)] focus:text-[var(--paper)] focus:font-mono focus:text-xs focus:border focus:border-[var(--accent)]"
         >
           Skip to main content
         </a>
         <PaperRoot>
-          <CustomCursor />
-          <ScrollProgress />
           <Masthead />
           <main id="main-content" className="flex-1 focus:outline-none">
             {children}
           </main>
           <FooterFolio />
-          <BotDock />
+          <PetDock />
         </PaperRoot>
 
       </body>

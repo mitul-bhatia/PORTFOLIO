@@ -2,7 +2,11 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { PageSheet } from '@/components/shell/PageSheet';
+import { ScrollProgress } from '@/components/shell/ScrollProgress';
+import { WorkRouteTransition } from '@/components/shell/WorkRouteTransition';
 import { CaseHero } from '@/components/proof/CaseHero';
+import { CaseStudyFocal } from '@/components/proof/CaseStudyFocal';
+import { WORK_NAV_BACK, WORK_NAV_FORWARD } from '@/lib/workNavTransition';
 import { MetricStrip } from '@/components/proof/MetricStrip';
 import { PipelineSchematic } from '@/components/proof/PipelineSchematic';
 import { StackStamps } from '@/components/proof/StackStamps';
@@ -67,16 +71,13 @@ export default async function CaseStudyPage({
     },
   };
 
-  // Flagship pager navigation
+  // One other flagship: the next in order, or the first for secondary projects.
   const flagshipIndex = FLAGSHIP_PROJECTS.findIndex((p) => p.slug === project.slug);
-  const prevFlagship =
-    flagshipIndex > 0 ? FLAGSHIP_PROJECTS[flagshipIndex - 1] : null;
-  const nextFlagship =
-    flagshipIndex >= 0 && flagshipIndex < FLAGSHIP_PROJECTS.length - 1
-      ? FLAGSHIP_PROJECTS[flagshipIndex + 1]
-      : null;
+  const nextProject = FLAGSHIP_PROJECTS[(flagshipIndex + 1) % FLAGSHIP_PROJECTS.length];
 
   return (
+    <WorkRouteTransition>
+    <ScrollProgress />
     <PageSheet folio={`Work / ${project.title}`}>
       <script
         type="application/ld+json"
@@ -86,7 +87,7 @@ export default async function CaseStudyPage({
       <CaseHero project={project} />
 
       {project.isFlagship && project.metrics && project.metrics.length > 0 && (
-        <section className="border-b border-[var(--border-notebook)] py-12 sm:py-16">
+        <section data-tour="metrics" className="border-b border-[var(--border-notebook)] py-12 sm:py-16">
           <h2 className="mb-6 font-serif text-3xl font-semibold text-[var(--ink)] sm:text-4xl">
             Documented outcomes
           </h2>
@@ -96,7 +97,7 @@ export default async function CaseStudyPage({
       )}
 
       {project.isFlagship && project.nodes && project.nodes.length === 5 && (
-        <section className="border-b border-[var(--border-notebook)] py-12 sm:py-16">
+        <section data-tour="pipeline" className="border-b border-[var(--border-notebook)] py-12 sm:py-16">
           <h2 className="mb-6 font-serif text-3xl font-semibold text-[var(--ink)] sm:text-4xl">
             How the system moves
           </h2>
@@ -104,6 +105,8 @@ export default async function CaseStudyPage({
           <PipelineSchematic nodes={project.nodes} title={project.title} />
         </section>
       )}
+
+      <CaseStudyFocal project={project} />
 
       <section className="border-b border-[var(--border-notebook)] py-12 sm:py-16">
         <h2 className="mb-6 font-serif text-3xl font-semibold text-[var(--ink)] sm:text-4xl">Stack</h2>
@@ -113,7 +116,7 @@ export default async function CaseStudyPage({
       {project.isFlagship && project.reflection && (
         <section className="border-b border-[var(--border-notebook)] py-12 sm:py-16">
           <h2 className="font-serif text-3xl font-semibold text-[var(--ink)] sm:text-4xl">Engineering note</h2>
-          <div className="mt-6 max-w-[72ch] border-t border-[var(--ink)] pt-5">
+          <div className="mt-6 max-w-[var(--measure)] border-t border-[var(--ink)] pt-5">
             <p className="text-sm leading-7 text-[var(--muted)] sm:text-base">
               {project.reflection}
             </p>
@@ -121,58 +124,50 @@ export default async function CaseStudyPage({
         </section>
       )}
 
-      <section className="flex flex-col items-center justify-between gap-4 py-10 font-mono text-[10px] font-semibold uppercase tracking-[0.1em] sm:flex-row">
-        {project.isFlagship ? (
-          <>
-            {prevFlagship ? (
-              <Link
-                href={`/work/${prevFlagship.slug}`}
-                className="text-[var(--ink)] hover:text-[var(--accent)] flex items-center gap-1.5 font-semibold"
-              >
-                <span>← Previous:</span>
-                <span>{prevFlagship.title}</span>
-              </Link>
-            ) : (
-              <span className="text-[var(--muted)]/60">First project</span>
-            )}
-
-            <Link
-              href="/work"
-              className="border border-[var(--ink)] px-4 py-2 text-[var(--ink)] transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]"
-            >
-              All work
-            </Link>
-
-            {nextFlagship ? (
-              <Link
-                href={`/work/${nextFlagship.slug}`}
-                className="text-[var(--ink)] hover:text-[var(--accent)] flex items-center gap-1.5 font-semibold"
-              >
-                <span>Next:</span>
-                <span>{nextFlagship.title}</span>
-                <span>→</span>
-              </Link>
-            ) : (
-              <span className="text-[var(--muted)]/60">Last project</span>
-            )}
-          </>
-        ) : (
-          <div className="w-full flex items-center justify-between">
-            <Link
-              href="/work"
-              className="bg-[var(--ink)] px-5 py-2.5 text-[var(--paper)] transition-colors hover:bg-[var(--accent-dark)]"
-            >
-              ← Return to work
-            </Link>
-            <Link
-              href="/work/aegis"
-              className="border border-[var(--ink)] px-5 py-2.5 text-[var(--ink)] transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]"
-            >
-              Start with AEGIS →
-            </Link>
-          </div>
-        )}
-      </section>
+      <nav aria-label="Keep going" className="py-12 sm:py-16">
+        <div className="mb-6 flex items-end justify-between gap-4">
+          <h2 className="font-serif text-3xl font-semibold text-[var(--ink)] sm:text-4xl">Next</h2>
+          <Link
+            href="/work"
+            transitionTypes={[...WORK_NAV_BACK]}
+            className="font-mono text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--muted)] hover:text-[var(--ink)]"
+          >
+            ← All work
+          </Link>
+        </div>
+        <div className="grid gap-px border border-[var(--border-notebook)] bg-[var(--border-notebook)] md:grid-cols-3">
+          <Link
+            href={`/work/${nextProject.slug}`}
+            transitionTypes={[...WORK_NAV_FORWARD]}
+            className="group bg-[var(--paper-soft)] p-6 transition-colors duration-[var(--dur-1)] hover:bg-[var(--elevated)]"
+          >
+            <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)]">Next case study</p>
+            <p className="mt-3 font-serif text-2xl font-semibold text-[var(--ink)] group-hover:text-[var(--accent-ink)]">
+              {nextProject.title} →
+            </p>
+            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{nextProject.tag}</p>
+          </Link>
+          <Link
+            href="/news"
+            className="group bg-[var(--paper-soft)] p-6 transition-colors duration-[var(--dur-1)] hover:bg-[var(--elevated)]"
+          >
+            <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)]">Off the clock</p>
+            <p className="mt-3 font-serif text-2xl font-semibold text-[var(--ink)] group-hover:text-[var(--accent-ink)]">
+              What he&apos;s been reading →
+            </p>
+            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">This week&apos;s AI and DevOps headlines.</p>
+          </Link>
+          <Link
+            href="/contact"
+            className="group bg-[var(--ink)] p-6 text-[var(--paper)] transition-colors duration-[var(--dur-1)] hover:bg-[var(--accent-ink)]"
+          >
+            <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--paper)]/75">Hiring?</p>
+            <p className="mt-3 font-serif text-2xl font-semibold">Contact Mitul →</p>
+            <p className="mt-2 text-sm leading-6 text-[var(--paper)]/75">Email is the fastest way in.</p>
+          </Link>
+        </div>
+      </nav>
     </PageSheet>
+    </WorkRouteTransition>
   );
 }

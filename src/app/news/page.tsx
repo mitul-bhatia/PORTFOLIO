@@ -10,12 +10,19 @@ import { PET_NAME } from '@/content/pet';
 export const revalidate = 21600;
 
 export const metadata: Metadata = {
-  title: 'News',
-  description: 'Recent AI and DevOps reading collected for Mitul Bhatia’s portfolio.',
+  title: 'AI & DevOps Reading Digest — Mitul Bhatia',
+  description: 'Recent AI, LLM systems, and DevOps engineering reading collected for Mitul Bhatia’s portfolio.',
   ...pageMetadata({
     path: '/news',
-    title: 'News — Mitul Bhatia',
-    description: 'A scheduled digest of recent AI and DevOps reading.',
+    title: 'AI & DevOps Reading Digest — Mitul Bhatia',
+    description: 'A scheduled digest of recent AI, agentic systems, and DevOps reading curated by Mitul Bhatia.',
+    keywords: [
+      'Mitul Bhatia News',
+      'Mitul Bhatia Reading Digest',
+      'AI Reading List',
+      'DevOps Headlines',
+      'Agentic Systems Research',
+    ],
   }),
 };
 

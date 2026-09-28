@@ -4,12 +4,22 @@ import { ContactBlock } from '@/components/proof/ContactBlock';
 import { pageMetadata } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'Email, resume, and engineering profiles for Mitul Bhatia.',
+  title: 'Contact Mitul Bhatia — AI & Full-Stack Engineer',
+  description: 'Direct contact channels, email, phone, resume, and engineering profiles for Mitul Bhatia.',
   ...pageMetadata({
     path: '/contact',
-    title: 'Contact Mitul Bhatia',
-    description: 'Email, resume, and engineering profiles for Mitul Bhatia.',
+    title: 'Contact Mitul Bhatia — AI & Full-Stack Engineer',
+    description: 'Direct contact channels, email, phone, resume, and engineering profiles for Mitul Bhatia.',
+    keywords: [
+      'Contact Mitul Bhatia',
+      'Hire Mitul Bhatia',
+      'Mitul Bhatia Email',
+      'Mitul Bhatia Phone',
+      'Mitul Bhatia Resume',
+      'Mitul Bhatia GitHub',
+      'Mitul Bhatia LinkedIn',
+      'Mitul Bhatia Sonipat Haryana',
+    ],
   }),
 };
 
@@ -17,7 +27,10 @@ export default function ContactPage() {
   return (
     <PageSheet folio="Contact / Direct channels">
       <section className="border-b border-[var(--border-notebook)] pb-12 pt-4 sm:pb-16">
-        <h1 className="balanced-heading max-w-[var(--measure-wide)] font-serif text-5xl font-semibold leading-[0.98] text-[var(--ink)] sm:text-6xl">
+        <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent-dark)]">
+          Mitul Bhatia · Direct Channels
+        </p>
+        <h1 className="mt-2 balanced-heading max-w-[var(--measure-wide)] font-serif text-5xl font-semibold leading-[0.98] text-[var(--ink)] sm:text-6xl">
           Let&apos;s talk about the problem you&apos;re building around.
         </h1>
         <p className="mt-6 max-w-[var(--measure)] text-base leading-7 text-[var(--muted)] sm:text-lg">

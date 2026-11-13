@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { FLAGSHIP_PROJECTS, type Project } from '@/content/projects';
 import { lineFor } from '@/content/lines';
+import { HubPortrait } from './HubPortrait';
 
 const RIDE_SECONDS = 7;
 const DRAW_SECONDS = 1.2;
@@ -93,6 +94,8 @@ function MapLine({ project, geometry, index }: { project: Project; geometry: Lin
       {/* Wide invisible stroke so the whole line is an easy target. */}
       <path d={geometry.d} fill="none" stroke="transparent" strokeWidth={44} />
       <path d={geometry.d} pathLength={1} className="map-line" />
+      {/* Signal flowing along the line, under the packets. */}
+      <path d={geometry.d} className="map-flow" />
 
       {[0, 1].map((packet) => (
         <circle
@@ -187,32 +190,30 @@ export function RouteMap() {
 
   return (
     <>
-      <svg viewBox="20 24 700 482" role="group" aria-label={MAP_LABEL} className="map hidden h-auto w-full lg:block">
-        {projects.map((project, index) => (
-          <MapLine key={project.slug} project={project} geometry={wideGeometry(LANES[index])} index={index} />
-        ))}
-        <circle cx={HUB.x} cy={HUB.y} r={24} className="map-hub-pulse" />
-        <circle cx={HUB.x} cy={HUB.y} r={24} fill="#fff" stroke="var(--ink)" strokeWidth={8} />
-        <text x={HUB.x} y={HUB.y + 5} textAnchor="middle" fontSize={14} fontWeight={800} fill="var(--ink)">
-          MB
-        </text>
-      </svg>
+      <div className="map-wrap relative hidden lg:block">
+        <svg viewBox="20 24 700 482" role="group" aria-label={MAP_LABEL} className="map h-auto w-full overflow-visible">
+          {projects.map((project, index) => (
+            <MapLine key={project.slug} project={project} geometry={wideGeometry(LANES[index])} index={index} />
+          ))}
+        </svg>
+        {/* Centred on the interchange at (70, 280) of the 700 x 482 drawing. */}
+        <HubPortrait hint className="left-[7.14%] top-[53.11%] w-[17%]" />
+      </div>
 
-      <svg
-        viewBox={`0 0 ${TALL.width} ${TALL.height}`}
-        role="group"
-        aria-label={MAP_LABEL}
-        className="map map-tall mx-auto h-auto w-full max-w-[30rem] overflow-visible lg:hidden"
-      >
-        {projects.map((project, index) => (
-          <MapLine key={project.slug} project={project} geometry={tallGeometry(index)} index={index} />
-        ))}
-        <circle cx={27} cy={TALL.hubY} r={22} className="map-hub-pulse" />
-        <circle cx={27} cy={TALL.hubY} r={22} fill="#fff" stroke="var(--ink)" strokeWidth={7} />
-        <text x={27} y={TALL.hubY + 5} textAnchor="middle" fontSize={13} fontWeight={800} fill="var(--ink)">
-          MB
-        </text>
-      </svg>
+      <div className="map-wrap relative mx-auto w-full max-w-[30rem] lg:hidden">
+        <svg
+          viewBox={`0 0 ${TALL.width} ${TALL.height}`}
+          role="group"
+          aria-label={MAP_LABEL}
+          className="map map-tall h-auto w-full overflow-visible"
+        >
+          {projects.map((project, index) => (
+            <MapLine key={project.slug} project={project} geometry={tallGeometry(index)} index={index} />
+          ))}
+        </svg>
+        {/* Centred on the top of the trunk at (27, 28) of the 370 x 552 drawing. */}
+        <HubPortrait className="left-[7.3%] top-[5.07%] w-[16.5%]" />
+      </div>
     </>
   );
 }

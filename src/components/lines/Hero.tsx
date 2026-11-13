@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { PROFILE } from '@/content/profile';
 import { RESUME_PDF } from '@/content/lines';
@@ -41,19 +40,9 @@ export function Hero() {
 
       <div className="wrap">
         <dl className="hero-board grid border-t-2 border-ink sm:grid-cols-2 lg:grid-cols-[1.15fr_1fr_1.2fr_1fr]">
-          <div className="flex items-center gap-4 border-b border-rule py-5 sm:border-r sm:pr-6 lg:border-b-0">
-            <Image
-              src="/assets/profile.jpg"
-              alt="Portrait of Mitul Bhatia"
-              width={128}
-              height={128}
-              priority
-              className="h-16 w-16 flex-none rounded-full border-2 border-ink object-cover"
-            />
-            <div>
-              <dt className="t-sign text-muted">Based in</dt>
-              <dd className="font-semibold leading-snug">{PROFILE.location}</dd>
-            </div>
+          <div className="border-b border-rule py-5 sm:border-r sm:pr-6 lg:border-b-0">
+            <dt className="t-sign text-muted">Based in</dt>
+            <dd className="font-semibold leading-snug">{PROFILE.location}</dd>
           </div>
           <div className="border-b border-rule py-5 sm:pl-6 lg:border-b-0 lg:border-r lg:pr-6">
             <dt className="t-sign text-muted">Latest role</dt>

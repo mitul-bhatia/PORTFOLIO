@@ -1,29 +1,24 @@
 import type { Metadata, Viewport } from 'next';
-import { Fraunces, Inter, IBM_Plex_Mono } from 'next/font/google';
+import { Archivo, Martian_Mono } from 'next/font/google';
 import './globals.css';
 import { PaperRoot } from '@/components/shell/PaperRoot';
 import { Masthead } from '@/components/shell/Masthead';
 import { FooterFolio } from '@/components/shell/FooterFolio';
 import { PetDock } from '@/components/pet/PetDock';
+import { PipSense } from '@/components/pet/PipSense';
 import { PROFILE } from '@/content/profile';
 import { absoluteUrl, serializeJsonLd, SITE_URL } from '@/lib/site';
 
 
-const fraunces = Fraunces({
-  variable: '--font-fraunces',
+const archivo = Archivo({
+  variable: '--font-archivo',
   subsets: ['latin'],
+  axes: ['wdth'],
   display: 'swap',
 });
 
-const inter = Inter({
-  variable: '--font-inter',
-  subsets: ['latin'],
-  display: 'swap',
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  variable: '--font-ibm-plex-mono',
-  weight: ['400', '500', '600'],
+const martianMono = Martian_Mono({
+  variable: '--font-martian',
   subsets: ['latin'],
   display: 'swap',
 });
@@ -93,7 +88,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: 'light',
-  themeColor: '#F3E9DA',
+  themeColor: '#F1F3F4',
 };
 
 const portfolioJsonLd = {
@@ -201,9 +196,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${inter.variable} ${ibmPlexMono.variable} h-full antialiased`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+      className={`${archivo.variable} ${martianMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-[var(--background)] text-[var(--foreground)]">
+      <body className="flex min-h-full flex-col bg-paper font-sans text-ink">
+        {/* Reveal states only hide content once script is known to run. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js');try{if(localStorage.getItem('motion')==='off')document.documentElement.dataset.motion='off'}catch(e){}" }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(portfolioJsonLd) }}
@@ -211,7 +210,7 @@ export default function RootLayout({
         {/* Accessibility Skip Link */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--ink)] focus:text-[var(--paper)] focus:font-mono focus:text-xs focus:border focus:border-[var(--accent)]"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded focus:bg-ink focus:px-4 focus:py-3 focus:font-bold focus:text-paper"
         >
           Skip to main content
         </a>
@@ -222,6 +221,7 @@ export default function RootLayout({
           </main>
           <FooterFolio />
           <PetDock />
+          <PipSense />
         </PaperRoot>
 
       </body>

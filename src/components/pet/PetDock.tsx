@@ -8,6 +8,7 @@ import { usePet } from '@/context/PetContext';
 import { MOOD_META } from '@/lib/moods';
 import { usePrefersReducedMotion } from '@/lib/motion';
 import { PetCharacter, type PetFaceStatus } from './PetCharacter';
+import { ArrowRight, ChevronDown, Close } from '@/components/ui/icons';
 
 const PetChat = dynamic(() => import('./PetChat'), { ssr: false });
 const preloadChat = () => void import('./PetChat');
@@ -217,11 +218,18 @@ export function PetDock() {
         ref={dockRef}
         className="pet-dock"
         data-open={open ? 'true' : 'false'}
+        data-awake={open || showBubble || pet.reaction || talking || pet.status === 'thinking' ? 'true' : 'false'}
         data-travelling={offset ? 'true' : 'false'}
         style={offset ? { transform: `translate3d(${offset.x}px, ${offset.y}px, 0)` } : undefined}
       >
         {showBubble ? (
-          <div className="pet-bubble" role="status" aria-live="polite" data-kind={bubble.kind}>
+          <div
+            className="pet-bubble"
+            // Scroll-triggered remarks are decoration; only bubbles the visitor asked for are announced.
+            role={bubble.kind === 'remark' ? undefined : 'status'}
+            aria-live={bubble.kind === 'remark' ? 'off' : 'polite'}
+            data-kind={bubble.kind}
+          >
             <p>{bubble.text}</p>
             {bubble.kind === 'tour' && tourIndex !== null ? (
               <div className="pet-bubble-actions">
@@ -229,7 +237,8 @@ export function PetDock() {
                   {tourIndex + 1}/{TOUR.length}
                 </span>
                 <button type="button" className="pet-chip pet-chip-solid" onClick={pet.tourNext}>
-                  {tourIndex === TOUR.length - 1 ? 'Finish' : 'Next →'}
+                  {tourIndex === TOUR.length - 1 ? 'Finish' : 'Next'}
+                  {tourIndex === TOUR.length - 1 ? null : <ArrowRight size={13} />}
                 </button>
                 <button type="button" className="pet-chip" onClick={pet.endTour}>
                   End tour
@@ -245,7 +254,7 @@ export function PetDock() {
                     pet.sayHi();
                   }}
                 >
-                  👋 Say hi
+                  Say hi
                 </button>
                 {bubble.actions?.map((action) => (
                   <button key={action.label} type="button" className="pet-chip" onClick={() => pet.runAction(action)}>
@@ -255,7 +264,7 @@ export function PetDock() {
               </div>
             ) : bubble.kind !== 'poke' ? (
               <button type="button" className="pet-bubble-close" aria-label="Dismiss" onClick={pet.dismissBubble}>
-                ×
+                <Close size={13} />
               </button>
             ) : null}
           </div>
@@ -297,7 +306,7 @@ export function PetDock() {
           <span className="font-semibold text-[var(--ink)]">{PET_NAME}</span>
           <span aria-hidden="true">·</span>
           <span>{statusLine}</span>
-          <span aria-hidden="true">▾</span>
+          <ChevronDown size={12} />
         </button>
       </div>
     </>

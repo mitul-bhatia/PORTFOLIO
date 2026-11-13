@@ -30,25 +30,32 @@ function pick(block: string, name: string) {
   return match[1].toLowerCase();
 }
 
-test('mood ink, muted, and accent contrast on paper', () => {
+test('text colours hold AA contrast on their grounds', () => {
   const css = readFileSync(cssPath, 'utf8');
-  const moods: Array<[string, string]> = [];
-  for (const match of css.matchAll(/html\[data-mood='([^']+)'\]\s*\{([^}]+)\}/g)) {
-    moods.push([match[1], match[2]]);
+  const root = css.match(/:root\s*\{([^}]+)\}/);
+  assert.ok(root, 'missing :root tokens');
+  const block = root[1];
+
+  const paper = pick(block, 'paper');
+  const panel = pick(block, 'paper-soft');
+  const ink = pick(block, 'ink');
+
+  for (const ground of [paper, panel]) {
+    assert.ok(contrast(ink, ground) >= 4.5, `ink on ${ground}`);
+    for (const name of ['muted', 'red-ink', 'blue-ink', 'green-ink', 'yellow-ink']) {
+      assert.ok(contrast(pick(block, name), ground) >= 4.5, `${name} on ${ground}`);
+    }
   }
 
-  assert.equal(moods.length, 8);
+  // Text set on a line colour.
+  for (const name of ['red', 'blue', 'green']) {
+    assert.ok(contrast('#ffffff', pick(block, name)) >= 4.5, `white on ${name}`);
+  }
+  assert.ok(contrast(ink, pick(block, 'yellow')) >= 4.5, 'ink on yellow');
+  assert.ok(contrast(pick(block, 'yellow'), ink) >= 4.5, 'yellow on ink');
 
-  for (const [name, block] of moods) {
-    const paper = pick(block, 'paper');
-    const ink = pick(block, 'ink');
-    const muted = pick(block, 'muted');
-    const accent = pick(block, 'accent');
-    const accentInk = pick(block, 'accent-ink');
-
-    assert.ok(contrast(ink, paper) >= 4.5, `${name} ink/paper`);
-    assert.ok(contrast(muted, paper) >= 4.5, `${name} muted/paper`);
-    assert.ok(contrast(accentInk, paper) >= 4.5, `${name} accent-ink/paper`);
-    assert.ok(contrast(accent, paper) >= 3, `${name} accent/paper`);
+  // Line strokes must read against the paper.
+  for (const name of ['red', 'blue', 'green']) {
+    assert.ok(contrast(pick(block, name), paper) >= 3, `${name} stroke on paper`);
   }
 });

@@ -24,7 +24,7 @@ Visitors arrive from LinkedIn, GitHub, or a shared link on desktop and mobile. T
 
 ## Capabilities and Constraints
 
-- Next.js 16 App Router, React 19, TypeScript, Tailwind CSS 4, Motion, and Anime.js.
+- Next.js 16 App Router, React 19, TypeScript, and Tailwind CSS 4. Motion is CSS and SVG with small client components; no animation library.
 - Existing routes, content modules, grounded notebook API, and allowlisted navigation remain functional.
 - The concierge is already implemented and must be improved in place rather than replaced with a disconnected demo.
 - API secrets remain server-only and raw visitor questions are not persisted.
@@ -33,10 +33,12 @@ Visitors arrive from LinkedIn, GitHub, or a shared link on desktop and mobile. T
 
 ## Brand Commitments
 
-- Warm editorial paper, ink brown, one amber accent, Fraunces display, Inter body, and IBM Plex Mono labels.
-- Sharp geometry and restrained notebook rules; no dark mode, neon, bloom, purple gradients, glassmorphism, or stock futuristic-AI visual language.
-- Paper grain is the primary atmospheric texture.
-- Bot personality can be expressive, but the surrounding portfolio remains readable, credible, and first-person.
+- Signal Lines: the portfolio is drawn as a live route map. Each project is a coloured line, each pipeline stage a station, and runs travel the lines.
+- Cool paper white, ink black, and four line colours (red, blue, green, yellow) used as thick rounded strokes and full-bleed fields. Archivo for display and text, Martian Mono for measurements.
+- Pip, the concierge, is a visible character with moods and reactions. It responds to sections and pipeline runs, and never gates content.
+- Motion is part of the identity: line draws, travelling packets, stations that snap on arrival, scroll reveals. Everything respects reduced motion.
+- No dark-neon terminal styling, gradient text, glassmorphism, or decorative monospace. Light is the default ground; dark and yellow appear as full sections.
+- The surrounding portfolio stays readable, credible, and first-person. Pip speaks about Mitul in the third person.
 
 ## Evidence on Hand
 
@@ -44,7 +46,7 @@ Visitors arrive from LinkedIn, GitHub, or a shared link on desktop and mobile. T
 - Projects and metrics are centralized in `src/content/projects.ts`.
 - Skills and pillars are centralized in their corresponding content modules.
 - The grounded bot corpus exists at `src/content/bot/knowledge.md` and is served through the notebook route handler.
-- The resume is available at `public/assets/resume.pdf`.
+- The resume is available at `public/assets/Mitul_Bhatia_Resume.pdf`.
 
 ## Product Principles
 

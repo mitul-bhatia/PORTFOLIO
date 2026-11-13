@@ -1,0 +1,533 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-13T15:44:12Z",
+  "title": "Design System: Mitul Bhatia Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Cool Paper",
+        "canonical": "#f1f3f4",
+        "tonalRamp": [
+          "#22282b",
+          "#3a454a",
+          "#53626a",
+          "#6e828c",
+          "#90a0a7",
+          "#b2bdc2",
+          "#d4dadd",
+          "#f1f3f4"
+        ]
+      },
+      "paper-soft": {
+        "role": "neutral",
+        "displayName": "Board White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#262626",
+          "#424242",
+          "#5e5e5e",
+          "#7d7d7d",
+          "#9c9c9c",
+          "#bababa",
+          "#d9d9d9",
+          "#f2f2f2"
+        ]
+      },
+      "elevated": {
+        "role": "neutral",
+        "displayName": "Platform Grey",
+        "canonical": "#e3e6e8",
+        "tonalRamp": [
+          "#22272a",
+          "#3c4449",
+          "#556068",
+          "#717f89",
+          "#929ea5",
+          "#b3bcc1",
+          "#d5dadc",
+          "#f1f2f3"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#14151a",
+        "tonalRamp": [
+          "#21232b",
+          "#3a3d4b",
+          "#52566b",
+          "#6d728d",
+          "#8f93a9",
+          "#b1b4c3",
+          "#d4d5de",
+          "#f1f1f4"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "#54575f",
+        "tonalRamp": [
+          "#242529",
+          "#3e4046",
+          "#595c64",
+          "#757985",
+          "#9599a2",
+          "#b6b8be",
+          "#d6d8db",
+          "#f1f2f3"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#c5cacd",
+        "tonalRamp": [
+          "#232729",
+          "#3d4447",
+          "#576065",
+          "#747f86",
+          "#949da3",
+          "#b5bbbf",
+          "#d6d9dc",
+          "#f1f2f3"
+        ]
+      },
+      "red": {
+        "role": "primary",
+        "displayName": "Signal Red",
+        "canonical": "#d8002b",
+        "tonalRamp": [
+          "#4c000f",
+          "#85001a",
+          "#bd0026",
+          "#fa0032",
+          "#ff3860",
+          "#ff7591",
+          "#ffb2c2",
+          "#ffe5eb"
+        ]
+      },
+      "red-ink": {
+        "role": "primary",
+        "displayName": "Signal Red, text variant",
+        "canonical": "#b80025",
+        "tonalRamp": [
+          "#4c000f",
+          "#85001b",
+          "#bd0026",
+          "#fa0032",
+          "#ff3860",
+          "#ff7591",
+          "#ffb2c2",
+          "#ffe5eb"
+        ]
+      },
+      "blue": {
+        "role": "secondary",
+        "displayName": "Route Blue",
+        "canonical": "#0057b8",
+        "tonalRamp": [
+          "#00244c",
+          "#003f85",
+          "#0059bd",
+          "#0076fa",
+          "#3896ff",
+          "#75b6ff",
+          "#b2d7ff",
+          "#e5f2ff"
+        ]
+      },
+      "blue-ink": {
+        "role": "secondary",
+        "displayName": "Route Blue, text variant",
+        "canonical": "#004a9e",
+        "tonalRamp": [
+          "#00244c",
+          "#003e85",
+          "#0058bd",
+          "#0075fa",
+          "#3895ff",
+          "#75b6ff",
+          "#b2d6ff",
+          "#e5f1ff"
+        ]
+      },
+      "green": {
+        "role": "secondary",
+        "displayName": "Platform Green",
+        "canonical": "#00843d",
+        "tonalRamp": [
+          "#004c23",
+          "#00853d",
+          "#00bd57",
+          "#00fa73",
+          "#38ff94",
+          "#75ffb5",
+          "#b2ffd6",
+          "#e5fff1"
+        ]
+      },
+      "green-ink": {
+        "role": "secondary",
+        "displayName": "Platform Green, text variant",
+        "canonical": "#006b32",
+        "tonalRamp": [
+          "#004c24",
+          "#00853e",
+          "#00bd58",
+          "#00fa75",
+          "#38ff95",
+          "#75ffb6",
+          "#b2ffd6",
+          "#e5fff1"
+        ]
+      },
+      "yellow": {
+        "role": "tertiary",
+        "displayName": "Lamp Yellow",
+        "canonical": "#ffb81c",
+        "tonalRamp": [
+          "#4c3500",
+          "#855b00",
+          "#bd8200",
+          "#faac00",
+          "#ffc138",
+          "#ffd475",
+          "#ffe7b2",
+          "#fff7e5"
+        ]
+      },
+      "yellow-ink": {
+        "role": "tertiary",
+        "displayName": "Lamp Yellow, text variant",
+        "canonical": "#7a5200",
+        "tonalRamp": [
+          "#4c3300",
+          "#855900",
+          "#bd7f00",
+          "#faa800",
+          "#ffbe38",
+          "#ffd275",
+          "#ffe6b2",
+          "#fff7e5"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name in the hero, one word per line."
+      },
+      "h1": {
+        "displayName": "H1",
+        "purpose": "Page titles, the homepage section title, the contact band question."
+      },
+      "h2": {
+        "displayName": "H2",
+        "purpose": "Section headings and flagship project names."
+      },
+      "h3": {
+        "displayName": "H3",
+        "purpose": "Roles, capability titles, project names in compact rows."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "The sentence under a heading, held to 34ch to 58ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running copy in muted ink, capped at 66ch."
+      },
+      "sign": {
+        "displayName": "Sign",
+        "purpose": "Station names, board labels, project tags, capability stops."
+      },
+      "data": {
+        "displayName": "Data",
+        "purpose": "Tenures, figures, stack lists, stage counters, the station clock."
+      }
+    },
+    "shadows": [
+      {
+        "name": "concierge-lift",
+        "value": "0 1px 0 rgb(20 21 26 / 0.06), 0 18px 40px -22px rgb(20 21 26 / 0.35)",
+        "purpose": "Pip's bubble, chat sheet and mood menu only."
+      },
+      {
+        "name": "pip-ground",
+        "value": "drop-shadow(0 10px 14px color-mix(in srgb, #14151a 18%, transparent))",
+        "purpose": "Filter shadow under the robot itself."
+      },
+      {
+        "name": "active-station-halo",
+        "value": "0 0 0 6px color-mix(in srgb, var(--line) 35%, transparent)",
+        "purpose": "State ring on the stage a run is currently at."
+      },
+      {
+        "name": "focus-ring",
+        "value": "outline: 3px solid var(--focus, #0057b8); outline-offset: 3px",
+        "purpose": "Global focus ring; --focus is yellow on the ink field and ink on the yellow field."
+      }
+    ],
+    "motion": [
+      {
+        "name": "dur-1",
+        "value": "120ms",
+        "purpose": "Colour, border and background state changes."
+      },
+      {
+        "name": "dur-2",
+        "value": "240ms",
+        "purpose": "Icon nudges, map hover thickening and dimming."
+      },
+      {
+        "name": "dur-3",
+        "value": "420ms",
+        "purpose": "Page enter, chat sheet, route transitions."
+      },
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "State changes and entrances."
+      },
+      {
+        "name": "ease-move",
+        "value": "cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "Anything travelling along a line: draws, fills, hops, wipes."
+      },
+      {
+        "name": "ease-in",
+        "value": "cubic-bezier(0.4, 0, 1, 1)",
+        "purpose": "Exits."
+      },
+      {
+        "name": "line-draw",
+        "value": "1100ms ease-move, 140ms stagger per line",
+        "purpose": "Map lines draw on load via stroke-dashoffset."
+      },
+      {
+        "name": "packet-ride",
+        "value": "7s linear infinite, two packets per line",
+        "purpose": "Packets travel each map line along its own path."
+      },
+      {
+        "name": "station-snap",
+        "value": "steps(); scale 1.45 to 1 on the map, 1.5 to 1 over 220ms in runs",
+        "purpose": "A station fills with its line colour on arrival; stepped, never faded."
+      },
+      {
+        "name": "run-hop",
+        "value": "820ms per stage; rider hop 520ms ease-out",
+        "purpose": "A run advances one station at a time with Pip riding it."
+      },
+      {
+        "name": "scroll-reveal",
+        "value": "rise 28px, opacity 620ms / transform 760ms ease-out; stagger 90ms; wipe 900ms ease-move",
+        "purpose": "First entry into the viewport. Hidden states gated on html.js with a 3s failsafe."
+      },
+      {
+        "name": "count-up",
+        "value": "1100ms, quartic ease-out",
+        "purpose": "Numeric metrics count from zero when first seen."
+      },
+      {
+        "name": "scroll-progress-line",
+        "value": "animation-timeline: scroll(root block)",
+        "purpose": "Four-colour reading progress under the masthead where supported."
+      },
+      {
+        "name": "off-switch-reduced-motion",
+        "value": "@media (prefers-reduced-motion: reduce)",
+        "purpose": "Removes draws, packets, snaps, pulses, the progress line and reveals; runs render complete."
+      },
+      {
+        "name": "off-switch-visitor-pause",
+        "value": "html[data-motion='off']",
+        "purpose": "The visitor's pause control, remembered in localStorage; stops everything that loops."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "metrics",
+        "value": "360px"
+      },
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "wrap",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main action on any ground: ink fill that turns Signal Red on hover.",
+      "html": "<a href=\"#\" class=\"ds-btn ds-btn-primary\">See the systems<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-btn { display: inline-flex; min-height: 3rem; align-items: center; gap: 0.6rem; border: 2px solid var(--ink, #14151a); border-radius: 4px; padding: 0 1.15rem; font-family: var(--font-archivo, Archivo), 'Helvetica Neue', Arial, sans-serif; font-stretch: 96%; font-weight: 700; font-size: 0.95rem; line-height: 1; white-space: nowrap; cursor: pointer; text-decoration: none; transition: background-color 120ms cubic-bezier(0.16,1,0.3,1), color 120ms cubic-bezier(0.16,1,0.3,1), border-color 120ms cubic-bezier(0.16,1,0.3,1); } .ds-btn svg { flex: none; transition: transform 240ms cubic-bezier(0.16,1,0.3,1); } .ds-btn:hover svg { transform: translateX(3px); } .ds-btn:focus-visible { outline: 3px solid var(--blue, #0057b8); outline-offset: 3px; } .ds-btn-primary { background: var(--ink, #14151a); color: var(--paper, #f1f3f4); } .ds-btn-primary:hover { background: var(--red, #d8002b); border-color: var(--red, #d8002b); color: #fff; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "The quieter action beside a primary; inverts to ink on hover.",
+      "html": "<a href=\"#\" class=\"ds-btn ds-btn-secondary\">Resume PDF<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-btn { display: inline-flex; min-height: 3rem; align-items: center; gap: 0.6rem; border: 2px solid var(--ink, #14151a); border-radius: 4px; padding: 0 1.15rem; font-family: var(--font-archivo, Archivo), 'Helvetica Neue', Arial, sans-serif; font-stretch: 96%; font-weight: 700; font-size: 0.95rem; line-height: 1; white-space: nowrap; cursor: pointer; text-decoration: none; transition: background-color 120ms cubic-bezier(0.16,1,0.3,1), color 120ms cubic-bezier(0.16,1,0.3,1), border-color 120ms cubic-bezier(0.16,1,0.3,1); } .ds-btn svg { flex: none; transition: transform 240ms cubic-bezier(0.16,1,0.3,1); } .ds-btn:hover svg { transform: translateX(3px); } .ds-btn:focus-visible { outline: 3px solid var(--blue, #0057b8); outline-offset: 3px; } .ds-btn-secondary { background: transparent; color: var(--ink, #14151a); } .ds-btn-secondary:hover { background: var(--ink, #14151a); color: var(--paper, #f1f3f4); }"
+    },
+    {
+      "name": "Text Link",
+      "kind": "custom",
+      "description": "Inline action underlined in the current line colour.",
+      "html": "<a href=\"#\" class=\"ds-text-link\">All projects<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-text-link { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-archivo, Archivo), 'Helvetica Neue', Arial, sans-serif; font-weight: 700; color: var(--ink, #14151a); text-decoration: underline; text-decoration-color: var(--red, #d8002b); text-decoration-thickness: 2px; text-underline-offset: 0.22em; } .ds-text-link:hover { color: var(--red-ink, #b80025); } .ds-text-link svg { transition: transform 240ms cubic-bezier(0.16,1,0.3,1); } .ds-text-link:hover svg { transform: translateX(3px); } .ds-text-link:focus-visible { outline: 3px solid var(--blue, #0057b8); outline-offset: 3px; border-radius: 2px; }"
+    },
+    {
+      "name": "Segmented Choice",
+      "kind": "chip",
+      "refersTo": "segment",
+      "description": "Filters, tabs and steppers; the selected item is solid ink.",
+      "html": "<div class=\"ds-seg-row\"><button class=\"ds-seg\" aria-pressed=\"true\">All</button><button class=\"ds-seg\" aria-pressed=\"false\">Agentic</button><button class=\"ds-seg\" aria-pressed=\"false\">Retrieval</button></div>",
+      "css": ".ds-seg-row { display: flex; flex-wrap: wrap; gap: 0.5rem; } .ds-seg { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; border: 2px solid var(--rule, #c5cacd); border-radius: 4px; background: var(--paper-soft, #fff); padding: 0 1rem; font-family: var(--font-archivo, Archivo), 'Helvetica Neue', Arial, sans-serif; font-stretch: 92%; font-weight: 650; font-size: 0.9rem; color: var(--muted, #54575f); cursor: pointer; transition: background-color 120ms cubic-bezier(0.16,1,0.3,1), color 120ms cubic-bezier(0.16,1,0.3,1), border-color 120ms cubic-bezier(0.16,1,0.3,1); } .ds-seg:hover { border-color: var(--ink, #14151a); color: var(--ink, #14151a); } .ds-seg[aria-pressed='true'] { border-color: var(--ink, #14151a); background: var(--ink, #14151a); color: var(--paper, #f1f3f4); } .ds-seg:focus-visible { outline: 3px solid var(--blue, #0057b8); outline-offset: 3px; }"
+    },
+    {
+      "name": "Line Bullets",
+      "kind": "custom",
+      "refersTo": "bullet",
+      "description": "The round line marker: one letter on the line colour, in three sizes.",
+      "html": "<div class=\"ds-bullets\"><span class=\"ds-bullet ds-bullet-lg ds-line-red\">A</span><span class=\"ds-bullet ds-line-blue\">F</span><span class=\"ds-bullet ds-line-green\">G</span><span class=\"ds-bullet ds-bullet-sm ds-line-yellow\">C</span></div>",
+      "css": ".ds-bullets { display: flex; align-items: center; gap: 0.75rem; } .ds-bullet { display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 999px; font-family: var(--font-archivo, Archivo), 'Helvetica Neue', Arial, sans-serif; font-weight: 800; font-size: 1rem; line-height: 1; color: #fff; } .ds-bullet-lg { width: 3rem; height: 3rem; font-size: 1.5rem; } .ds-bullet-sm { width: 1.5rem; height: 1.5rem; font-size: 0.75rem; } .ds-line-red { background: var(--red, #d8002b); } .ds-line-blue { background: var(--blue, #0057b8); } .ds-line-green { background: var(--green, #00843d); } .ds-line-yellow { background: var(--yellow, #ffb81c); color: var(--ink, #14151a); }"
+    },
+    {
+      "name": "Line Run",
+      "kind": "custom",
+      "refersTo": "station",
+      "description": "A pipeline drawn as a track with stations: done, active and idle.",
+      "html": "<div class=\"ds-run\"><div class=\"ds-run-track\"><div class=\"ds-run-fill\"></div></div><ol class=\"ds-run-stops\"><li class=\"ds-run-stop\" data-state=\"done\"><span class=\"ds-run-dot\"></span><span class=\"ds-run-name\">Payload Ingest</span></li><li class=\"ds-run-stop\" data-state=\"done\"><span class=\"ds-run-dot\"></span><span class=\"ds-run-name\">AST Scan</span></li><li class=\"ds-run-stop\" data-state=\"active\"><span class=\"ds-run-dot\"></span><span class=\"ds-run-name\">Memory Isolation</span></li><li class=\"ds-run-stop\" data-state=\"idle\"><span class=\"ds-run-dot\"></span><span class=\"ds-run-name\">Threat Evaluator</span></li><li class=\"ds-run-stop\" data-state=\"idle\"><span class=\"ds-run-dot\"></span><span class=\"ds-run-name\">Sanitized Output</span></li></ol></div>",
+      "css": ".ds-run { --ds-line: var(--red, #d8002b); position: relative; min-width: 30rem; } .ds-run-track { position: absolute; top: 10px; height: 10px; left: 10%; right: 10%; border-radius: 999px; background: color-mix(in srgb, var(--ds-line) 24%, var(--paper, #f1f3f4)); } .ds-run-fill { position: absolute; inset: 0; border-radius: inherit; background: var(--ds-line); transform-origin: left center; transform: scaleX(0.5); transition: transform 700ms cubic-bezier(0.65,0,0.35,1); } .ds-run:hover .ds-run-fill { transform: scaleX(1); } .ds-run-stops { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; } .ds-run-stop { display: flex; flex-direction: column; align-items: center; gap: 0.85rem; text-align: center; } .ds-run-dot { width: 30px; height: 30px; box-sizing: border-box; border: 5px solid var(--ink, #14151a); border-radius: 999px; background: #fff; } .ds-run-stop[data-state='done'] .ds-run-dot { background: var(--ds-line); } .ds-run-stop[data-state='active'] .ds-run-dot { background: var(--ink, #14151a); box-shadow: 0 0 0 6px color-mix(in srgb, var(--ds-line) 35%, transparent); } .ds-run-name { font-family: var(--font-archivo, Archivo), 'Helvetica Neue', Arial, sans-serif; font-stretch: 88%; font-weight: 600; font-size: 0.875rem; line-height: 1.25; color: var(--ink, #14151a); max-width: 13ch; } .ds-run-stop[data-state='idle'] .ds-run-name { color: var(--muted, #54575f); }"
+    },
+    {
+      "name": "Metric Row",
+      "kind": "custom",
+      "description": "Documented results as a ruled row: mono figures over sign labels.",
+      "html": "<dl class=\"ds-metrics\"><div><dd>&lt;24ms</dd><dt>Guardrail latency</dt></div><div><dd>99.8%</dd><dt>Detection accuracy</dt></div><div><dd>7</dd><dt>Cooperating agents</dt></div></dl>",
+      "css": ".ds-metrics { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-block: 2px solid var(--ink, #14151a); } .ds-metrics > div { padding: 1rem 0; } .ds-metrics > div + div { border-left: 1px solid var(--rule, #c5cacd); padding-left: 1rem; } .ds-metrics dd { margin: 0; font-family: var(--font-martian, 'Martian Mono'), ui-monospace, Menlo, monospace; font-variant-numeric: tabular-nums; font-size: 1.6rem; font-weight: 600; line-height: 1; letter-spacing: -0.025em; color: var(--ink, #14151a); } .ds-metrics dt { margin-top: 0.25rem; font-family: var(--font-archivo, Archivo), 'Helvetica Neue', Arial, sans-serif; font-stretch: 88%; font-weight: 600; font-size: 0.875rem; line-height: 1.25; color: var(--muted, #54575f); }"
+    },
+    {
+      "name": "Masthead Navigation",
+      "kind": "nav",
+      "description": "Sticky paper bar; every link is preceded by a station marker, red when current.",
+      "html": "<header class=\"ds-mast\"><a href=\"#\" class=\"ds-mast-home\"><span class=\"ds-mast-mark\"></span>Mitul Bhatia</a><nav class=\"ds-mast-nav\"><a href=\"#\" aria-current=\"page\"><span></span>Work</a><a href=\"#\"><span></span>About</a><a href=\"#\"><span></span>Skills</a><a href=\"#\"><span></span>Contact</a></nav></header>",
+      "css": ".ds-mast { display: flex; height: 4rem; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 0 1.25rem; border-bottom: 2px solid var(--ink, #14151a); background: var(--paper, #f1f3f4); font-family: var(--font-archivo, Archivo), 'Helvetica Neue', Arial, sans-serif; } .ds-mast-home { display: flex; align-items: center; gap: 0.75rem; font-size: 1.125rem; font-weight: 800; font-stretch: 108%; letter-spacing: -0.025em; color: var(--ink, #14151a); text-decoration: none; } .ds-mast-mark { width: 1.75rem; height: 1.75rem; box-sizing: border-box; border: 5px solid var(--ink, #14151a); border-radius: 999px; background: #fff; transition: border-color 160ms cubic-bezier(0.16,1,0.3,1); } .ds-mast-home:hover .ds-mast-mark { border-color: var(--red, #d8002b); } .ds-mast-nav { display: flex; } .ds-mast-nav a { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; font-size: 0.95rem; font-weight: 600; color: var(--muted, #54575f); text-decoration: none; transition: color 160ms cubic-bezier(0.16,1,0.3,1); } .ds-mast-nav a span { width: 0.75rem; height: 0.75rem; box-sizing: border-box; border: 3px solid var(--rule, #c5cacd); border-radius: 999px; background: #fff; transition: border-color 160ms cubic-bezier(0.16,1,0.3,1); } .ds-mast-nav a:hover { color: var(--ink, #14151a); } .ds-mast-nav a:hover span { border-color: var(--ink, #14151a); } .ds-mast-nav a[aria-current='page'] { color: var(--ink, #14151a); } .ds-mast-nav a[aria-current='page'] span { border-color: var(--ink, #14151a); background: var(--red, #d8002b); } .ds-mast a:focus-visible { outline: 3px solid var(--blue, #0057b8); outline-offset: 3px; border-radius: 2px; }"
+    },
+    {
+      "name": "Four Lines Band",
+      "kind": "custom",
+      "description": "The four lines running together; closes the page above the ink footer.",
+      "html": "<div class=\"ds-four-lines\"></div>",
+      "css": ".ds-four-lines { height: 20px; min-width: 20rem; background: linear-gradient(to bottom, var(--red, #d8002b) 0 5px, var(--blue, #0057b8) 5px 10px, var(--green, #00843d) 10px 15px, var(--yellow, #ffb81c) 15px 20px); }"
+    },
+    {
+      "name": "Chat Input",
+      "kind": "input",
+      "refersTo": "chat-input",
+      "description": "The one text field, in the concierge chat: square, ink-bordered, red caret.",
+      "html": "<input class=\"ds-input\" placeholder=\"Ask anything, or &quot;take me to AEGIS&quot;\" />",
+      "css": ".ds-input { min-height: 2.75rem; width: 100%; min-width: 18rem; border: 1px solid var(--ink, #14151a); border-radius: 0; background: var(--paper, #f1f3f4); padding: 0 0.75rem; font-family: var(--font-archivo, Archivo), 'Helvetica Neue', Arial, sans-serif; font-size: 0.875rem; color: var(--ink, #14151a); caret-color: var(--red, #d8002b); } .ds-input::placeholder { color: var(--muted, #54575f); } .ds-input:focus-visible { outline: 3px solid var(--blue, #0057b8); outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Signal Lines",
+    "overview": "The portfolio is a live route map. Each project is a coloured line, each stage of its real pipeline is a station on that line, and small packets ride the lines while the page is open. The visual language is that of a transit authority's public signage: a cool paper ground, near-black ink, four saturated line colours drawn as thick round-capped strokes, white stations ringed in ink, and a sturdy grotesque that changes width by role. Nothing is decorative that is not also a wayfinding device; a colour on screen always means \"this belongs to that line\".\n\nThe system is flat, ruled, and dense in the way a timetable is dense. Structure comes from 2px ink rules and 1px hairlines, not from boxes or shadows. Sections alternate between the paper ground and two full-bleed fields (ink and yellow), which act as the dark departures board and the terminus. Pip, the concierge robot, is a passenger in this world: it rides each pipeline run from station to station and changes mood as the visitor crosses sections.\n\nIt refuses the dark bento developer portfolio and the cream editorial folio it replaced.",
+    "keyCharacteristics": [
+      "Cool paper white ground, ink text, four line colours each with a darker text variant.",
+      "Lines are thick rounded strokes; stations are white circles with a heavy ink ring.",
+      "One variable grotesque (Archivo) whose width axis carries the hierarchy; one mono (Martian Mono) for figures only.",
+      "Ruled rows and boards in place of cards; corners are small (4px, 6px) or fully round.",
+      "Motion is transit motion: lines draw, packets ride, stations snap, runs hop. Everything that loops can be paused.",
+      "On phones the hero keeps a map: the three lines share a vertical trunk and peel off to the right."
+    ],
+    "rules": [
+      {
+        "name": "The Line Owns Its Colour Rule",
+        "body": "A colour is assigned by `lineFor(slug)`: red, blue and green belong to the three flagships; everything else rides yellow. A wrapper sets the line (`line-red`, `line-blue`, `line-green`, `line-yellow`) and children read `--line`, `--line-ink`, `--on-line`. Never pick a line colour by hand for visual variety.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ink Variant Rule",
+        "body": "The line colour fills strokes, bullets and bars. Text on paper in a line's colour always uses that line's `-ink` variant. Text sitting on a line colour uses `--on-line`: white on red, blue and green; ink on yellow.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Fields Rule",
+        "body": "Only ink and yellow run full-bleed as section grounds. Ink is the board (Experience, footer); yellow is the last stop (contact band). Red, blue and green never become a section background.",
+        "section": "colors"
+      },
+      {
+        "name": "The Focus Follows The Ground Rule",
+        "body": "The focus ring is a 3px solid outline at 3px offset whose colour comes from `--focus`: blue on paper, yellow on the ink field, ink on the yellow field. Any new ground must set `--focus`.",
+        "section": "colors"
+      },
+      {
+        "name": "The Width Is The Hierarchy Rule",
+        "body": "Width narrows as the role gets smaller: 112, 108, 106, 104 for headings, 96 for buttons, 92 for segments, 88 for signs, 82 to 85 for labels inside the map. A new text role picks a point on this scale; it does not introduce another family.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mono Reads Figures Rule",
+        "body": "Martian Mono is for measurements, dates, times and counts. A metric whose value has no digit is set in Archivo extra-bold instead.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sentence Case Rule",
+        "body": "Signs and labels are sentence case at normal tracking. Hierarchy comes from weight and width, not from capitals or letterspacing.",
+        "section": "typography"
+      },
+      {
+        "name": "The Map Survives The Phone Rule",
+        "body": "Below 1024px the hero swaps to a second, purpose-drawn map: the three lines leave the interchange down one vertical trunk and peel off to the right in turn, the first to leave riding the outside edge so no two lines cross, with a thinner 9-unit stroke. It never collapses into a stack of cards.",
+        "section": "layout"
+      },
+      {
+        "name": "The Run Turns With The Screen Rule",
+        "body": "A pipeline run is horizontal from 640px (track across, Pip above it) and vertical below (track down the left, stations as rows, Pip at the right edge). Runs with prose under each stop draw their own segment from stop to stop on phones.",
+        "section": "layout"
+      },
+      {
+        "name": "The Only Pip Floats Rule",
+        "body": "Shadows belong to the concierge layer. Page content separates with rules and grounds.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do assign colour through the line: wrap in the project's line class and read `--line`, `--line-ink`, `--on-line`.",
+      "Do use the `-ink` variant whenever a line colour is used for text on paper, and ink text on yellow.",
+      "Do build lists and facts as ruled rows: 2px ink rule to open, 1px hairlines between.",
+      "Do draw stations as white circles with a heavy ink ring, and lines as round-capped bars.",
+      "Do keep corners at 4px for controls, 6px for media, or fully round; nothing in between.",
+      "Do set `--focus` on any new ground so the 3px ring stays visible.",
+      "Do give every new loop a rule under both `prefers-reduced-motion` and `html[data-motion='off']`, and gate every hidden reveal state on `html.js`.",
+      "Do keep a real map in the phone hero, using the vertical-trunk geometry.",
+      "Do set figures, dates and times in Martian Mono with tabular numerals."
+    ],
+    "donts": [
+      "Don't use red, blue or green as a section background, or introduce a fifth line colour.",
+      "Don't put white text on yellow, or raw line colours on paper as text.",
+      "Don't add shadows, blur or translucent panels to page content; only the concierge floats.",
+      "Don't wrap content in rounded cards or tile grids; the board and the ruled row are the containers.",
+      "Don't fade a station; arrivals snap in steps.",
+      "Don't replace the phone map with stacked cards or hide it.",
+      "Don't add a second sans or a serif; vary Archivo's width and weight instead.",
+      "Don't return to the cream paper, warm amber and serif display of the discarded folio, or to a dark bento grid."
+    ]
+  }
+}

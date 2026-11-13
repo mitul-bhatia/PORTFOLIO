@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { NewsItem } from '@/lib/news/ingest';
 import { READING_NOTES } from '@/content/readingNotes';
+import { ArrowRight } from '@/components/ui/icons';
 
 function formatDate(iso: string) {
   const date = new Date(iso);
@@ -9,46 +10,43 @@ function formatDate(iso: string) {
     : new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(date);
 }
 
-/** Proof → reading → contact: three items from the current edition on the home page. */
+/** Three items from the current reading edition. Renders nothing when the edition is empty. */
 export function ReadingStrip({ items }: { items: NewsItem[] }) {
   if (items.length === 0) return null;
 
   return (
-    <section className="border-b border-[var(--border-notebook)] py-16 sm:py-20" aria-labelledby="reading-strip">
-      <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+    <section className="wrap section !pt-0" aria-labelledby="reading-strip">
+      <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h2 id="reading-strip" className="font-serif text-3xl font-semibold text-[var(--ink)] sm:text-4xl">
-            What he&apos;s reading
+          <h2 id="reading-strip" className="t-h2">
+            What I&apos;m reading
           </h2>
-          <p className="mt-3 max-w-[var(--measure)] text-sm leading-6 text-[var(--muted)]">
-            Headlines from this week&apos;s AI and DevOps edition. His reading, not his work.
-          </p>
+          <p className="t-body mt-3">Headlines from this week&apos;s AI and DevOps edition. Reading, not my work.</p>
         </div>
-        <Link
-          href="/news"
-          className="font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--accent-ink)] hover:underline"
-        >
-          Full edition →
+        <Link href="/news" className="text-link">
+          Full edition
+          <ArrowRight size={16} />
         </Link>
       </div>
-      <ul className="grid gap-px border border-[var(--border-notebook)] bg-[var(--border-notebook)] md:grid-cols-3">
-        {items.map((item) => (
-          <li key={item.id} className="flex flex-col bg-[var(--paper-soft)] p-6">
-            <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)]">
+      <ul className="mt-10 grid border-t-2 border-ink md:grid-cols-3">
+        {items.map((item, index) => (
+          <li
+            key={item.id}
+            className={`border-b border-rule py-6 md:border-b-0 ${index > 0 ? 'md:border-l md:border-rule md:pl-6' : ''} md:pr-6`}
+          >
+            <p className="t-data text-muted">
               {item.source} · {formatDate(item.publishedAt)}
             </p>
             <a
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 font-serif text-xl font-semibold leading-snug text-[var(--ink)] hover:text-[var(--accent-ink)] hover:underline"
+              className="mt-3 inline text-lg font-bold leading-snug hover:underline hover:decoration-red hover:decoration-2"
             >
               {item.title}
             </a>
             {READING_NOTES[item.url] ? (
-              <p className="mt-3 border-l-2 border-[var(--accent)] pl-3 text-sm leading-6 text-[var(--ink)]">
-                {READING_NOTES[item.url]}
-              </p>
+              <p className="mt-3 text-sm leading-6 text-muted">{READING_NOTES[item.url]}</p>
             ) : null}
           </li>
         ))}

@@ -12,6 +12,7 @@ import {
 import { usePathname, useRouter } from 'next/navigation';
 import { PET_GREETING, PET_NAME, POKE_LINES, remarkForRoute, TANTRUM_LINES, TOUR } from '@/content/pet';
 import { isSiteMood, MOOD_META, moodForRoute, type SiteMood } from '@/lib/moods';
+import { PIP_SIGNAL, type PipSignal } from '@/lib/pipSignal';
 import {
   sanitizeActions,
   sanitizeCitations,
@@ -43,6 +44,8 @@ export interface PetGuide {
 
 interface PetContextValue {
   mood: SiteMood;
+  /** The mood Pip follows when none is pinned. */
+  autoMood: SiteMood;
   pinnedMood: SiteMood | null;
   pinMood: (mood: SiteMood | null) => void;
   open: boolean;
@@ -74,6 +77,7 @@ const GREETED_KEY = 'pip-greeted';
 const HELLO_KEY = 'pip-hello-shown';
 const REMARKS_KEY = 'pip-remarks';
 const EDITION_KEY = 'notebook-edition-seen';
+const SAID_KEY = 'pip-said';
 
 function readSession(key: string): string | null {
   try {
@@ -110,6 +114,7 @@ export function PetProvider({ children }: { children: React.ReactNode }) {
 
   const [pinnedMood, setPinnedMood] = useState<SiteMood | null>(null);
   const [askedMood, setAskedMood] = useState<{ mood: SiteMood; path: string } | null>(null);
+  const [sectionMood, setSectionMood] = useState<{ mood: SiteMood; path: string } | null>(null);
   const [open, setOpenState] = useState(false);
   // Only the client-only chat reads this, so the server default never hydrates into markup.
   const [greeted, setGreeted] = useState(() => typeof window !== 'undefined' && Boolean(readSession(GREETED_KEY)));
@@ -130,7 +135,16 @@ export function PetProvider({ children }: { children: React.ReactNode }) {
 
   // The mood from an ask lasts until the visitor changes page.
   const activeAsked = askedMood && askedMood.path === pathname ? askedMood.mood : null;
-  const mood: SiteMood = activeAsked ?? pinnedMood ?? moodForRoute(pathname);
+  const activeSection = sectionMood && sectionMood.path === pathname ? sectionMood.mood : null;
+  /** What Pip feels when nothing is pinned or asked: the section in view, else the page. */
+  const autoMood: SiteMood = activeSection ?? moodForRoute(pathname);
+  const mood: SiteMood = activeAsked ?? pinnedMood ?? autoMood;
+  // A guide only counts on the page it points at.
+  const activeGuide = guide && guide.path === pathname ? guide : null;
+  const bubbleRef = useRef(bubble);
+  useEffect(() => {
+    bubbleRef.current = bubble;
+  }, [bubble]);
 
   useEffect(() => {
     document.documentElement.dataset.mood = mood;
@@ -160,10 +174,12 @@ export function PetProvider({ children }: { children: React.ReactNode }) {
       setOpenState(next);
       if (next) {
         setBubble(null);
+        // Opening the chat ends a finished walk; a running tour keeps its guide.
+        if (tourIndex === null) setGuide(null);
         markEditionSeen();
       }
     },
-    [markEditionSeen],
+    [markEditionSeen, tourIndex],
   );
 
   // ── Guiding: walk to a page, then point at a section ──
@@ -308,7 +324,7 @@ export function PetProvider({ children }: { children: React.ReactNode }) {
     (next: SiteMood | null) => {
       setPinnedMood(next);
       setAskedMood(null);
-      const shown = next ?? moodForRoute(pathname);
+      const shown = next ?? autoMood;
       push({
         role: 'pet',
         text: next
@@ -318,7 +334,7 @@ export function PetProvider({ children }: { children: React.ReactNode }) {
       if (next === 'jealous' || next === 'guarded') react('sulk', 1800);
       else react('happy', 1400);
     },
-    [pathname, push, react],
+    [autoMood, push, react],
   );
 
   const poke = useCallback(() => {
@@ -348,6 +364,29 @@ export function PetProvider({ children }: { children: React.ReactNode }) {
     [greeted, setOpen],
   );
 
+  // ── The page talks to Pip: sections set a mood, events earn a reaction or a remark ──
+  const quiet = open || activeGuide !== null || tourIndex !== null;
+  useEffect(() => {
+    const onSignal = (event: Event) => {
+      const detail = (event as CustomEvent<PipSignal>).detail;
+      if (!detail) return;
+      if (detail.clearMood) setSectionMood(null);
+      if (detail.mood && isSiteMood(detail.mood)) setSectionMood({ mood: detail.mood, path: pathname });
+      if (detail.reaction) react(detail.reaction, 1800);
+      if (detail.say && !quiet && window.matchMedia('(min-width: 1024px)').matches) {
+        const said = (readSession(SAID_KEY) ?? '').split('|');
+        if (said.includes(detail.say)) return;
+        // A hello, tour or poke bubble keeps the floor; the remark stays unsaid for next time.
+        const current = bubbleRef.current;
+        if (current && current.kind !== 'remark') return;
+        writeSession(SAID_KEY, [...said, detail.say].join('|'));
+        setBubble({ kind: 'remark', text: detail.say });
+      }
+    };
+    window.addEventListener(PIP_SIGNAL, onSignal);
+    return () => window.removeEventListener(PIP_SIGNAL, onSignal);
+  }, [pathname, react, quiet]);
+
   // ── Visiting /news clears the new-edition fold ──
   useEffect(() => {
     if (pathname.startsWith('/news')) markEditionSeen();
@@ -366,7 +405,7 @@ export function PetProvider({ children }: { children: React.ReactNode }) {
 
   // ── First visit hello, then one remark per page per session ──
   useEffect(() => {
-    if (open || guide || tourIndex !== null) return;
+    if (open || activeGuide || tourIndex !== null) return;
     const helloShown = readSession(HELLO_KEY);
     const delay = helloShown ? 4500 : 1200;
     let waitForScroll: (() => void) | null = null;
@@ -455,7 +494,8 @@ export function PetProvider({ children }: { children: React.ReactNode }) {
       setBubble(null);
       if (tourIndex === null) setGuide(null);
     },
-    guide: guide && guide.path === pathname ? guide : null,
+    guide: activeGuide,
+    autoMood,
     tourIndex,
     tourNext,
     endTour,

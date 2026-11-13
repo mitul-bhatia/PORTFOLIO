@@ -27,7 +27,7 @@ export function isSiteMood(value: unknown): value is SiteMood {
   return typeof value === 'string' && (ALL_MOODS as string[]).includes(value);
 }
 
-/** Visitor-facing names. The data-mood keys stay stable for the CSS. */
+/** Visitor-facing names. The keys are stable identifiers shared with the notebook API. */
 export const MOOD_META: Record<SiteMood, { label: string; blurb: string }> = {
   ambient: { label: 'Chill', blurb: 'Calm and factual.' },
   focused: { label: 'Focused', blurb: 'Metrics and pipelines first.' },

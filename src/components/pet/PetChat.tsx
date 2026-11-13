@@ -1,13 +1,26 @@
 'use client';
 
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { usePathname } from 'next/navigation';
 import { PET_NAME, promptsForRoute } from '@/content/pet';
 import { usePet, type PetMessage } from '@/context/PetContext';
-import { ALL_MOODS, MOOD_META, moodForRoute } from '@/lib/moods';
+import { ALL_MOODS, MOOD_META } from '@/lib/moods';
 import { usePrefersReducedMotion } from '@/lib/motion';
 import type { NotebookLane } from '@/lib/petTypes';
 import { PetCharacter } from './PetCharacter';
+import { ArrowRight, ArrowUpRight, ChevronDown, Close } from '@/components/ui/icons';
+
+const DESKTOP_QUERY = '(min-width: 1024px)';
+
+function subscribeDesktop(onChange: () => void) {
+  const media = window.matchMedia(DESKTOP_QUERY);
+  media.addEventListener('change', onChange);
+  return () => media.removeEventListener('change', onChange);
+}
+
+function isDesktop() {
+  return window.matchMedia(DESKTOP_QUERY).matches;
+}
 
 const LANE_LABEL: Record<NotebookLane, string> = {
   record: 'from his record',
@@ -109,13 +122,16 @@ function PetSlip({
       ) : null}
       <div className="pet-slip" data-lane={lane ?? 'none'}>
         <Typewriter text={message.text} animate={animate} onDone={() => onTalking(false)} />
+        {/* The typed copy is hidden from assistive tech; this one is always readable. */}
+        <span className="sr-only">{message.text}</span>
       </div>
       {reply && reply.citations.length > 0 ? (
         <ul className="mt-2 flex flex-wrap gap-1.5" aria-label="Sources">
           {reply.citations.map((citation) => (
             <li key={citation.href}>
               <a href={citation.href} target="_blank" rel="noopener noreferrer" className="pet-citation">
-                {citation.label} ↗
+                {citation.label}
+                <ArrowUpRight size={12} />
               </a>
             </li>
           ))}
@@ -125,7 +141,8 @@ function PetSlip({
         <div className="mt-2 flex flex-wrap gap-1.5">
           {reply.actions.map((action) => (
             <button key={`${action.type}-${action.label}`} type="button" className="pet-chip" onClick={() => pet.runAction(action)}>
-              {action.type === 'navigate' ? `Take me: ${action.label} →` : action.label}
+              {action.type === 'navigate' ? `Take me: ${action.label}` : action.label}
+              {action.type === 'navigate' ? <ArrowRight size={12} /> : null}
             </button>
           ))}
         </div>
@@ -154,6 +171,9 @@ export default function PetChat({
   const dragStart = useRef<number | null>(null);
   const { open, greeted, messages, status, draft } = pet;
   const prompts = promptsForRoute(pathname);
+  const desktop = useSyncExternalStore(subscribeDesktop, isDesktop, () => true);
+  /** Below 1024px the chat is a sheet over the page, so it behaves as a modal dialog. */
+  const modal = open && !desktop;
 
   // Prefilled asks from elsewhere on the site ("Ask Pip" on a news item).
   const [seenDraft, setSeenDraft] = useState(draft);
@@ -187,13 +207,23 @@ export default function PetChat({
 
   // Mobile sheet: scroll lock is fine here, desktop never locks.
   useEffect(() => {
-    if (!open || window.matchMedia('(min-width: 1024px)').matches) return;
+    if (!modal) return;
     const previous = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    // While the sheet covers the page, the page behind it is out of reach for keyboard and screen reader.
+    const behind = Array.from(document.querySelectorAll<HTMLElement>('body > a, header, main, footer')).filter(
+      (element) => !element.inert,
+    );
+    behind.forEach((element) => {
+      element.inert = true;
+    });
     return () => {
       document.body.style.overflow = previous;
+      behind.forEach((element) => {
+        element.inert = false;
+      });
     };
-  }, [open]);
+  }, [modal]);
 
   const submit = (event: FormEvent) => {
     event.preventDefault();
@@ -213,7 +243,7 @@ export default function PetChat({
         className="pet-sheet"
         data-open={open ? 'true' : 'false'}
         role="dialog"
-        aria-modal="false"
+        aria-modal={modal}
         aria-labelledby="pet-title"
         inert={!open}
         onTouchStart={(event) => {
@@ -234,7 +264,7 @@ export default function PetChat({
               {PET_NAME}
             </h2>
             <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)]">
-              {status === 'thinking' ? THINKING_LINE[lane ?? 'record'] : 'your guide to this folio'}
+              {status === 'thinking' ? THINKING_LINE[lane ?? 'record'] : 'your guide to this portfolio'}
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -243,20 +273,21 @@ export default function PetChat({
               className="pet-chip whitespace-nowrap"
               aria-expanded={moodMenu}
               aria-controls="pet-moods"
-              title="The room changes with the page. The facts don't."
+              title="Pip's mood changes with the page. The facts don't."
               onClick={() => setMoodMenu((current) => !current)}
             >
-              Mood: {MOOD_META[pet.mood].label} ▾
+              Mood: {MOOD_META[pet.mood].label}
+              <ChevronDown size={12} />
             </button>
             <button type="button" className="pet-chip" onClick={() => pet.setOpen(false)} aria-label="Close chat">
-              ✕
+              <Close size={14} />
             </button>
           </div>
 
           {moodMenu ? (
             <div id="pet-moods" className="pet-mood-menu" role="group" aria-label={`Pick ${PET_NAME}'s mood`}>
               <p className="col-span-full font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)]">
-                The room changes with the mood. The facts don&apos;t.
+                Pip&apos;s mood changes. The facts don&apos;t.
               </p>
               <button
                 type="button"
@@ -267,7 +298,7 @@ export default function PetChat({
                   setMoodMenu(false);
                 }}
               >
-                Auto: follow the page ({MOOD_META[moodForRoute(pathname)].label})
+                Auto: follow the page ({MOOD_META[pet.autoMood].label})
               </button>
               {ALL_MOODS.map((mood) => (
                 <button
@@ -312,7 +343,7 @@ export default function PetChat({
         <div className="border-t border-[var(--border-notebook)] bg-[var(--paper-soft)] p-3">
           {!greeted ? (
             <button ref={hiRef} type="button" className="pet-hi" onClick={pet.sayHi}>
-              👋 Say hi to {PET_NAME}
+              Say hi to {PET_NAME}
             </button>
           ) : (
             <div className="no-scrollbar mb-2 flex gap-1.5 overflow-x-auto pb-1">
@@ -338,10 +369,11 @@ export default function PetChat({
               {lane ? (
                 <button
                   type="button"
-                  className="absolute -top-7 left-0 font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--accent-ink)]"
+                  className="absolute -top-7 left-0 inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--accent-ink)]"
                   onClick={() => setLane(undefined)}
                 >
-                  asking {LANE_LABEL[lane]} ×
+                  asking {LANE_LABEL[lane]}
+                  <Close size={11} />
                 </button>
               ) : null}
               <input
@@ -350,7 +382,7 @@ export default function PetChat({
                 value={input}
                 disabled={!greeted}
                 onChange={(event) => setInput(event.target.value)}
-                placeholder={greeted ? 'Ask anything, or "take me to AEGIS"' : 'Say hi first 👋'}
+                placeholder={greeted ? 'Ask anything, or "take me to AEGIS"' : 'Say hi first'}
                 maxLength={500}
                 autoComplete="off"
                 className="min-h-11 w-full border border-[var(--ink)] bg-[var(--paper)] px-3 text-base text-[var(--ink)] placeholder:text-[var(--muted)] sm:text-sm"

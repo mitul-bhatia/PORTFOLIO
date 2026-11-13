@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { PageSheet } from '@/components/shell/PageSheet';
+import { PageHeader } from '@/components/shell/PageHeader';
 import { ContactBlock } from '@/components/proof/ContactBlock';
 import { pageMetadata } from '@/lib/site';
 
@@ -25,23 +25,14 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <PageSheet folio="Contact / Direct channels">
-      <section className="border-b border-[var(--border-notebook)] pb-12 pt-4 sm:pb-16">
-        <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent-dark)]">
-          Mitul Bhatia · Direct Channels
-        </p>
-        <h1 className="mt-2 balanced-heading max-w-[var(--measure-wide)] font-serif text-5xl font-semibold leading-[0.98] text-[var(--ink)] sm:text-6xl">
-          Let&apos;s talk about the problem you&apos;re building around.
-        </h1>
-        <p className="mt-6 max-w-[var(--measure)] text-base leading-7 text-[var(--muted)] sm:text-lg">
-          I&apos;m open to internships and engineering work across agentic systems, backend infrastructure, and full-stack products.
-        </p>
-      </section>
-
-      {/* Main Channels Block */}
-      <section data-tour="contact" className="py-12 sm:py-16">
+    <>
+      <PageHeader
+        title="Let’s talk about the problem you’re building around."
+        lead="I’m open to internships and engineering work across agentic systems, backend infrastructure, and full-stack products."
+      />
+      <section data-tour="contact" className="wrap section !pt-14">
         <ContactBlock />
       </section>
-    </PageSheet>
+    </>
   );
 }

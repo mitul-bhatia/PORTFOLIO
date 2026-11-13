@@ -41,3 +41,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local browser captures and design decision pages
+.playwright-mcp/
+.impeccable/questions/

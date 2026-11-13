@@ -3,20 +3,20 @@
 import { useState } from 'react';
 import type { Project } from '@/content/projects';
 import { usePrefersReducedMotion } from '@/lib/motion';
+import { ArrowLeft, ArrowRight } from '@/components/ui/icons';
 
 function FocalShell({
-  label,
   title,
   children,
 }: {
-  label: string;
+  /** Kept for authoring context; the heading carries the section. */
+  label?: string;
   title: string;
   children: React.ReactNode;
 }) {
   return (
-    <section className="border-b border-[var(--border-notebook)] py-12 sm:py-16" aria-labelledby={`focal-${label}`}>
-      <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--accent-dark)]">{label}</p>
-      <h2 id={`focal-${label}`} className="mt-2 font-serif text-3xl font-semibold text-[var(--ink)] sm:text-4xl">
+    <section className="border-t border-rule py-14 sm:py-16" aria-labelledby="focal-heading">
+      <h2 id="focal-heading" className="t-h2">
         {title}
       </h2>
       <div className="mt-8">{children}</div>
@@ -50,7 +50,7 @@ function AegisThreatLanes() {
       <div
         role="tablist"
         aria-label="Threat lanes"
-        className="flex flex-wrap gap-2 border-b border-[var(--border-notebook)] pb-4"
+        className="flex flex-wrap gap-2 border-b border-rule pb-4"
       >
         {lanes.map((lane) => (
           <button
@@ -61,11 +61,7 @@ function AegisThreatLanes() {
             aria-selected={active === lane.id}
             aria-controls={`aegis-panel-${lane.id}`}
             onClick={() => setActive(lane.id)}
-            className={`min-h-11 border px-4 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.1em] transition-colors ${
-              active === lane.id
-                ? 'border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)]'
-                : 'border-[var(--border-notebook)] bg-[var(--paper-soft)] text-[var(--muted)] hover:border-[var(--ink)] hover:text-[var(--ink)]'
-            }`}
+            className="seg"
           >
             {lane.label}
           </button>
@@ -75,9 +71,9 @@ function AegisThreatLanes() {
         role="tabpanel"
         id={`aegis-panel-${current.id}`}
         aria-labelledby={`aegis-tab-${current.id}`}
-        className="mt-6 border border-[var(--border-notebook)] bg-[var(--paper-soft)] p-6 font-mono text-xs leading-6 text-[var(--ink)] sm:text-sm"
+        className="mt-6 border border-rule bg-panel p-6 leading-7 text-ink"
       >
-        <span className="text-[var(--accent-dark)]">Outcome // </span>
+        <span className="text-[var(--line-ink)]">Outcome: </span>
         {current.detail}
       </div>
     </FocalShell>
@@ -113,24 +109,20 @@ function FlatelySyncToggle() {
             type="button"
             aria-pressed={mode === option.id}
             onClick={() => setMode(option.id)}
-            className={`min-h-11 border px-4 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.1em] ${
-              mode === option.id
-                ? 'border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)]'
-                : 'border-[var(--border-notebook)] text-[var(--muted)] hover:border-[var(--ink)]'
-            }`}
+            className="seg"
           >
             {option.label}
           </button>
         ))}
       </div>
-      <div className="mt-6 grid gap-px border border-[var(--border-notebook)] bg-[var(--border-notebook)] sm:grid-cols-[1fr_auto]">
-        <div className="bg-[var(--paper-soft)] p-6">
-          <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)]">{copy.headline}</p>
-          <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{copy.body}</p>
+      <div className="mt-6 grid gap-px border border-rule bg-rule sm:grid-cols-[1fr_auto]">
+        <div className="bg-panel p-6">
+          <p className="t-sign text-muted">{copy.headline}</p>
+          <p className="mt-3 leading-7 text-muted">{copy.body}</p>
         </div>
-        <div className="flex min-w-[140px] flex-col justify-center bg-[var(--paper)] px-6 py-4 text-center">
-          <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)]">Socket sync</span>
-          <span className="mt-1 font-serif text-3xl font-semibold tabular-nums text-[var(--ink)]">{copy.metric}</span>
+        <div className="flex min-w-[140px] flex-col justify-center bg-paper px-6 py-4 text-center">
+          <span className="t-sign text-muted">Socket sync</span>
+          <span className="mt-1 t-h3">{copy.metric}</span>
         </div>
       </div>
     </FocalShell>
@@ -158,18 +150,18 @@ function AgroversEvidenceStack() {
               <div
                 className={`border px-5 py-4 ${
                   visible
-                    ? 'border-[var(--ink)] bg-[var(--paper-soft)]'
-                    : 'border-[var(--border-notebook)] bg-[var(--paper)] text-[var(--muted)]'
+                    ? 'border-ink bg-panel'
+                    : 'border-rule bg-paper text-muted'
                 }`}
                 aria-hidden={!visible}
               >
-                <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--accent-dark)]">
+                <span className="t-sign text-[var(--line-ink)]">
                   Layer {index + 1} · {layer.label}
                 </span>
                 {visible ? (
-                  <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{layer.note}</p>
+                  <p className="mt-2 leading-7 text-muted">{layer.note}</p>
                 ) : (
-                  <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.1em]">Queued</p>
+                  <p className="mt-2 t-sign">Queued</p>
                 )}
               </div>
             </li>
@@ -180,7 +172,7 @@ function AgroversEvidenceStack() {
         <button
           type="button"
           onClick={() => setRevealed((count) => Math.min(layers.length, count + 1))}
-          className="mt-4 min-h-11 border border-[var(--ink)] bg-[var(--paper)] px-5 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)]"
+          className="btn btn-secondary mt-5"
         >
           Reveal next layer ({layers.length - shown} remaining)
         </button>
@@ -206,19 +198,15 @@ function CreditSenseRuleStepper() {
             type="button"
             aria-current={step === index ? 'step' : undefined}
             onClick={() => setStep(index)}
-            className={`min-h-11 border px-3 py-2 font-mono text-[11px] uppercase tracking-[0.08em] ${
-              step === index
-                ? 'border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)]'
-                : 'border-[var(--border-notebook)] text-[var(--muted)]'
-            }`}
+            className="seg"
           >
             {index + 1}. {item.title}
           </button>
         ))}
       </div>
-      <div className="mt-6 border-t border-[var(--ink)] pt-5">
-        <h3 className="font-serif text-2xl font-semibold text-[var(--ink)]">{steps[step].title}</h3>
-        <p className="mt-3 max-w-[var(--measure)] text-sm leading-7 text-[var(--muted)]">{steps[step].body}</p>
+      <div className="mt-6 border-t border-ink pt-5">
+        <h3 className="t-h3">{steps[step].title}</h3>
+        <p className="mt-3 max-w-[var(--measure)] leading-7 text-muted">{steps[step].body}</p>
       </div>
     </FocalShell>
   );
@@ -233,9 +221,7 @@ function LoanExplainToggle() {
           type="button"
           aria-pressed={view === 'score'}
           onClick={() => setView('score')}
-          className={`min-h-11 border px-4 py-2 font-mono text-[11px] uppercase tracking-[0.1em] ${
-            view === 'score' ? 'border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)]' : 'border-[var(--border-notebook)]'
-          }`}
+          className="seg"
         >
           XGBoost score
         </button>
@@ -243,23 +229,21 @@ function LoanExplainToggle() {
           type="button"
           aria-pressed={view === 'audit'}
           onClick={() => setView('audit')}
-          className={`min-h-11 border px-4 py-2 font-mono text-[11px] uppercase tracking-[0.1em] ${
-            view === 'audit' ? 'border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)]' : 'border-[var(--border-notebook)]'
-          }`}
+          className="seg"
         >
           TabNet + LlamaIndex audit
         </button>
       </div>
-      <div className="mt-6 grid gap-4 border border-[var(--border-notebook)] bg-[var(--paper-soft)] p-6 sm:grid-cols-2">
+      <div className="mt-6 grid gap-4 border border-rule bg-panel p-6 sm:grid-cols-2">
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)]">Signal</p>
-          <p className="mt-2 font-serif text-3xl font-semibold text-[var(--ink)]">
+          <p className="t-sign text-muted">Signal</p>
+          <p className="mt-2 t-h3">
             {view === 'score' ? '0.82 approve band' : '12 cited features'}
           </p>
         </div>
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)]">What the reviewer sees</p>
-          <p className="mt-2 text-sm leading-7 text-[var(--muted)]">
+          <p className="t-sign text-muted">What the reviewer sees</p>
+          <p className="mt-2 leading-7 text-muted">
             {view === 'score'
               ? 'Tabular model output with calibrated threshold — fast batch decisions.'
               : 'RAG-backed narrative ties each feature weight to policy language for human sign-off.'}
@@ -288,24 +272,20 @@ function F1PitPhases() {
             type="button"
             aria-pressed={active === item.id}
             onClick={() => setActive(item.id)}
-            className={`min-h-11 border px-4 py-2 font-mono text-[11px] uppercase tracking-[0.1em] ${
-              active === item.id
-                ? 'border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)]'
-                : 'border-[var(--border-notebook)] text-[var(--muted)]'
-            }`}
+            className="seg"
           >
             {item.label}
           </button>
         ))}
       </div>
-      <dl className="mt-6 grid gap-px border border-[var(--border-notebook)] bg-[var(--border-notebook)] sm:grid-cols-2">
-        <div className="bg-[var(--paper-soft)] p-5">
-          <dt className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)]">Leading KPI</dt>
-          <dd className="mt-2 font-serif text-2xl font-semibold text-[var(--ink)]">{phase.kpi}</dd>
+      <dl className="mt-6 grid gap-px border border-rule bg-rule sm:grid-cols-2">
+        <div className="bg-panel p-5">
+          <dt className="t-sign text-muted">Leading KPI</dt>
+          <dd className="mt-2 t-h3">{phase.kpi}</dd>
         </div>
-        <div className="bg-[var(--paper)] p-5">
-          <dt className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)]">Notebook read</dt>
-          <dd className="mt-2 text-sm leading-7 text-[var(--muted)]">{phase.note}</dd>
+        <div className="bg-paper p-5">
+          <dt className="t-sign text-muted">Reading</dt>
+          <dd className="mt-2 leading-7 text-muted">{phase.note}</dd>
         </div>
       </dl>
     </FocalShell>
@@ -330,27 +310,27 @@ function VulnswarmHandoff() {
           aria-label="Previous stage"
           disabled={index === 0}
           onClick={() => setIndex((i) => Math.max(0, i - 1))}
-          className="min-h-11 min-w-11 border border-[var(--border-notebook)] font-mono text-lg disabled:opacity-40"
+          className="seg !px-3"
         >
-          ←
+          <ArrowLeft />
         </button>
-        <div className="flex-1 border border-[var(--ink)] bg-[var(--paper-soft)] px-5 py-4">
-          <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--accent-dark)]">
+        <div className="flex-1 border border-ink bg-panel px-5 py-4">
+          <p className="t-sign text-[var(--line-ink)]">
             Stage {index + 1} / {stages.length}
           </p>
-          <p className="mt-2 font-serif text-2xl font-semibold text-[var(--ink)]">{stages[index]}</p>
+          <p className="mt-2 t-h3">{stages[index]}</p>
         </div>
         <button
           type="button"
           aria-label="Next stage"
           disabled={index === stages.length - 1}
           onClick={() => setIndex((i) => Math.min(stages.length - 1, i + 1))}
-          className="min-h-11 min-w-11 border border-[var(--border-notebook)] font-mono text-lg disabled:opacity-40"
+          className="seg !px-3"
         >
-          →
+          <ArrowRight />
         </button>
       </div>
-      <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)]">
+      <p className="mt-4 t-sign text-muted">
         Each hop is inspectable — agents never skip straight to a patch without triage context.
       </p>
     </FocalShell>

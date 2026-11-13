@@ -2,33 +2,33 @@
 version: 1
 slug: "src-app-page-tsx"
 primary_target: "src/app/page.tsx"
-related_targets: ["src/components/shell/BackgroundAtmosphere.tsx","src/components/notebook/BotDock.tsx","src/components/proof/HeroStamp.tsx"]
+related_targets: ["src/app/layout.tsx","src/app/globals.css"]
 ---
 
 # Homepage surface brief
 
 ## Scope
 
-Target: `src/app/page.tsx` and shared shell components. Mode: Experience.
+Target: `src/app/page.tsx` and the shared shell. Mode: Experience. Code-led build (no image generation available).
 
 ## Audience and job
 
-Technical recruiters and engineers must quickly understand what Mitul builds, inspect real projects, and reach the resume or contact routes.
+Recruiters skimming for 30 seconds come first; senior engineers get depth one click away in case studies and the run diagrams.
 
 ## Constraints
 
-Preserve the existing multi-route portfolio, structured content, working grounded concierge, and server API. The bot is never a content gate.
+Keep routes, structured content, the grounded concierge and its API, SEO metadata, and `data-tour` targets. Facts come only from `src/content`.
 
 ## Direction contract
 
-THESIS: One evidence-first portfolio becomes visually alive through the existing bot's mood; refuse the generic chat bubble and the ambient 3D portfolio spectacle.
+THESIS: The portfolio is a live route map; each project is a line whose stations are its real pipeline stages. Refuses the dark bento developer portfolio and the old cream editorial folio.
 
-OWN-WORLD: Cream paper, brown ink, one amber signal, sharp rules, editorial type, and background paths that gather toward the bot rail.
+OWN-WORLD: Cool paper white, ink black, four line colours (red, blue, green, yellow) as thick rounded strokes with white-ringed stations; Archivo grotesque, Martian Mono for board data.
 
-STORY: Visitors meet Mitul, read proof, use MB-01 when useful, and open a project, resume, or contact route.
+STORY: Visitor learns who Mitul is, watches a system run, opens a case study, reaches resume or contact.
 
-FIRST VIEWPORT: Thin masthead, large Mitul Bhatia statement at left, concise positioning and actions below, a real portrait with resume signals at right, a compact assistant launcher, and a sparse path current.
+FIRST VIEWPORT: Name and role at left at display scale with two actions; right, an animated three-line map leaving one interchange; a facts board closes the fold.
 
-FORM: Approved composition B, `.impeccable/mocks/comp-b-path-field.png`; user-pinned extension, seed key `user-approved-mb01-path-field`.
+FORM: Signal-flow diagram in the transit-map school, candidate 7 of 7, seed key 04413954. Signature interaction: packets ride each line and stations snap on arrival.
 
-FINISH: passed lint, production build, route and asset smoke checks, and the Impeccable detector on 2026-09-13. Live in-app browser capture was unavailable in the execution environment; supplied and shipping raster assets were inspected directly.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

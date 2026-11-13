@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
-import { PageSheet } from '@/components/shell/PageSheet';
+import { PageHeader } from '@/components/shell/PageHeader';
 import { WorkRouteTransition } from '@/components/shell/WorkRouteTransition';
-import { WorkProjectIndex } from '@/components/proof/WorkProjectIndex';
+import { WorkIndex } from '@/components/lines/WorkIndex';
+import { ExperienceBoard } from '@/components/lines/ExperienceBoard';
+import { ContactBand } from '@/components/lines/ContactBand';
 import { pageMetadata } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -29,21 +31,13 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   return (
     <WorkRouteTransition>
-      <PageSheet folio="Work / Selected projects">
-        <section className="border-b border-[var(--border-notebook)] pb-12 pt-4 sm:pb-16">
-          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent-dark)]">
-            Mitul Bhatia · Systems Portfolio
-          </p>
-          <h1 className="mt-2 balanced-heading max-w-[var(--measure-wide)] font-serif text-5xl font-semibold leading-[0.98] text-[var(--ink)] sm:text-6xl">
-            Systems built to be used, inspected, and improved.
-          </h1>
-          <p className="mt-6 max-w-[var(--measure)] text-base leading-7 text-[var(--muted)] sm:text-lg">
-            The three lead projects mirror the supplied resume. Each case study keeps the problem, implementation, interface, and documented result close together.
-          </p>
-        </section>
-
-        <WorkProjectIndex />
-      </PageSheet>
+      <PageHeader
+        title="Systems built to be used, inspected, and improved."
+        lead="Three lead case studies and four smaller builds. Each keeps the problem, the implementation, and the documented result together."
+      />
+      <WorkIndex />
+      <ExperienceBoard />
+      <ContactBand />
     </WorkRouteTransition>
   );
 }

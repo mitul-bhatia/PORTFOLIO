@@ -3,20 +3,27 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { RESUME_PDF } from '@/content/lines';
+import { ArrowUpRight, Close, Menu } from '@/components/ui/icons';
+import { MotionToggle } from '@/components/ui/MotionToggle';
+
 const NAV_LINKS = [
   { href: '/work', label: 'Work' },
   { href: '/about', label: 'About' },
   { href: '/skills', label: 'Skills' },
-  { href: '/news', label: 'News' },
+  { href: '/news', label: 'Reading' },
   { href: '/contact', label: 'Contact' },
 ];
 
 export function Masthead() {
-  const pathname = usePathname();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname() || '/';
+  // The menu belongs to the page it was opened on, so any route change closes it.
+  const [openedOn, setOpenedOn] = useState<string | null>(null);
+  const menuOpen = openedOn === pathname;
+
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setMobileMenuOpen(false);
+      if (event.key === 'Escape') setOpenedOn(null);
     };
     window.addEventListener('keydown', closeOnEscape);
     return () => window.removeEventListener('keydown', closeOnEscape);
@@ -24,22 +31,25 @@ export function Masthead() {
 
   return (
     <header
-      className="sticky top-0 z-40 border-b border-[var(--border-notebook)] bg-[var(--paper)]"
+      className="sticky top-0 z-40 border-b-2 border-ink bg-paper"
       style={{ viewTransitionName: 'site-header' } as React.CSSProperties}
     >
-      <div className="mx-auto flex h-16 w-full max-w-[1320px] items-center justify-between px-5 sm:px-8 lg:px-12">
-        <Link href="/" className="group flex min-w-0 items-center gap-3" aria-label="Mitul Bhatia, home">
-          <span className="font-serif text-lg font-semibold tracking-tight text-[var(--ink)] transition-colors group-hover:text-[var(--accent)] sm:text-xl">
-            Mitul Bhatia
-          </span>
-          <span className="hidden h-4 border-l border-[var(--border-notebook)] xl:block" />
-          <span className="hidden min-w-0 truncate font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)] xl:block">
-            AI / Full-Stack Engineer
-          </span>
+      <div className="wrap flex h-16 items-center justify-between gap-6">
+        <Link
+          href="/"
+          onClick={() => setOpenedOn(null)}
+          className="group flex min-w-0 flex-none items-center gap-3"
+          aria-label="Mitul Bhatia, home"
+        >
+          <span
+            aria-hidden="true"
+            className="relative grid h-7 w-7 flex-none place-items-center rounded-full border-[5px] border-ink bg-white transition-colors group-hover:border-red"
+          />
+          <span className="truncate text-lg font-extrabold tracking-tight [font-stretch:108%]">Mitul Bhatia</span>
         </Link>
 
-        <div className="hidden items-center gap-7 md:flex">
-          <nav className="flex items-center gap-7" aria-label="Primary navigation">
+        <div className="hidden items-center gap-2 lg:flex">
+          <nav className="flex items-center" aria-label="Primary">
             {NAV_LINKS.map((item) => {
               const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
               return (
@@ -47,66 +57,77 @@ export function Masthead() {
                   key={item.href}
                   href={item.href}
                   aria-current={active ? 'page' : undefined}
-                  className={`relative py-2 font-mono text-[11px] font-medium uppercase tracking-[0.13em] transition-colors after:absolute after:inset-x-0 after:-bottom-[13px] after:h-px after:bg-[var(--accent)] after:transition-transform ${
-                    active
-                      ? 'text-[var(--ink)] after:scale-x-100'
-                      : 'text-[var(--muted)] after:scale-x-0 hover:text-[var(--ink)] hover:after:scale-x-100'
+                  className={`group flex items-center gap-2 px-3 py-2 text-[0.95rem] font-semibold transition-colors ${
+                    active ? 'text-ink' : 'text-muted hover:text-ink'
                   }`}
                 >
+                  <span
+                    aria-hidden="true"
+                    className={`h-3 w-3 rounded-full border-[3px] transition-colors ${
+                      active ? 'border-ink bg-red' : 'border-rule bg-white group-hover:border-ink'
+                    }`}
+                  />
                   {item.label}
                 </Link>
               );
             })}
           </nav>
-
-          <span className="h-4 border-l border-[var(--border-notebook)]" />
-
-          <a
-            href="/assets/Mitul_Bhatia_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border border-[var(--ink)] bg-[var(--paper-soft)] px-3 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--ink)] transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]"
-          >
-            Resume ↗
+          <MotionToggle className="ml-1" />
+          <a href={RESUME_PDF} target="_blank" rel="noopener noreferrer" className="btn btn-primary ml-2 !min-h-10 !px-4">
+            Resume
+            <ArrowUpRight size={16} />
           </a>
         </div>
 
         <button
           type="button"
-          onClick={() => setMobileMenuOpen((open) => !open)}
-          className="border border-[var(--border-notebook)] px-3 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--ink)] md:hidden"
+          onClick={() => setOpenedOn(menuOpen ? null : pathname)}
+          className="btn btn-secondary !min-h-11 !px-3 lg:hidden"
           aria-controls="mobile-navigation"
-          aria-expanded={mobileMenuOpen}
+          aria-expanded={menuOpen}
         >
-          {mobileMenuOpen ? 'Close' : 'Menu'}
+          {menuOpen ? <Close size={18} /> : <Menu size={18} />}
+          {menuOpen ? 'Close' : 'Menu'}
         </button>
       </div>
 
-      {mobileMenuOpen && (
+      <div className="scroll-line" aria-hidden="true" />
+
+      {menuOpen && (
         <nav
           id="mobile-navigation"
-          aria-label="Mobile navigation"
-          className="border-t border-[var(--border-notebook)] bg-[var(--paper-soft)] px-5 py-5 animate-fadeIn md:hidden"
+          aria-label="Mobile"
+          className="animate-fadeIn border-t border-rule bg-panel lg:hidden"
         >
-          <div className="mx-auto grid max-w-[1320px] gap-1">
-            {NAV_LINKS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="border-b border-[var(--border-notebook)] py-3 font-serif text-xl text-[var(--ink)]"
-              >
-                {item.label}
-              </Link>
-            ))}
+          <div className="wrap grid py-3">
+            {NAV_LINKS.map((item) => {
+              const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpenedOn(null)}
+                  aria-current={active ? 'page' : undefined}
+                  className="flex min-h-12 items-center gap-3 border-b border-rule text-xl font-bold"
+                >
+                  <span
+                    aria-hidden="true"
+                    className={`h-3.5 w-3.5 rounded-full border-[3px] border-ink ${active ? 'bg-red' : 'bg-white'}`}
+                  />
+                  {item.label}
+                </Link>
+              );
+            })}
             <a
-              href="/assets/Mitul_Bhatia_Resume.pdf"
+              href={RESUME_PDF}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--accent-dark)]"
+              className="btn btn-primary mt-4 justify-center"
             >
               Open resume PDF
+              <ArrowUpRight size={16} />
             </a>
+            <MotionToggle withLabel className="my-3 justify-self-start" />
           </div>
         </nav>
       )}

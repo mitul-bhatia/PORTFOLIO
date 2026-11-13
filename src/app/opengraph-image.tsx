@@ -7,6 +7,14 @@ export const size = {
 };
 export const contentType = 'image/png';
 
+const INK = '#14151A';
+const PAPER = '#F1F3F4';
+const LINES = [
+  { color: '#D8002B', label: 'AEGIS' },
+  { color: '#0057B8', label: 'Flately' },
+  { color: '#00843D', label: 'Agrovers' },
+];
+
 export default async function Image() {
   return new ImageResponse(
     (
@@ -17,105 +25,60 @@ export default async function Image() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          backgroundColor: '#F3E9DA',
-          padding: '60px 80px',
-          border: '12px solid #2B1D14',
-          fontFamily: 'serif',
+          backgroundColor: PAPER,
+          color: INK,
+          padding: '64px 72px',
+          fontFamily: 'sans-serif',
         }}
       >
-        {/* Top Header Plate */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            borderBottom: '2px solid #D9C9AC',
-            paddingBottom: '20px',
-            fontFamily: 'monospace',
-            fontSize: 18,
-            color: '#6B5744',
-            letterSpacing: '2px',
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ width: 14, height: 14, backgroundColor: '#A8672E' }} />
-            <span style={{ fontWeight: 'bold', color: '#2B1D14' }}>
-              MITUL BHATIA — PORTFOLIO
-            </span>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 24, fontWeight: 700 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <div
+              style={{
+                width: 36,
+                height: 36,
+                borderRadius: 36,
+                border: `8px solid ${INK}`,
+                backgroundColor: '#FFFFFF',
+              }}
+            />
+            <span>mitulb95.dev</span>
           </div>
-          <span style={{ color: '#A8672E', fontWeight: 'bold' }}>
-              NST CLASS OF &apos;28
-          </span>
+          <span>AI / Full-Stack Engineer</span>
         </div>
 
-        {/* Center Hero Identity */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <div
-            style={{
-              fontSize: 84,
-              fontWeight: 'bold',
-              color: '#2B1D14',
-              lineHeight: 1.05,
-              letterSpacing: '-2px',
-            }}
-          >
-            Mitul Bhatia
-          </div>
-          <div
-            style={{
-              fontFamily: 'monospace',
-              fontSize: 26,
-              color: '#A8672E',
-              fontWeight: 600,
-              letterSpacing: '1px',
-            }}
-          >
-            AI / Full-Stack Engineer · Agentic Systems & LLM Infrastructure
-          </div>
-          <div
-            style={{
-              fontSize: 22,
-              color: '#6B5744',
-              maxWidth: '900px',
-              lineHeight: 1.4,
-              marginTop: '8px',
-            }}
-          >
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <div style={{ fontSize: 132, fontWeight: 800, lineHeight: 0.95, letterSpacing: '-5px' }}>Mitul Bhatia</div>
+          <div style={{ fontSize: 30, lineHeight: 1.35, marginTop: 28, maxWidth: 940 }}>
             Agentic systems, backend APIs, and real-time products with clear architecture and measured behavior.
           </div>
         </div>
 
-        {/* Bottom Metrics Plate */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            backgroundColor: '#EADFC8',
-            border: '2px solid #2B1D14',
-            padding: '20px 32px',
-            fontFamily: 'monospace',
-            fontSize: 18,
-            color: '#2B1D14',
-          }}
-        >
-          <div style={{ display: 'flex', gap: '40px' }}>
-            <span>
-              GUARDRAIL: <strong style={{ color: '#A8672E' }}>&lt;24ms</strong>
-            </span>
-            <span>
-              SYNC: <strong style={{ color: '#A8672E' }}>&lt;45ms</strong>
-            </span>
-            <span>
-              CGPA: <strong style={{ color: '#A8672E' }}>9.65 / 10.0</strong>
-            </span>
-          </div>
-          <span style={{ fontWeight: 'bold' }}>MITULB95.DEV</span>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+          {LINES.map((line) => (
+            <div key={line.label} style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+              <div style={{ width: 150, fontSize: 24, fontWeight: 800 }}>{line.label}</div>
+              <div style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'space-between', height: 14, borderRadius: 14, backgroundColor: line.color }}>
+                {[0, 1, 2, 3, 4].map((stop) => (
+                  <div
+                    key={stop}
+                    style={{
+                      width: 26,
+                      height: 26,
+                      borderRadius: 26,
+                      border: `6px solid ${INK}`,
+                      backgroundColor: '#FFFFFF',
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     ),
     {
       ...size,
-    }
+    },
   );
 }

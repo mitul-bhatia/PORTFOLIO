@@ -1,28 +1,56 @@
 import Link from 'next/link';
 import { PROFILE } from '@/content/profile';
+import { RESUME_PDF } from '@/content/lines';
+
+const INTERNAL = [
+  { href: '/work', label: 'Work' },
+  { href: '/about', label: 'About' },
+  { href: '/skills', label: 'Skills' },
+  { href: '/news', label: 'Reading' },
+  { href: '/contact', label: 'Contact' },
+];
 
 export function FooterFolio() {
+  const external = [
+    { href: RESUME_PDF, label: 'Resume' },
+    { href: PROFILE.github, label: 'GitHub' },
+    { href: PROFILE.linkedin, label: 'LinkedIn' },
+    { href: PROFILE.x, label: 'X' },
+  ];
+
   return (
-    <footer className="mt-auto border-t border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)]">
-      <div className="mx-auto grid w-full max-w-[1320px] gap-8 px-5 py-10 sm:px-8 md:grid-cols-[1fr_auto] md:items-end lg:px-12">
+    <footer className="mt-auto bg-ink text-paper">
+      <div className="four-lines" aria-hidden="true" />
+      <div className="wrap grid gap-10 py-12 md:grid-cols-[1fr_auto] md:items-end">
         <div>
-          <p className="font-serif text-3xl font-semibold">Mitul Bhatia</p>
+          <p className="t-h2">Mitul Bhatia</p>
           <a
             href={`mailto:${PROFILE.email}`}
-            className="mt-3 inline-block break-all text-sm text-[var(--paper)]/75 hover:text-[var(--paper)] hover:underline"
+            className="mt-3 inline-block break-all text-paper/80 underline decoration-paper/40 hover:text-paper hover:decoration-yellow"
           >
             {PROFILE.email}
           </a>
         </div>
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-3 font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--paper)]/70">
-          <Link href="/work" className="hover:text-[var(--paper)]">Work</Link>
-          <Link href="/about" className="hover:text-[var(--paper)]">About</Link>
-          <Link href="/news" className="hover:text-[var(--paper)]">News</Link>
-          <Link href="/contact" className="hover:text-[var(--paper)]">Contact</Link>
-          <a href="/assets/Mitul_Bhatia_Resume.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--paper)]">Résumé ↗</a>
-          <a href={PROFILE.github} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--paper)]">GitHub ↗</a>
-          <a href={PROFILE.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--paper)]">LinkedIn ↗</a>
-          <span>© {new Date().getFullYear()}</span>
+        <div className="grid gap-4 text-[0.95rem] font-semibold">
+          <ul className="flex flex-wrap gap-x-6 gap-y-2">
+            {INTERNAL.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="text-paper/80 hover:text-yellow">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2">
+            {external.map((item) => (
+              <li key={item.label}>
+                <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-paper/80 hover:text-yellow">
+                  {item.label}
+                </a>
+              </li>
+            ))}
+            <li className="t-data text-paper/60">© {new Date().getFullYear()}</li>
+          </ul>
         </div>
       </div>
     </footer>

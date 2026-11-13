@@ -270,7 +270,7 @@ export function PetCharacter({
         </g>
       ) : null}
       {status === 'sleeping' ? (
-        <g fill={INK} fontFamily="var(--font-ibm-plex-mono), monospace" fontWeight="600">
+        <g fill={INK} fontFamily="var(--font-martian), monospace" fontWeight="600">
           <text className="pet-z" x="96" y="18" fontSize="14">z</text>
           <text className="pet-z" x="106" y="6" fontSize="10" style={{ animationDelay: '600ms' }}>z</text>
         </g>

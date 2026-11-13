@@ -1,118 +1,83 @@
 import Link from 'next/link';
-import { HeroStamp } from '@/components/proof/HeroStamp';
-import { PillarRow } from '@/components/proof/PillarRow';
-import { ProjectPlate } from '@/components/proof/ProjectPlate';
-import { SecondaryProjectCard } from '@/components/proof/SecondaryProjectCard';
-import { ExperienceSection } from '@/components/proof/ExperienceSection';
-import { FolioReveal } from '@/components/shell/FolioReveal';
-import { FLAGSHIP_PROJECTS, SECONDARY_PROJECTS } from '@/content/projects';
+import { Hero } from '@/components/lines/Hero';
+import { ProjectLine } from '@/components/lines/ProjectLine';
+import { ExperienceBoard } from '@/components/lines/ExperienceBoard';
+import { Capabilities } from '@/components/lines/Capabilities';
+import { BranchList } from '@/components/lines/BranchList';
+import { ContactBand } from '@/components/lines/ContactBand';
 import { ReadingStrip } from '@/components/proof/ReadingStrip';
+import { ArrowRight } from '@/components/ui/icons';
+import { FLAGSHIP_PROJECTS, SECONDARY_PROJECTS } from '@/content/projects';
 import { getNewsEdition } from '@/lib/news/edition';
 
 export const revalidate = 21600;
-
 
 export default async function HomePage() {
   const edition = await getNewsEdition().catch(() => null);
   const reading = edition?.status === 'ready' ? edition.items.slice(0, 3) : [];
 
   return (
-    <div className="w-full">
-      <HeroStamp />
+    <>
+      <Hero />
 
-      <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-8 lg:px-12">
-        <FolioReveal as="section" data-tour="selected-systems" className="border-b border-[var(--border-notebook)] py-16 sm:py-20">
-          <div className="mb-9 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h2 className="balanced-heading font-serif text-4xl font-semibold leading-tight text-[var(--ink)] sm:text-5xl">
-                Selected systems
-              </h2>
-              <p className="mt-3 max-w-[var(--measure)] text-sm leading-6 text-[var(--muted)] sm:text-base">
-                Three projects from the resume, presented through the problem, architecture, interface, and measured outcome.
-              </p>
-            </div>
-            <Link
-              href="/work"
-              className="font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--accent-dark)] hover:underline"
-            >
-              Browse all projects
-            </Link>
-          </div>
-
-          <div className="space-y-8">
-            {FLAGSHIP_PROJECTS.map((project, index) => (
-              <FolioReveal key={project.slug} delayMs={index * 90}>
-                <ProjectPlate project={project} />
-              </FolioReveal>
-            ))}
-          </div>
-        </FolioReveal>
-
-        <ExperienceSection />
-
-        <PillarRow />
-
-        <FolioReveal as="section" className="border-b border-[var(--border-notebook)] py-16 sm:py-20">
-
-          <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <h2 className="balanced-heading font-serif text-3xl font-semibold text-[var(--ink)] sm:text-4xl">
-              More experiments and applied work
-            </h2>
-            <Link
-              href="/work"
-              className="font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--accent-dark)] hover:underline"
-            >
-              Full work index
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 gap-px border border-[var(--border-notebook)] bg-[var(--border-notebook)] md:grid-cols-2">
-            {SECONDARY_PROJECTS.map((project, index) => (
-              <FolioReveal key={project.slug} className="contents" delayMs={index * 70}>
-                <SecondaryProjectCard project={project} />
-              </FolioReveal>
-            ))}
-          </div>
-        </FolioReveal>
-
-        <ReadingStrip items={reading} />
-
-        <FolioReveal
-          as="section"
-          className="grid gap-8 py-16 sm:grid-cols-[1fr_auto] sm:items-end sm:py-20"
-        >
+      <section
+        id="systems"
+        data-tour="selected-systems"
+        data-pip-mood="focused"
+        data-pip-say="Each line here is a real pipeline. Watch one run."
+        className="wrap section"
+        aria-labelledby="systems-heading"
+      >
+        <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h2 className="balanced-heading max-w-[var(--measure-wide)] font-serif text-4xl font-semibold leading-tight text-[var(--ink)] sm:text-5xl">
-              Looking for an engineer who can move between AI workflows and the product around them?
+            <h2 id="systems-heading" className="t-h1">
+              Selected systems
             </h2>
-            <p className="mt-4 max-w-[var(--measure)] text-base leading-7 text-[var(--muted)]">
-              I&apos;m open to internships and engineering work across agentic systems, backend infrastructure, and full-stack products.
+            <p className="t-lead mt-4 max-w-[52ch] text-muted">
+              Three projects, each drawn as the pipeline it actually runs. Watch a request travel the line, then open
+              the case study.
             </p>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/contact"
-              className="inline-flex min-h-12 items-center bg-[var(--ink)] px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--paper)] hover:bg-[var(--accent-dark)]"
-            >
-              Contact me
-            </Link>
-            <a
-              href="/assets/Mitul_Bhatia_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-12 items-center border border-[var(--ink)] px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)]"
-            >
-              Resume PDF ↗
-            </a>
-            <a
-              href="/assets/mitul-bhatia-resume.docx"
-              download
-              className="inline-flex min-h-12 items-center border border-[var(--border-notebook)] bg-[var(--paper)] px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--muted)] hover:border-[var(--ink)] hover:text-[var(--ink)]"
-            >
-              Resume DOCX ↓
-            </a>
-          </div>
-        </FolioReveal>
-      </div>
-    </div>
+          <Link href="/work" className="text-link">
+            All projects
+            <ArrowRight size={16} />
+          </Link>
+        </div>
+
+        <div className="mt-16 grid gap-24 lg:gap-32">
+          {FLAGSHIP_PROJECTS.map((project, index) => (
+            <ProjectLine key={project.slug} project={project} flip={index % 2 === 1} />
+          ))}
+        </div>
+      </section>
+
+      <ExperienceBoard />
+
+      <Capabilities />
+
+      <section
+        className="wrap section !pt-0"
+        aria-labelledby="more-heading"
+        data-pip-mood="jealous"
+        data-pip-say="Four more. Honestly, it is a bit much."
+      >
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <h2 id="more-heading" className="t-h2">
+            More experiments and applied work
+          </h2>
+          <Link href="/work" className="text-link">
+            Full work index
+            <ArrowRight size={16} />
+          </Link>
+        </div>
+        <div className="mt-10">
+          <BranchList projects={SECONDARY_PROJECTS} />
+        </div>
+      </section>
+
+      <ReadingStrip items={reading} />
+
+      <ContactBand />
+    </>
   );
 }

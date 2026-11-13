@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { PageSheet } from '@/components/shell/PageSheet';
-import { PortraitFrame } from '@/components/proof/PortraitFrame';
-import { MethodList } from '@/components/proof/MethodList';
-import { ExperienceSection } from '@/components/proof/ExperienceSection';
+import Image from 'next/image';
+import { ExperienceBoard } from '@/components/lines/ExperienceBoard';
+import { ContactBand } from '@/components/lines/ContactBand';
+import { ArrowRight, ArrowUpRight, Download } from '@/components/ui/icons';
+import { RESUME_DOCX, RESUME_PDF } from '@/content/lines';
 import { PROFILE } from '@/content/profile';
 import { pageMetadata } from '@/lib/site';
 
@@ -33,98 +34,109 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <PageSheet folio="About / Experience and approach">
-      <section data-tour="about" className="grid gap-10 border-b border-[var(--border-notebook)] pb-14 pt-4 lg:grid-cols-12 lg:items-start lg:pb-20">
-        <div className="lg:col-span-5">
-          <PortraitFrame />
-        </div>
-        <div className="lg:col-span-7 lg:pt-4">
-          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent-dark)]">
-            About Mitul Bhatia · Profile & Approach
-          </p>
-          <h1 className="mt-2 balanced-heading font-serif text-5xl font-semibold leading-[0.98] text-[var(--ink)] sm:text-6xl">
-            Engineer, student, and careful system builder.
-          </h1>
-          <div className="mt-7 max-w-[var(--measure)] space-y-5 text-base leading-7 text-[var(--muted)] sm:text-lg">
-            {PROFILE.bio.split('\n\n').map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
+    <>
+      <header data-tour="about" className="border-b-2 border-ink">
+        <div className="wrap animate-pageEnter grid gap-10 pb-14 pt-14 sm:pt-20 lg:grid-cols-12 lg:items-center lg:gap-14">
+          <div className="lg:col-span-7">
+            <h1 className="t-h1 max-w-[16ch]">Engineer, student, and careful system builder.</h1>
+            <div className="t-lead mt-7 grid max-w-[58ch] gap-5 text-muted">
+              {PROFILE.bio.split('\n\n').map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <a href={RESUME_PDF} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                Open resume PDF
+                <ArrowUpRight size={16} />
+              </a>
+              <a href={RESUME_DOCX} download className="btn btn-secondary">
+                Download DOCX
+                <Download size={16} />
+              </a>
+              <Link href="/contact" className="btn btn-secondary">
+                Contact me
+                <ArrowRight />
+              </Link>
+            </div>
           </div>
-
-          <div className="mt-8 border-y border-[var(--border-notebook)] py-5">
-            <p className="max-w-[var(--measure)] text-sm leading-6 text-[var(--ink)]">{PROFILE.resumeSummary}</p>
-          </div>
-
-          <div className="mt-7 flex flex-wrap gap-3">
-            <a
-              href="/assets/Mitul_Bhatia_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-12 items-center bg-[var(--ink)] px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--paper)] hover:bg-[var(--accent-dark)]"
-            >
-              Open resume PDF
-            </a>
-            <a
-              href="/assets/mitul-bhatia-resume.docx"
-              download
-              className="inline-flex min-h-12 items-center border border-[var(--ink)] px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)]"
-            >
-              Download DOCX
-            </a>
-            <Link
-              href="/contact"
-              className="inline-flex min-h-12 items-center px-2 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--accent-dark)] hover:underline"
-            >
-              Contact me
-            </Link>
+          <div className="lg:col-span-5">
+            <Image
+              src="/assets/profile.jpg"
+              alt="Portrait of Mitul Bhatia"
+              width={877}
+              height={877}
+              priority
+              sizes="(min-width: 1024px) 420px, 70vw"
+              className="mx-auto aspect-square w-full max-w-[420px] rounded-full border-[10px] border-ink object-cover"
+            />
           </div>
         </div>
-      </section>
+      </header>
 
-      <ExperienceSection />
+      <ExperienceBoard />
 
-      <section className="border-b border-[var(--border-notebook)] py-14 sm:py-20">
-        <h2 className="balanced-heading font-serif text-4xl font-semibold text-[var(--ink)] sm:text-5xl">
+      <section className="wrap section" aria-labelledby="method-heading">
+        <h2 id="method-heading" className="t-h2">
           How I approach the work
         </h2>
-        <div className="mt-9">
-          <MethodList />
+        <div
+          className="run run-prose line-red mt-12"
+          style={{ '--n': PROFILE.methodology.length, '--i': PROFILE.methodology.length - 1 } as React.CSSProperties}
+        >
+          <div className="run-track" aria-hidden="true">
+            <div className="run-fill" />
+          </div>
+          <ol className="run-stops sm:gap-x-6">
+            {PROFILE.methodology.map((step) => (
+              <li key={step.id} className="run-stop" data-state="done">
+                <span className="run-dot flex-none" aria-hidden="true" />
+                <span>
+                  <span className="t-h3 block">{step.title}</span>
+                  <span className="mt-2 block text-muted text-pretty">{step.description}</span>
+                </span>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      <section className="grid gap-12 py-14 sm:py-20 lg:grid-cols-2">
+      <section className="wrap section grid gap-14 !pt-0 lg:grid-cols-2">
         <div>
-          <h2 className="font-serif text-4xl font-semibold text-[var(--ink)]">Education</h2>
-          <div className="mt-7 border-t border-[var(--ink)] pt-5">
-            <p className="font-serif text-2xl font-semibold text-[var(--ink)]">{PROFILE.degree}</p>
-            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{PROFILE.school} · {PROFILE.years}</p>
-            <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--accent-dark)]">
-              {PROFILE.cgpa} CGPA · {PROFILE.academicStatus}
+          <h2 className="t-h2">Education</h2>
+          <div className="mt-8 border-t-2 border-ink pt-6">
+            <p className="t-h3">{PROFILE.degree}</p>
+            <p className="mt-2 text-muted">
+              {PROFILE.school} · {PROFILE.years}
             </p>
-            <p className="mt-5 text-sm leading-6 text-[var(--muted)]">{PROFILE.aiStudio.description}</p>
+            <p className="t-data mt-5 text-ink">
+              CGPA {PROFILE.cgpa} · {PROFILE.academicStatus}
+            </p>
+            <p className="mt-5 max-w-[56ch] text-muted">{PROFILE.aiStudio.description}</p>
           </div>
         </div>
 
         <div>
-          <h2 className="font-serif text-4xl font-semibold text-[var(--ink)]">Other signals</h2>
-          <dl className="mt-7 border-t border-[var(--ink)]">
-            <div className="flex items-baseline justify-between gap-5 border-b border-[var(--border-notebook)] py-4">
-              <dt className="text-sm text-[var(--muted)]">LeetCode</dt>
-              <dd className="font-serif text-2xl font-semibold text-[var(--ink)]">{PROFILE.ratings.leetcode}</dd>
+          <h2 className="t-h2">Other signals</h2>
+          <dl className="mt-8 border-t-2 border-ink">
+            <div className="flex items-baseline justify-between gap-5 border-b border-rule py-4">
+              <dt className="font-semibold">LeetCode rating</dt>
+              <dd className="t-data text-lg">{PROFILE.ratings.leetcode}</dd>
             </div>
-            <div className="flex items-baseline justify-between gap-5 border-b border-[var(--border-notebook)] py-4">
-              <dt className="text-sm text-[var(--muted)]">Codeforces</dt>
-              <dd className="font-serif text-2xl font-semibold text-[var(--ink)]">{PROFILE.ratings.codeforces}</dd>
+            <div className="flex items-baseline justify-between gap-5 border-b border-rule py-4">
+              <dt className="font-semibold">Codeforces rating</dt>
+              <dd className="t-data text-lg">{PROFILE.ratings.codeforces}</dd>
             </div>
             {PROFILE.honors.map((honor) => (
-              <div key={honor.title} className="border-b border-[var(--border-notebook)] py-4">
-                <dt className="text-sm font-medium text-[var(--ink)]">{honor.title}</dt>
-                {honor.detail && <dd className="mt-1 text-xs text-[var(--muted)]">{honor.detail}</dd>}
+              <div key={honor.title} className="border-b border-rule py-4">
+                <dt className="font-semibold">{honor.title}</dt>
+                {honor.detail ? <dd className="mt-1 text-sm text-muted">{honor.detail}</dd> : null}
               </div>
             ))}
           </dl>
         </div>
       </section>
-    </PageSheet>
+
+      <ContactBand />
+    </>
   );
 }

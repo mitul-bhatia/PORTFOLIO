@@ -32,3 +32,11 @@ FIRST VIEWPORT: Name and role at left at display scale with two actions; right, 
 FORM: Signal-flow diagram in the transit-map school, candidate 7 of 7, seed key 04413954. Signature interaction: packets ride each line and stations snap on arrival.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+
+## Decision record (2026-11-13)
+
+- Roll: `concept-seed --scope direction --mode experience`, seed key 04413954, assigned index 7 of the grounded list (signal-flow diagram in the transit-map school).
+- Challengers dealt and weighed: night-flight six-pack instruments (competitive), HyperCard stack (competitive), multiplane cel dawn, Versailles bosquet vistas, Googie starburst diner, spy dossier title sequence (all declined; each donated one raise).
+- Presented with the model's own pick (one traced run) and the category standard. The user chose the assigned direction, "Signal Lines".
+- Build path: code-led. No image generation tool was available in the session, so no comp was produced; `.impeccable/config.json` keeps the standing default.
+- Open: the three flagship project images in `public/assets/projects/` are not captures of the live products. Replacing or labelling them is a pending user decision.

@@ -851,11 +851,20 @@ html.js [data-reveal='wipe']:not([data-in]) > * {
 /* Pip rides each run from station to station: down the line on phones, along it from 640px. */
 .run-rider {
   position: absolute;
-  right: 0;
-  top: calc(var(--i) / (var(--n) - 1) * (100% - 30px) - 6px);
+  left: -4px;
+  top: calc(2px + var(--i) / (var(--n) - 1) * (100% - 66px));
   width: 38px;
   height: 42px;
   transition: top var(--hop, 700ms) var(--ease-move);
+}
+/* Phones: Pip stands on the line just above the station it has reached. */
+@media (max-width: 639px) {
+  .run:has(.run-rider) {
+    padding-top: 36px;
+  }
+  .run:has(.run-rider) .run-track {
+    top: 51px;
+  }
 }
 .run-rider-hop {
   width: 100%;
@@ -871,7 +880,6 @@ html.js [data-reveal='wipe']:not([data-in]) > * {
   }
   .run-rider {
     top: 0;
-    right: auto;
     left: calc((var(--i) + 0.5) / var(--n) * 100%);
     width: 50px;
     height: 55px;
@@ -926,7 +934,7 @@ html.js [data-reveal='wipe']:not([data-in]) > * {
     height: 70px;
   }
   .pet-dock:not([data-awake='true']):not(:focus-within) {
-    transform: translateX(46%);
+    transform: translateX(72%);
   }
 }
 

@@ -263,7 +263,7 @@ export default function PetChat({
             <h2 id="pet-title" className="font-serif text-xl font-semibold leading-none text-[var(--ink)]">
               {PET_NAME}
             </h2>
-            <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)]">
+            <p className="mt-1 t-sign text-[var(--muted)]">
               {status === 'thinking' ? THINKING_LINE[lane ?? 'record'] : 'your guide to this portfolio'}
             </p>
           </div>
@@ -286,7 +286,7 @@ export default function PetChat({
 
           {moodMenu ? (
             <div id="pet-moods" className="pet-mood-menu" role="group" aria-label={`Pick ${PET_NAME}'s mood`}>
-              <p className="col-span-full font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)]">
+              <p className="col-span-full t-sign text-[var(--muted)]">
                 Pip&apos;s mood changes. The facts don&apos;t.
               </p>
               <button
@@ -369,7 +369,7 @@ export default function PetChat({
               {lane ? (
                 <button
                   type="button"
-                  className="absolute -top-7 left-0 inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--accent-ink)]"
+                  className="absolute -top-7 left-0 inline-flex items-center gap-1 t-sign text-[var(--accent-ink)]"
                   onClick={() => setLane(undefined)}
                 >
                   asking {LANE_LABEL[lane]}
@@ -391,7 +391,7 @@ export default function PetChat({
             <button
               type="submit"
               disabled={!greeted || status === 'thinking' || !input.trim()}
-              className="min-h-11 border border-[var(--ink)] bg-[var(--ink)] px-4 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--paper)] transition-colors duration-[var(--dur-1)] hover:bg-[var(--accent-ink)]"
+              className="min-h-11 border border-[var(--ink)] bg-[var(--ink)] px-4 t-sign text-[var(--paper)] transition-colors duration-[var(--dur-1)] hover:bg-[var(--accent-ink)]"
             >
               Send
             </button>
